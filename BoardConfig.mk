@@ -23,7 +23,7 @@ BOARD_USES_GENERIC_AUDIO := false
 BOARD_USES_LIBSECRIL_STUB := true
 
 # Use the non-open-source parts, if they're present
--include vendor/samsung/galaxys4g/BoardConfigVendor.mk
+-include vendor/samsung/galaxys4gmtd/BoardConfigVendor.mk
 
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
@@ -41,14 +41,14 @@ TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_BOARD_PLATFORM := s5pv210
 TARGET_BOOTLOADER_BOARD_NAME := aries
-TARGET_RECOVERY_INITRC := device/samsung/galaxys4g/initramfs/recovery.rc
+TARGET_RECOVERY_INITRC := device/samsung/galaxys4gmtd/initramfs/recovery.rc
 
 # Releasetools DO NOT ENABLE UNTIL MERGED WITH HACKSUNG!
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/aries-common/releasetools/aries_ota_from_target_files
 TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/aries-common/releasetools/aries_img_from_target_files
 
 # Releasetools for the time being
-#TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxys4g/releasetools/squisher
+#TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxys4gmtd/releasetools/squisher
 
 # Camera
 USE_CAMERA_STUB := false
@@ -62,7 +62,7 @@ endif
 #TARGET_PROVIDES_LIBAUDIO := true
 
 # OpenGL stuff
-BOARD_EGL_CFG := device/samsung/galaxys4g/prebuilt/etc/egl.cfg
+BOARD_EGL_CFG := device/samsung/galaxys4gmtd/prebuilt/etc/egl.cfg
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true

@@ -7,7 +7,7 @@ rm -f $REPACK/ota/boot.img
 
 # prebuilt kernel & updater-script
 mkdir -p $REPACK/ota/kernel_update
-cp -f $ANDROID_BUILD_TOP/device/samsung/galaxys4g/prebuilt/xbin/bmlwrite $REPACK/ota/kernel_update/bmlwrite
-cp -f $ANDROID_BUILD_TOP/device/samsung/galaxys4g/kernel $REPACK/ota/kernel_update/zImage
-cp -f $ANDROID_BUILD_TOP/device/samsung/galaxys4g/updater-script $REPACK/ota/META-INF/com/google/android/updater-script
+cp -f $ANDROID_BUILD_TOP/device/samsung/galaxys4gmtd/prebuilt/xbin/bmlwrite $REPACK/ota/kernel_update/bmlwrite
+cp -f $ANDROID_BUILD_TOP/device/samsung/galaxys4gmtd/kernel $REPACK/ota/kernel_update/zImage
+cp -f $ANDROID_BUILD_TOP/device/samsung/galaxys4gmtd/updater-script $REPACK/ota/META-INF/com/google/android/updater-script
 

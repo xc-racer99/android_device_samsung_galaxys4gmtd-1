@@ -127,8 +127,8 @@ $SED -i \
 	$REPACK/ota/system/build.prop
 
 # Include device specific script
-if [ "$TARGET_PRODUCT" = "cyanogen_epic" ]; then
-	. $ANDROID_BUILD_TOP/device/samsung/galaxys4g/releasetools/squisher.sh
+if [ "$TARGET_PRODUCT" = "cyanogen_galaxys4gmtd" ]; then
+	. $ANDROID_BUILD_TOP/device/samsung/galaxys4gmtd/releasetools/squisher.sh
 fi
 
 # Delete unnecessary binaries
@@ -151,7 +151,7 @@ if [ -z "$CYANOGEN_NIGHTLY" ]; then
 	OUTFILE=$OUT/update-cm-$MODVERSION-signed.zip
 else
 	OUTFILE=$OUT/update-squished.zip
-	if [ "$TARGET_PRODUCT" = "cyanogen_galaxys4g" ]; then
+	if [ "$TARGET_PRODUCT" = "cyanogen_galaxys4gmtd" ]; then
 		MODVERSION=`sed -n -e'/ro\.modversion/s/^.*CyanogenMod-//p' $REPACK/ota/system/build.prop`
 		OUTFILE=$OUT/cm$MODVERSION.zip
 		OUTFILE=$OUT/update-cm-$MODVERSION-signed.zip
