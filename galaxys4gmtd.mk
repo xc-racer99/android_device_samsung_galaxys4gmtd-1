@@ -50,9 +50,9 @@ PRODUCT_COPY_FILES := \
 # Init files
 PRODUCT_COPY_FILES += \
 	device/samsung/galaxys4g/initramfs/init.rc:root/init.rc \
-	device/samsung/galaxys4g/initramfs/init.aries.rc:root/init.aries.rc \
+	device/samsung/galaxys4g/initramfs/recovery.rc:root/recovery.rc \
 	device/samsung/galaxys4g/initramfs/lpm.rc:root/lpm.rc \
-	device/samsung/aries-common/ueventd.aries.rc:root/ueventd.aries.rc \
+	device/samsung/aries-common/ueventd.rc:root/ueventd.rc \
 	device/samsung/aries-common/setupenv.sh:recovery/root/sbin/setupenv.sh
 
 
