@@ -43,15 +43,15 @@ DEVICE_PACKAGE_OVERLAYS := device/samsung/aries-common/overlay
 
 # These are the hardware-specific configuration files
 PRODUCT_COPY_FILES := \
-    device/samsung/galaxys4g/prebuilt/etc/asound.conf:system/etc/asound.conf \
-    device/samsung/galaxys4g/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
-    device/samsung/galaxys4g/prebuilt/etc/egl.cfg:system/lib/egl/egl.cfg
+    device/samsung/galaxys4gmtd/prebuilt/etc/asound.conf:system/etc/asound.conf \
+    device/samsung/galaxys4gmtd/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
+    device/samsung/galaxys4gmtd/prebuilt/etc/egl.cfg:system/lib/egl/egl.cfg
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4g/initramfs/init.rc:root/init.rc \
-	device/samsung/galaxys4g/initramfs/recovery.rc:root/recovery.rc \
-	device/samsung/galaxys4g/initramfs/lpm.rc:root/lpm.rc \
+	device/samsung/galaxys4gmtd/initramfs/init.rc:root/init.rc \
+	device/samsung/galaxys4gmtd/initramfs/recovery.rc:root/recovery.rc \
+	device/samsung/galaxys4gmtd/initramfs/lpm.rc:root/lpm.rc \
 	device/samsung/aries-common/ueventd.rc:root/ueventd.rc \
 	device/samsung/aries-common/setupenv.sh:recovery/root/sbin/setupenv.sh
 
@@ -60,27 +60,27 @@ PRODUCT_COPY_FILES += \
 
 # WiFi
 PRODUCT_COPY_FILES += \
-     device/samsung/galaxys4g/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+     device/samsung/galaxys4gmtd/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
 # Keylayout and Keychars
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4g/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
-     device/samsung/galaxys4g/prebuilt/usr/keylayout/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
-     device/samsung/galaxys4g/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-     device/samsung/galaxys4g/prebuilt/usr/keylayout/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
-     device/samsung/galaxys4g/prebuilt/usr/keylayout/melfas_touchkey.kl:system/usr/keylayout/melfas_touchkey.kl \
-     device/samsung/galaxys4g/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
-     device/samsung/galaxys4g/prebuilt/usr/keylayout/Broadcom_Bluetooth_HID.kl:system/usr/keylayout/Broadcom_Bluetooth_HID.kl \
-     device/samsung/galaxys4g/prebuilt/usr/keychars/Broadcom_Bluetooth_HID.kcm.bin:system/usr/keychars/Broadcom_Bluetooth_HID.kcm.bin \
-     device/samsung/galaxys4g/prebuilt/usr/keychars/melfas_touchkey.kcm.bin:system/usr/keychars/melfas_touchkey.kcm.bin \
-     device/samsung/galaxys4g/prebuilt/usr/keychars/qwerty.kcm.bin:system/usr/keychars/qwerty.kcm.bin \
+	device/samsung/galaxys4gmtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
+     device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
+     device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
+     device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
+     device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/melfas_touchkey.kl:system/usr/keylayout/melfas_touchkey.kl \
+     device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
+     device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/Broadcom_Bluetooth_HID.kl:system/usr/keylayout/Broadcom_Bluetooth_HID.kl \
+     device/samsung/galaxys4gmtd/prebuilt/usr/keychars/Broadcom_Bluetooth_HID.kcm.bin:system/usr/keychars/Broadcom_Bluetooth_HID.kcm.bin \
+     device/samsung/galaxys4gmtd/prebuilt/usr/keychars/melfas_touchkey.kcm.bin:system/usr/keychars/melfas_touchkey.kcm.bin \
+     device/samsung/galaxys4gmtd/prebuilt/usr/keychars/qwerty.kcm.bin:system/usr/keychars/qwerty.kcm.bin \
 	  device/samsung/aries-common/s3c-keypad.kl:system/usr/keylayout/s3c-keypad.kl \
-     device/samsung/galaxys4g/prebuilt/usr/keychars/aries-keypad.kcm.bin:system/usr/keychars/aries-keypad.kcm.bin \
-     device/samsung/galaxys4g/prebuilt/usr/keychars/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin
+     device/samsung/galaxys4gmtd/prebuilt/usr/keychars/aries-keypad.kcm.bin:system/usr/keychars/aries-keypad.kcm.bin \
+     device/samsung/galaxys4gmtd/prebuilt/usr/keychars/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin
 
 # extra stuff
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4g/prebuilt/xbin/bmlwrite:system/xbin/bmlwrite
+	device/samsung/galaxys4gmtd/prebuilt/xbin/bmlwrite:system/xbin/bmlwrite
 
 # Generated kcm keymaps
 PRODUCT_PACKAGES := \
@@ -186,11 +186,11 @@ PRODUCT_LOCALES := hdpi
 
 # kernel modules
 PRODUCT_COPY_FILES += $(foreach module,\
-	$(wildcard device/samsung/galaxys4g/*.ko),\
+	$(wildcard device/samsung/galaxys4gmtd/*.ko),\
 	$(module):system/lib/modules/$(notdir $(module)))
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-    LOCAL_KERNEL := device/samsung/galaxys4g/kernel
+    LOCAL_KERNEL := device/samsung/galaxys4gmtd/kernel
 else
     LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
@@ -199,9 +199,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4g/updater.sh:updater.sh
+	device/samsung/galaxys4gmtd/updater.sh:updater.sh
 # See comment at the top of this file. This is where the other
 # half of the device-specific product definition file takes care
 # of the aspects that require proprietary drivers that aren't
 # commonly available
-$(call inherit-product-if-exists, vendor/samsung/galaxys4g/galaxys4g-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/galaxys4gmtd/galaxys4gmtd-vendor.mk)
