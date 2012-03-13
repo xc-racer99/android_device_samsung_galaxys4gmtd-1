@@ -7,7 +7,7 @@
 
 /recovery	mtd		recovery
 /boot		mtd		boot
-#/modem		mtd		modem
+#/radio		mtd		modem
 
 
 #/emmc		vfat		/dev/block/mmcblk1p1
