@@ -9,7 +9,7 @@
 /dev/binder               0666   root       root
 
 # logger should be world writable (for logging) but not readable
-/dev/log/*                0662   root       log
+/dev/log*                0662   root       log
 
 # the msm hw3d client device node is world writable/readable.
 /dev/msm_hw3dc            0666   root       root
@@ -27,19 +27,19 @@
 /dev/uinput               0660   system     bluetooth
 /dev/alarm                0664   system     radio
 /dev/tty0                 0660   root       system
-/dev/graphics/*           0660   root       graphics
+/dev/graphics*            0660   root       graphics
 /dev/msm_hw3dm            0660   system     graphics
-/dev/input/*              0660   root       input
+/dev/input*               0660   root       input
 /dev/eac                  0660   root       audio
 /dev/cam                  0660   root       camera
 /dev/pmem                 0660   system     graphics
 /dev/pmem_adsp*           0660   system     audio
 /dev/pmem_camera*         0660   system     camera
-/dev/oncrpc/*             0660   root       system
-/dev/adsp/*               0660   system     audio
-/dev/snd/*                0660   system     audio
+/dev/oncrpc*              0660   root       system
+/dev/adsp*                0660   system     audio
+/dev/snd*                 0660   system     audio
 /dev/mt9t013              0660   system     system
-/dev/msm_camera/*         0660   system     system
+/dev/msm_camera*          0660   system     system
 /dev/akm8976_daemon       0640   compass    system
 /dev/akm8976_aot          0640   compass    system
 /dev/akm8973_daemon       0640   compass    system
@@ -69,7 +69,7 @@
 /dev/qmi0                 0640   radio      radio
 /dev/qmi1                 0640   radio      radio
 /dev/qmi2                 0640   radio      radio
-/dev/bus/usb/*            0660   root       usb
+/dev/bus/usb*             0660   root       usb
 /dev/usb_accessory        0660   root       usb
 
 # CDMA radio interface MUX
@@ -80,7 +80,7 @@
 # sysfs properties
 /sys/devices/virtual/input/input*   enable      0660  root   input
 /sys/devices/virtual/input/input*   poll_delay  0660  root   input
-/sys/devices/virtual/usb_composite/*   enable      0664  root   system
+/sys/devices/virtual/usb_composite*   enable      0664  root   system
 #LSI
 /dev/pvrsrvkm             0666   system     system
 /dev/video0               0660   system     camera
@@ -89,3 +89,49 @@
 /dev/s3c-jpg              0660   system     camera
 /dev/s3c-mem              0660   system     system
 /dev/s3c-mfc              0660   system     graphics
+
+/dev/pvrsrvkm             0666   system     system
+/dev/video0               0660   system     camera
+/dev/video1               0660   system     camera
+/dev/video2               0660   system     camera
+/dev/video14              0660   system     system
+/dev/video20              0660   system     system
+/dev/video21              0660   system     system
+/dev/video22              0660   system     system
+/dev/s3c-jpg              0660   system     camera
+/dev/s3c-mem              0660   system     system
+/dev/s3c-mfc              0660   system     graphics
+
+# for copybit
+/dev/pmem_gpu1            0660   system     graphics
+/dev/s3c_bc               0660   system     graphics
+
+/dev/modem_ctl            0660   radio      radio
+/dev/modem_fmt            0660   radio      radio
+/dev/modem_rfs            0660   radio      radio
+/dev/s3c2410_serial3      0660   radio      radio
+/dev/block/mtdblock5      0660   radio      radio
+/dev/mtd/mtd5ro           0660   radio      radio
+
+# for Sensor HAL
+/dev/akm8973              0660   system     system
+/dev/accelerometer        0660   system     system
+
+# for GPS
+/dev/s3c2410_serial1      0600   gps        gps
+
+#for vibrator
+/dev/tspdrv               0660   shell      shell
+
+#for PMEM_adsp
+/dev/pmem_adsp            0660   system     audio 
+
+#for PMEM 
+/dev/pmem                 0660   system     system
+
+# for ULP Audio
+/dev/s5p-rp               0660   system     audio
+/dev/s5p-rp_ctrl          0660   system     audio
+
+#for storage 
+/dev/storage              0650   radio      radio
