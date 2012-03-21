@@ -31,15 +31,5 @@
 #	asec = disable
 #	mbr_policy = skip
 #}
-#dev_mount sdcard /mnt/sdcard 1 /devices/platform/s3c-sdhci.0/mmc_host/mmc0
-
-# externel sdcard
-{
-	mount_deep = 1
-## [NAGSM_Android_HDLNC_SDcard_SeoJaeWoong_20101015 : Only externel SDCard use
-##	ums_path = /sys/devices/platform/s3c-usbgadget/gadget/lun2/file
-	ums_path = /sys/devices/platform/s3c-usbgadget/gadget/lun0/file
-	asec = enable
-	mbr_policy = overwrite
-}
-dev_mount sdcard /mnt/sdcard auto /devices/platform/s3c-sdhci.2/mmc_host/mmc1
+#dev_mount sdcard /mnt/sdcard auto /devices/platform/s3c-sdhci.2/mmc_host/mmc1
+dev_mount sdcard /mnt/sdcard auto /devices/platform/s3c-sdhci.1/mmc_host/mmc0
