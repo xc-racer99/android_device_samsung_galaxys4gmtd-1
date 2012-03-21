@@ -1,4 +1,4 @@
-# Copyright (C) 2010 The Android Open Source Project
+# Copyright (C) 2012 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,13 +25,6 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := cypress-touchkey.kcm
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_KEY_CHAR_MAP)
-
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := setup_fs.c
-LOCAL_MODULE := setup_fs
-LOCAL_MODULE_TAGS := optional
-#LOCAL_SHARED_LIBRARIES += libext4_utils libz
-include $(BUILD_EXECUTABLE)
 
 ifneq ($(TARGET_SIMULATOR),true)
 include $(call all-makefiles-under,$(LOCAL_PATH))
