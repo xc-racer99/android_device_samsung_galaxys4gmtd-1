@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011 The Android Open Source Project
+# Copyright (C) 2012 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -48,11 +48,13 @@ PRODUCT_COPY_FILES := \
     device/samsung/galaxys4gmtd/prebuilt/etc/egl.cfg:system/lib/egl/egl.cfg
 
 # Init files
+# device/samsung/galaxys4gmtd/init.herring.rc:root/init.herring.rc
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys4gmtd/init.rc:root/init.rc \
+    device/samsung/galaxys4gmtd/init.herring.rc:root/init.herring.rc \
     device/samsung/galaxys4gmtd/lpm.rc:root/lpm.rc \
     device/samsung/galaxys4gmtd/ueventd.rc:root/ueventd.rc \
     device/samsung/galaxys4gmtd/setupenv.sh:recovery/root/sbin/setupenv.sh
+
 
 # WiFi
 PRODUCT_COPY_FILES += \
@@ -74,10 +76,6 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/prebuilt/usr/keychars/aries-keypad.kcm.bin:system/usr/keychars/aries-keypad.kcm.bin \
     device/samsung/galaxys4gmtd/prebuilt/usr/keychars/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin
 
-# extra stuff
-PRODUCT_COPY_FILES += \
-    device/samsung/galaxys4gmtd/prebuilt/xbin/bmlwrite:system/xbin/bmlwrite
-
 # Generated kcm keymaps
 PRODUCT_PACKAGES := \
     cypress-touchkey.kcm \
@@ -85,7 +83,7 @@ PRODUCT_PACKAGES := \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-    make_ext4fs \
+    bml_over_mtd \
     setup_fs
 
 # These are the OpenMAX IL configuration files
@@ -99,18 +97,20 @@ PRODUCT_PACKAGES += \
     libOMX.SEC.AVC.Decoder.s5pc110 \
     libOMX.SEC.M4V.Decoder.s5pc110 \
     libOMX.SEC.M4V.Encoder.s5pc110 \
-    libOMX.SEC.AVC.Encoder.s5pc110
+    libOMX.SEC.AVC.Encoder.s5pc110 \
+    libaudio
 
 # Misc other modules
 PRODUCT_PACKAGES += \
     lights.s5pc110 \
     overlay.s5pc110 \
-    sensors.s5pc110
+    sensors.s5pc110 \
 
 # Libs
 PRODUCT_PACKAGES += \
     libcamera \
-    libstagefrighthw
+    libstagefrighthw \
+    libs3cjpeg
 
 # Bluetooth MAC Address
 PRODUCT_PACKAGES += \
