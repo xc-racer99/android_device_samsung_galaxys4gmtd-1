@@ -1,4 +1,4 @@
-# Copyright (C) 2007 The Android Open Source Project
+# Copyright (C) 2012 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -37,18 +37,16 @@ TARGET_NO_RADIOIMAGE := true
 
 BOARD_MOBILEDATA_INTERFACE_NAME = "pdp0"
 
+BOARD_NEEDS_CUTILS_LOG := true
+
 TARGET_PROVIDES_INIT := true
-TARGET_PROVIDES_INIT_TARGET_RC := true
-TARGET_BOARD_PLATFORM := s5pv210
-TARGET_BOOTLOADER_BOARD_NAME := aries
-TARGET_RECOVERY_INITRC := device/samsung/galaxys4gmtd/initramfs/recovery.rc
+TARGET_BOARD_PLATFORM := s5pc110
+TARGET_BOOTLOADER_BOARD_NAME := herring
+#TARGET_BOARD_PLATFORM_GPU := POWERVR_SGX540_120
+TARGET_RECOVERY_INITRC := device/samsung/galaxys4gmtd/recovery.rc
 
-# Releasetools DO NOT ENABLE UNTIL MERGED WITH HACKSUNG!
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/aries-common/releasetools/aries_ota_from_target_files
-TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/aries-common/releasetools/aries_img_from_target_files
-
-# Releasetools for the time being
-#TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxys4gmtd/releasetools/squisher
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/samsung/galaxys4gmtd/releasetools/galaxys4gmtd_ota_from_target_files
+TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/samsung/galaxys4gmtd/releasetools/galaxys4gmtd_img_from_target_files
 
 # Camera
 USE_CAMERA_STUB := false
@@ -59,7 +57,7 @@ endif
 #GPS
 #BOARD_USES_GPSSHIM := true
 
-#TARGET_PROVIDES_LIBAUDIO := true
+TARGET_PROVIDES_LIBAUDIO := true
 
 # OpenGL stuff
 BOARD_EGL_CFG := device/samsung/galaxys4gmtd/prebuilt/etc/egl.cfg
@@ -75,21 +73,22 @@ BOARD_CAMERA_DEVICE := /dev/video0
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 
 # FM Radio
-BOARD_HAVE_FM_RADIO := true
-BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+#BOARD_HAVE_FM_RADIO := true
+#BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
 
 TARGET_PREBUILT_KERNEL := device/samsung/galaxys4gmtd/kernel
 BOARD_NAND_PAGE_SIZE := 4096 -s 128
 BOARD_KERNEL_BASE := 0x32000000
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_CMDLINE := console=ttyFIQ0,115200 init=/init no_console_suspend
+BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 init=/init no_console_suspend
 
 # fix this up by examining /proc/mtd on a running device
 BOARD_BOOTIMAGE_PARTITION_SIZE := 7864320
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 196608000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 541589504
-BOARD_FLASH_BLOCK_SIZE := 4096
+BOARD_RECOVERY_PARTITION_SIZE := 7864320
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 403701760
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 555745280
+BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Connectivity - Wi-Fi
 WPA_SUPPLICANT_VERSION := VER_0_6_X
@@ -101,20 +100,12 @@ WIFI_DRIVER_FW_AP_PATH      := "/vendor/firmware/fw_bcm4329_apsta.bin"
 WIFI_DRIVER_MODULE_NAME     :=  "bcm4329"
 WIFI_DRIVER_MODULE_ARG      :=  "firmware_path=/vendor/firmware/fw_bcm4329.bin nvram_path=/vendor/firmware/nvram_net.txt"
 
-# Vold
-BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
-
 # Recovery
-BOARD_HAS_SDCARD_INTERNAL := true
-BOARD_SDCARD_DEVICE_INTERNAL := /dev/block/mmcblk0p1
-TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_RECOVERY_HANDLES_MOUNT := true
+BOARD_HAS_DOWNLOAD_MODE := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USES_BML_OVER_MTD := true
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/aries-common/shbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxys4gmtd/shbootimg.mk
 TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync;"
-BOARD_RECOVERY_HANDLES_MOUNT := true
 
-# Include aries specific stuff
--include device/samsung/aries-common/Android.mk
-
-TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,SGH-T959V
+TARGET_OTA_ASSERT_DEVICE := herring,galaxys4g,galaxys4gmtd,SGH-T959V
