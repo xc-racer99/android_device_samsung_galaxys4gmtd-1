@@ -88,6 +88,7 @@ lib/libsecril-client.so
 
 etc/gps.conf
 vendor/bin/gpsd
+lib/libclientgps.so
 lib/hw/gps.s5pc110.so
 
 bin/pvrsrvinit
@@ -268,6 +269,7 @@ PRODUCT_COPY_FILES += \\
 PRODUCT_COPY_FILES += \\
     vendor/samsung/__DEVICE__/proprietary/vendor/bin/gpsd:system/vendor/bin/gpsd \\
     vendor/samsung/__DEVICE__/proprietary/etc/gps.conf:system/etc/gps.conf \\
+    vendor/samsung/__DEVICE__/proprietary/lib/libclientgps.so:system/lib/libclientgps.so \\
     vendor/samsung/__DEVICE__/proprietary/lib/hw/gps.s5pc110.so:system/lib/hw/gps.s5pc110.so
 
 #
