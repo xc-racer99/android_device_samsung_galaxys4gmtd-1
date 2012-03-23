@@ -50,6 +50,7 @@ PRODUCT_COPY_FILES := \
 # Init files
 # device/samsung/galaxys4gmtd/init.herring.rc:root/init.herring.rc
 PRODUCT_COPY_FILES += \
+    device/samsung/galaxys4gmtd/init.rc:root/init.rc \
     device/samsung/galaxys4gmtd/init.herring.rc:root/init.herring.rc \
     device/samsung/galaxys4gmtd/lpm.rc:root/lpm.rc \
     device/samsung/galaxys4gmtd/ueventd.rc:root/ueventd.rc \
