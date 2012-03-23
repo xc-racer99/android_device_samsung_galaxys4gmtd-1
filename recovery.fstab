@@ -4,6 +4,7 @@
 /system		yaffs2		system
 /cache		yaffs2		cache
 /data		yaffs2		userdata
+/efs		yaffs2		efs
 
 /recovery	mtd		recovery
 /boot		mtd		boot
