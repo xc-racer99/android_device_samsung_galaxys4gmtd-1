@@ -1,7 +1,5 @@
 on init
     loglevel 8
-    insmod /system/lib/modules/bcm4329.ko
-    insmod /system/lib/modules/bthid.ko
 
 on fs
 # We chown/chmod /efs because mount is run as root + defaults
@@ -28,6 +26,9 @@ on post-fs
     mkdir /data/gps 771 gps system
     chown gps system /data/gps
     chmod 0777 /system/vendor/bin/gpsd
+    mkdir /var 777 system system
+    mkdir /var/log 777 system system
+    mkdir /var/run 777 system system
 
     # for sensor control
     chown system input /sys/class/input/input0/enable
@@ -243,6 +244,10 @@ on boot
         chown system system /dev/dun
     # +++++++++++++++++++++++++++++++++++++++++++
 
+on post-fs
+    insmod /system/lib/modules/bcm4329.ko
+    insmod /system/lib/modules/bthid.ko
+
 # Samsung USB Mode : system properties are linked with sysfs
 # write /sys/class/sec/switch/UsbMenuSel 0
 on property:persist.service.usb.setting=0
@@ -270,28 +275,28 @@ on property:persist.service.adb.enable=1
 on property:persist.service.adb.enable=0
     stop adbd
 
-service immvibed /system/bin/immvibed
+service immvibed /system/bin/logwrapper /system/bin/immvibed
     oneshot
 
-service orientationd /system/bin/orientationd
+service orientationd /system/vendor/bin/orientationd
 user compass
 group input
 
-service geomagneticd /system/bin/geomagneticd
+service geomagneticd /system/vendor/bin/geomagneticd
 user compass
 group system input
 
-service gps-daemon /system/vendor/bin/gpsd
-    user system
+service gps-daemon /system/bin/logwrapper /system/vendor/bin/gpsd -d -p /data/gpsd.pid
+    user gps
     group system inet
 
 # 3D init
-service pvrsrvinit /system/bin/pvrsrvinit
+service pvrsrvinit /system/vendor/bin/pvrsrvinit
     user root
     group root
     oneshot
 
-service wpa_supplicant /system/xbin/strace -tt -o/data/wifi.strace /system/bin/wpa_supplicant -Dwext -ieth0 -c/data/wifi/wpa_supplicant.conf
+service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant -W -Dwext -ieth0 -c /data/misc/wifi/wpa_supplicant.conf
     socket wpa_eth0 dgram 0660 wifi wifi
     disabled
     oneshot
@@ -312,7 +317,7 @@ service bdaddr /system/bin/bdaddr_read
 on property:init.svc.bootanim=running
     start bdaddr
 
-service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
+service hciattach /system/bin/logwrapper /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
     --baudrate 3000000 --patchram /vendor/firmware/bcm4329.hcd /dev/s3c2410_serial0
     user bluetooth
     group bluetooth net_bt_admin

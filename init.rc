@@ -5,7 +5,7 @@ on init
 
 sysclktz 0
 
-loglevel 3
+loglevel 9
 
 # setup the global environment
     export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
@@ -103,6 +103,8 @@ on fs
     mount yaffs2 mtd@cache /cache nosuid nodev
 
 on post-fs
+    symlink /system/vendor /vendor
+    symlink /system/etc /etc
     # once everything is setup, no need to modify /
     mount rootfs rootfs / ro remount
 
@@ -359,7 +361,7 @@ service netd /system/bin/netd
 
 service debuggerd /system/bin/debuggerd
 
-service ril-daemon /system/bin/rild
+service ril-daemon /system/bin/logwrapper /system/bin/rild
     socket rild stream 660 root radio
     socket rild-debug stream 660 radio system
     user root
