@@ -22,6 +22,7 @@ on post-fs
     chmod 0660 /dev/usb_mtp_gadget
     chown system system /dev/usb_mtp_gadget
 
+    mkdir 0777 /data/property
     # create data/gps for GPS daemon
     mkdir /data/gps 771 gps system
     chown gps system /data/gps
@@ -240,12 +241,11 @@ on boot
 
     # +++++++++++++++++++++++++++++++++++++++++++
     # for datarouter
-        chown system system /dev/ttyGS0
-        chown system system /dev/dun
+    chown system system /dev/ttyGS0
+    chown system system /dev/dun
     # +++++++++++++++++++++++++++++++++++++++++++
 
-on post-fs
-    insmod /system/lib/modules/bcm4329.ko
+    #insmod /system/lib/modules/bcm4329.ko
     insmod /system/lib/modules/bthid.ko
 
 # Samsung USB Mode : system properties are linked with sysfs
@@ -260,20 +260,6 @@ on property:persist.service.usb.setting=3
     write /sys/devices/platform/android_usb/UsbMenuSel 3
 on property:persist.service.usb.setting=4
     write /sys/devices/platform/android_usb/UsbMenuSel 4
-
-# adbd is controlled by the persist.service.adb.enable system property
-service adbd /sbin/adbd
-    disabled
-
-# adbd on at boot in emulator
-on property:ro.kernel.qemu=1
-    start adbd
-
-on property:persist.service.adb.enable=1
-    start adbd
-
-on property:persist.service.adb.enable=0
-    stop adbd
 
 service immvibed /system/bin/logwrapper /system/bin/immvibed
     oneshot
