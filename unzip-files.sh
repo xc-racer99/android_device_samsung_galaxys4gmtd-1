@@ -140,7 +140,7 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libclientgps.so:system/lib/libclientgps.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libril.so:system/lib/libril.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsecril-client.so:system/lib/libsecril-client.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsec-ril.so:system/vendor/lib/libsec-ril.so \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsec-ril.so:system/lib/libsec-ril.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/gps.s5pc110.so:system/vendor/lib/hw/gps.s5pc110.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/rild:system/bin/rild \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/gpsd:system/vendor/bin/gpsd \\
