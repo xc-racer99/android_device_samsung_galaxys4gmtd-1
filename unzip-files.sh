@@ -40,6 +40,9 @@ unzip -j -o ${ZIPFILE} system/bin/immvibed -d ${ANDROID_BUILD_TOP}/vendor/$MANUF
 unzip -j -o ${ZIPFILE} system/bin/pvrsrvinit -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/vendor/firmware/bcm4329.hcd -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/vendor/firmware/nvram_net.txt -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
+unzip -j -o ${ZIPFILE} system/etc/wifi/nvram_net.txt -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary/etc
+unzip -j -o ${ZIPFILE} system/etc/wifi/bcm4329_sta.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary/etc
+unzip -j -o ${ZIPFILE} system/etc/wifi/bcm4329_aps.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary/etc
 unzip -j -o ${ZIPFILE} system/usr/keychars/melfas_touchkey.kcm.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/vendor/firmware/samsung_mfc_fw.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/egl/libGLES_android.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
@@ -148,6 +151,9 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/pvrsrvinit:system/vendor/bin/pvrsrvinit \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/nvram_net.txt:system/vendor/firmware/nvram_net.txt \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/etc/nvram_net.txt:system/etc/wifi/nvram_net.txt \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/etc/bcm4329_sta.bin:system/etc/wifi/bcm4329_sta.bin \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/etc/bcm4329_aps.bin:system/etc/wifi/bcm4329_aps.bin \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/melfas_touchkey.kcm.bin:system/usr/keychars/melfas_touchkey.kcm.bin \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/samsung_mfc_fw.bin:system/vendor/firmware/samsung_mfc_fw.bin \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libGLES_android.so:system/lib/egl/libGLES_android.so \\
