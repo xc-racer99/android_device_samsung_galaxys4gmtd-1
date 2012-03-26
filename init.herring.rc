@@ -10,6 +10,12 @@ on fs
     chmod 770 /efs/imei
 
 # Mount /system rw first to give the filesystem a chance to save a checkpoint
+    mkdir /radio 0775 radio radio
+    mount yaffs2 mtd@radio /radio
+    chmod 0775 /radio
+    chmod 0775 /radio/modem.bin
+    chown radio radio /radio
+    chown radio radio /radio/modem.bin
     mount yaffs2 mtd@efs /efs
     chown radio radio /efs
     chmod 0775 /efs
@@ -27,6 +33,9 @@ on post-fs
     mkdir /data/gps 771 gps system
     chown gps system /data/gps
     chmod 0777 /system/vendor/bin/gpsd
+
+    symlink /radio/modem.bin /dev/block/bml12
+
     mkdir /var 777 system system
     mkdir /var/log 777 system system
     mkdir /var/run 777 system system
