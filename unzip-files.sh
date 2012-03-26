@@ -30,6 +30,7 @@ unzip -j -o ${ZIPFILE} system/lib/libclientgps.so -d ${ANDROID_BUILD_TOP}/vendor
 unzip -j -o ${ZIPFILE} system/lib/libril.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libsecril-client.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libsec-ril.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
+unzip -j -o ${ZIPFILE} system/lib/libganril.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/bin/rild -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/hw/gps.s5pc110.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/vendor/bin/gpsd -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
@@ -141,6 +142,7 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libril.so:system/lib/libril.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsecril-client.so:system/lib/libsecril-client.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsec-ril.so:system/lib/libsec-ril.so \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libganril.so:system/lib/libganril.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/gps.s5pc110.so:system/vendor/lib/hw/gps.s5pc110.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/rild:system/bin/rild \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/gpsd:system/vendor/bin/gpsd \\
