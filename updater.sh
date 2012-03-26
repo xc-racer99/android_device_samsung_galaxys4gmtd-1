@@ -91,8 +91,8 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
 	
     # make sure radio partition is mounted
     if ! /tmp/busybox grep -q /radio /proc/mounts ; then
-        /tmp/busybox umount -l /dev/block/mtdblock5
-        if ! /tmp/busybox mount -t yaffs2 /dev/block/mtdblock5 /radio ; then
+        /tmp/busybox umount -l /dev/block/mtdblock6
+        if ! /tmp/busybox mount -t yaffs2 /dev/block/mtdblock6 /radio ; then
             /tmp/busybox echo "Cannot mount radio partition."
             exit 5
 	fi
@@ -100,9 +100,9 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
 	
     # if modem.bin doesn't exist on radio partition, format the partition and copy it
     if ! /tmp/busybox test -e /radio/modem.bin ; then
-	    /tmp/busybox umount -l /dev/block/mtdblock5
+	    /tmp/busybox umount -l /dev/block/mtdblock6
         /tmp/erase_image radio
-	    if ! /tmp/busybox mount -t yaffs2 /dev/block/mtdblock5 /radio ; then
+	    if ! /tmp/busybox mount -t yaffs2 /dev/block/mtdblock6 /radio ; then
             /tmp/busybox echo "Cannot copy modem.bin to radio partition."
             exit 5
 	else
@@ -111,7 +111,7 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
     fi
 	
     # unmount radio partition
-    /tmp/busybox umount -l /dev/block/mtdblock5
+    /tmp/busybox umount -l /dev/block/mtdblock6
 
     # if a cyanogenmod.cfg exists, then this is a first time install
     # let's format the volumes and restore radio and efs
