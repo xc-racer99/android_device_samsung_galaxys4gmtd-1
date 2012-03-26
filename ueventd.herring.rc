@@ -110,8 +110,9 @@
 /dev/modem_fmt            0660   radio      radio
 /dev/modem_rfs            0660   radio      radio
 /dev/s3c2410_serial3      0660   radio      radio
-/dev/block/mtdblock5      0660   radio      radio
-/dev/mtd/mtd5ro           0660   radio      radio
+/dev/block/mtdblock6      0660   radio      radio
+# /dev/block/bml12          0660   radio      radio
+/dev/mtd/mtd6ro           0660   radio      radio
 
 # for Sensor HAL
 /dev/akm8973              0660   system     system
