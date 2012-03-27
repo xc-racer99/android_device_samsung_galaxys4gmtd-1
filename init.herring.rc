@@ -88,6 +88,12 @@ on post-fs
     chown system input /dev/i2c-1
 
 on boot
+
+    setprop ro.build.product herring
+    setprop ro.product.device herring
+    setprop ro.radio.noril yes
+    setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"    
+
     # Tweak background writeout
     write /proc/sys/vm/dirty_writeback_centisecs 2000
     write /proc/sys/vm/dirty_expire_centisecs 1000
