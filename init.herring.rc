@@ -88,6 +88,8 @@ on post-fs
     chown system input /dev/i2c-1
 
 on boot
+    
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
 
     setprop ro.build.product herring
     setprop ro.product.device herring
