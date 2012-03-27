@@ -185,6 +185,9 @@ on boot
     chown radio system /sys/class/touch/switch/set_grip
     chown radio system /sys/class/touch/qt_stylus/config_mode
 
+    #change permissions for backlight
+    chown system system /sys/class/backlight/s5p_bl/brightness
+
     #change permissions for lcd
     chown radio system /sys/class/lcd/s5p_lcd/lcd_power
     chown radio radio /sys/class/gammaset/switch_gammaset/gammaset_file_cmd
