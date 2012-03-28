@@ -292,7 +292,7 @@ service geomagneticd /system/vendor/bin/geomagneticd
 user compass
 group system input
 
-service gps-daemon /system/bin/logwrapper /system/vendor/bin/gpsd -d -p /data/gpsd.pid
+service gps-daemon /system/bin/logwrapper /system/vendor/bin/gpsd -c /system/etc/gps.xml -d -p /data/gpsd.pid
     user gps
     group system inet
 

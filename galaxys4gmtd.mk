@@ -45,6 +45,7 @@ DEVICE_PACKAGE_OVERLAYS := device/samsung/galaxys4gmtd/overlay
 PRODUCT_COPY_FILES := \
     device/samsung/galaxys4gmtd/prebuilt/etc/asound.conf:system/etc/asound.conf \
     device/samsung/galaxys4gmtd/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
+    device/samsung/galaxys4gmtd/prebuilt/etc/gps.xml:system/etc/gps.xml \
     device/samsung/galaxys4gmtd/prebuilt/etc/egl.cfg:system/lib/egl/egl.cfg
 
 # Init files
