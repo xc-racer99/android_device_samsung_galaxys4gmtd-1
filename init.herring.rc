@@ -89,9 +89,17 @@ on post-fs
     
     # load modules. They need to be loaded to set the permissions for the stuff
     # in 'on boot'
-    #insmod /system/lib/modules/bcm4329.ko
     insmod /system/lib/modules/bthid.ko
     insmod /system/lib/modules/scsi_wait_scan.ko
+    insmod /system/lib/modules/ansi_cprng.ko
+    insmod /system/lib/modules/cifs.ko
+    insmod /system/lib/modules/ext3.ko
+    insmod /system/lib/modules/ext4.ko
+    insmod /system/lib/modules/fuse.ko
+    insmod /system/lib/modules/Si4709_driver.ko
+    insmod /system/lib/modules/tun.ko
+    insmod /system/lib/modules/vibrator.ko
+
 
 on boot
     
