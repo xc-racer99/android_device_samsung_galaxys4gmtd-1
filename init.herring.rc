@@ -90,6 +90,14 @@ on post-fs
     chown system input /sys/class/input/input8/wake
 
     chown system input /dev/i2c-1
+
+    # Change permissions for modem.
+    chown radio system /sys/class/modemctl/xmm/control
+    chown radio system /sys/class/net/svnet0/waketime
+    chown radio system /sys/class/net/svnet0/pdp/activate
+    chown radio system /sys/class/net/svnet0/pdp/deactivate
+    chown radio system /sys/class/net/svnet0/pdp/suspend
+    chown radio system /sys/class/net/svnet0/pdp/resume
     
     # load modules. They need to be loaded to set the permissions for the stuff
     # in 'on boot'
