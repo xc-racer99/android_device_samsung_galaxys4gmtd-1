@@ -98,6 +98,7 @@ on post-fs
     chown radio system /sys/class/net/svnet0/pdp/deactivate
     chown radio system /sys/class/net/svnet0/pdp/suspend
     chown radio system /sys/class/net/svnet0/pdp/resume
+
     
     # load modules. They need to be loaded to set the permissions for the stuff
     # in 'on boot'
@@ -143,6 +144,9 @@ on boot
     #wifi permissions
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
+
+    # radio permissions
+    mkdir /data/misc/radio 0771 radio radio
 
     #change permissions for USB
     chown radio system /sys/class/sec/switch/usb_sel
