@@ -24,6 +24,10 @@ on fs
     mount yaffs2 mtd@cache /cache
 
 on post-fs
+    # make symlinks for compatibility
+    symlink /system/vendor /vendor
+    symlink /system/etc /etc
+
     # permissions for MTP device node_temporary permission_will be changed 0660
     chmod 0660 /dev/usb_mtp_gadget
     chown system system /dev/usb_mtp_gadget
