@@ -48,10 +48,10 @@ char const*const LIGHTSENSOR_FILE
         = "/sys/class/lightsensor/switch_cmd/lightsensor_file_state";
 #endif
 
-char const*const BUTTON_FILE
+char const *const BUTTON_FILE
         = "/sys/class/misc/melfas_touchkey/brightness";
 	
-char const*const NOTIFICATION_FILE
+char const *const NOTIFICATION_FILE
         = "/sys/class/misc/backlightnotification/notification_led";
 	
 //end modified by mr
@@ -82,6 +82,11 @@ static int write_int(char const *path, int value)
 		}
 		return -errno;
 	}
+}
+
+static int is_lit(struct light_state_t const* state)
+{
+    return state->color & 0x00ffffff;
 }
 
 static int rgb_to_brightness(struct light_state_t const *state)
