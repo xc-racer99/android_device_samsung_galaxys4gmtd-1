@@ -36,7 +36,10 @@ on post-fs
     # create data/gps for GPS daemon
     mkdir /data/gps 771 gps system
     chown gps system /data/gps
+    chown gps root /sys/class/sec/gps/GPS_PWR_EN/value
+    chmod 660 /sys/class/sec/gps/GPS_PWR_EN/value
     chmod 0777 /system/vendor/bin/gpsd
+    symlink /datadata /data/data
 
     symlink /radio/modem.bin /dev/block/bml12
 
@@ -142,8 +145,16 @@ on boot
     #setprop wifi.driver.status "ok"
 
     #wifi permissions
-    mkdir /data/misc/wifi/sockets 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    mkdir /data/wifi 0777 wifi wifi
+    chown wifi system /data/misc/wifi
+    chmod 0777 /data/misc/wifi/
+    chmod 0777 /data/wifi/
+    mkdir /data/misc/wifi/sockets 0770 wifi system
+    chmod 0664 /system/etc/wifi/wpa_supplicant.conf
+    chown dhcp dhcp /data/misc/dhcp
+    mkdir /data/misc/dhcpcd 0771 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcpcd
+    chown dhcp dhcp /data/misc/dhcp
 
     # radio permissions
     mkdir /data/misc/radio 0771 radio radio
@@ -332,7 +343,7 @@ service pvrsrvinit /system/vendor/bin/pvrsrvinit
     group root
     oneshot
 
-service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant -W -Dwext -ieth0 -c /data/misc/wifi/wpa_supplicant.conf
+service wpa_supplicant /system/xbin/strace -tt -f -o /data/wpa.strace /system/bin/wpa_supplicant -W -Dwext -ieth0 -c /data/misc/wifi/wpa_supplicant.conf
     socket wpa_eth0 dgram 0660 wifi wifi
     disabled
     oneshot
