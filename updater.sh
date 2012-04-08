@@ -100,7 +100,7 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
 	
     # if modem.bin doesn't exist on radio partition, format the partition and copy it
     if ! /tmp/busybox test -e /radio/modem.bin ; then
-	    /tmp/busybox umount -l /dev/block/mtdblock6
+        /tmp/busybox umount -l /dev/block/mtdblock6
         /tmp/erase_image radio
 	    if ! /tmp/busybox mount -t yaffs2 /dev/block/mtdblock6 /radio ; then
             /tmp/busybox echo "Cannot copy modem.bin to radio partition."
@@ -160,7 +160,8 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
     fi
 
     # flash boot image
-    /tmp/bml_over_mtd.sh boot 72 reservoir 2004 /tmp/boot.img
+    /tmp/erase_image boot
+    /tmp/bml_over_mtd.sh boot 72 reservoir 4012 /tmp/boot.img
 
     exit 0
 fi
