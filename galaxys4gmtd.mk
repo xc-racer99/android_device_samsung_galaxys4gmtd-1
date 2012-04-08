@@ -84,7 +84,9 @@ PRODUCT_PACKAGES := \
 
 # Wifi utilities
 PRODUCT_PACKAGES := \
-    dhdutil
+    dhdutil \
+    fw_bcm4329.bin \
+    fw_bcm4329_apsta.bin
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
