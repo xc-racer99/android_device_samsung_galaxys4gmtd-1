@@ -82,6 +82,10 @@ PRODUCT_PACKAGES := \
     cypress-touchkey.kcm \
     s3c-keypad.kcm
 
+# Wifi utilities
+PRODUCT_PACKAGES := \
+    dhdutil
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     bml_over_mtd \
