@@ -348,7 +348,7 @@ service wpa_supplicant /system/xbin/strace -tt -f -o /data/wpa.strace /system/bi
     disabled
     oneshot
 
-service dhcpcd /system/bin/dhcpcd -ABKL
+service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
     disabled
     oneshot
 
