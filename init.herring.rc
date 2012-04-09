@@ -323,16 +323,18 @@ on property:persist.service.usb.setting=3
 on property:persist.service.usb.setting=4
     write /sys/devices/platform/android_usb/UsbMenuSel 4
 
-service immvibed /system/bin/logwrapper /system/bin/immvibed
+service immvibed /system/bin/immvibed
+    user shell
+    group shell
     oneshot
 
 service orientationd /system/vendor/bin/orientationd
-user compass
-group input
+    user compass
+    group input
 
 service geomagneticd /system/vendor/bin/geomagneticd
-user compass
-group system input
+    user compass
+    group system input
 
 service gps-daemon /system/bin/logwrapper /system/vendor/bin/gpsd -c /system/etc/gps.xml -d -p /tmp/gpsd.pid
     user gps
