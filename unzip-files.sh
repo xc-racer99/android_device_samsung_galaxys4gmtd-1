@@ -37,7 +37,7 @@ unzip -j -o ${ZIPFILE} system/bin/pppd -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTU
 unzip -j -o ${ZIPFILE} system/lib/hw/gps.s5pc110.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/vendor/bin/gpsd -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libcamera.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} updates/modem.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
+#unzip -j -o ${ZIPFILE} updates/modem.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 
 unzip -j -o ${ZIPFILE} system/bin/immvibed -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/bin/pvrsrvinit -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
