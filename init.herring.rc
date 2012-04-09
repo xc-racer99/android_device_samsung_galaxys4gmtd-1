@@ -102,6 +102,14 @@ on post-fs
     chown radio system /sys/class/net/svnet0/pdp/suspend
     chown radio system /sys/class/net/svnet0/pdp/resume
 
+    chown root system /dev/s3c2410_serial1
+    chmod 660 /dev/s3c2410_serial1
+    mkdir /data/gps 771 system system
+    chown system system /data/gps
+    chown root system /sys/class/gpio/gpio121/value
+    chmod 664 /sys/class/gpio/gpio121/value
+    chown root system /sys/class/gpio/gpio120/value
+    chmod 664 /sys/class/gpio/gpio120/value
     
     # load modules. They need to be loaded to set the permissions for the stuff
     # in 'on boot'
@@ -303,9 +311,6 @@ on boot
     chown system system /dev/ttyGS0
     chown system system /dev/dun
     # +++++++++++++++++++++++++++++++++++++++++++
-
-    #insmod /system/lib/modules/bcm4329.ko
-    insmod /system/lib/modules/bthid.ko
 
     chown system system /sys/class/backlight/s5p_bl/brightness
 
