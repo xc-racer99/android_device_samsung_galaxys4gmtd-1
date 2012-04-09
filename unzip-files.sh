@@ -85,6 +85,7 @@ unzip -j -o ${ZIPFILE} system/lib/libtvoutfimc.so -d ${ANDROID_BUILD_TOP}/vendor
 unzip -j -o ${ZIPFILE} system/lib/libtvouthdmi.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libtvoutservice.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/bin/tvoutserver -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
+unzip -j -o ${ZIPFILE} system/lib/libtvout_jni.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/cameradata/datapattern_420sp.yuv -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/cameradata/datapattern_front_420sp.yuv -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/firmware/CE147F00.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
@@ -207,6 +208,7 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libtvouthdmi.so:system/lib/libtvouthdmi.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libtvoutservice.so:system/lib/libtvoutservice.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/tvoutserver:system/bin/tvoutserver \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/tvout_jni.so:system/lib/libtvout_jni.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/datapattern_420sp.yuv:system/cameradata/datapattern_420sp.yuv \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/datapattern_front_420sp.yuv:system/cameradata/datapattern_front_420sp.yuv \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/CE147F00.bin:system/firmware/CE147F00.bin \\
