@@ -53,6 +53,7 @@ unzip -j -o ${ZIPFILE} system/lib/egl/libEGL_POWERVR_SGX540_120.so -d ${ANDROID_
 unzip -j -o ${ZIPFILE} system/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/egl/libGLESv2_POWERVR_SGX540_120.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/hw/gralloc.s5pc110.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
+unzip -j -o ${ZIPFILE} system/lib/hw/sensors.default.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libglslcompiler.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libIMGegl.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libpvr2d.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
@@ -168,6 +169,7 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libGLESv1_CM_POWERVR_SGX540_120.so:system/vendor/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libGLESv2_POWERVR_SGX540_120.so:system/vendor/lib/egl/libGLESv2_POWERVR_SGX540_120.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/gralloc.s5pc110.so:system/vendor/lib/hw/gralloc.s5pc110.so \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/sensors.default.so:system/lib/hw/sensors.s5pc110.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libglslcompiler.so:system/vendor/lib/libglslcompiler.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libIMGegl.so:system/vendor/lib/libIMGegl.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libpvr2d.so:system/vendor/lib/libpvr2d.so \\

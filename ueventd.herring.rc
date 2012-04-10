@@ -44,9 +44,12 @@
 /dev/akm8976_aot          0640   compass    system
 /dev/akm8973_daemon       0640   compass    system
 /dev/akm8973_aot          0640   compass    system
+/dev/akm8975_daemon       0640   compass    system
+/dev/akm8975_aot          0640   compass    system
 /dev/bma150               0640   compass    system
 /dev/cm3602               0640   compass    system
 /dev/akm8976_pffd         0640   compass    system
+/dev/akm8975_pffd         0640   compass    system
 /dev/lightsensor          0640   system     system
 /dev/msm_pcm_out*         0660   system     audio
 /dev/msm_pcm_in*          0660   system     audio
@@ -116,7 +119,11 @@
 
 # for Sensor HAL
 /dev/akm8973              0660   system     system
+/dev/akm8975              0660   system     system
 /dev/accelerometer        0660   system     system
+/dev/proximity            0660   system     system
+/dev/proximity_sensor     0660   system     system
+/dev/light                0660   system     system
 
 # for GPS
 /dev/s3c2410_serial1      0600   gps        gps
