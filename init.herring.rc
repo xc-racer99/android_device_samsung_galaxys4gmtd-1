@@ -4,12 +4,8 @@ on init
 on fs
 # We chown/chmod /efs because mount is run as root + defaults
     mkdir /efs 0775 radio radio
-    mount yaffs2 /dev/block/mtdblock4 /efs
     chown radio radio /efs
-    chmod 770 /efs/bluetooth
-    chmod 770 /efs/imei
-
-# Mount /system rw first to give the filesystem a chance to save a checkpoint
+    # Mount /system rw first to give the filesystem a chance to save a checkpoint
     mkdir /radio 0775 radio radio
     mount yaffs2 mtd@radio /radio
     chmod 0775 /radio
@@ -17,11 +13,11 @@ on fs
     chown radio radio /radio
     chown radio radio /radio/modem.bin
     mount yaffs2 mtd@efs /efs
-    chown radio radio /efs
-    chmod 0775 /efs
     mount yaffs2 mtd@system /system
     mount yaffs2 mtd@userdata /data
     mount yaffs2 mtd@cache /cache
+    chmod 770 /efs/bluetooth
+    chmod 770 /efs/imei
 
 on post-fs
     # make symlinks for compatibility
@@ -341,7 +337,7 @@ service geomagneticd /system/vendor/bin/geomagneticd
     user compass
     group system input
 
-service gps-daemon /system/bin/logwrapper /system/vendor/bin/gpsd -c /system/etc/gps.xml -d -p /tmp/gpsd.pid
+service gps-daemon /system/vendor/bin/gpsd -c /system/etc/gps.xml -d -p /tmp/gpsd.pid
     user gps
     group system inet
 
@@ -351,7 +347,7 @@ service pvrsrvinit /system/vendor/bin/pvrsrvinit
     group root
     oneshot
 
-service wpa_supplicant /system/xbin/strace -tt -f -o /data/wpa.strace /system/bin/wpa_supplicant -W -Dwext -ieth0 -c /data/misc/wifi/wpa_supplicant.conf
+service wpa_supplicant /system/bin/wpa_supplicant -W -Dwext -ieth0 -c /data/misc/wifi/wpa_supplicant.conf
     socket wpa_eth0 dgram 0660 wifi wifi
     disabled
     oneshot
@@ -372,7 +368,7 @@ service bdaddr /system/bin/bdaddr_read
 on property:init.svc.bootanim=running
     start bdaddr
 
-service hciattach /system/bin/logwrapper /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
+service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
     --baudrate 3000000 --patchram /vendor/firmware/bcm4329.hcd /dev/s3c2410_serial0
     user bluetooth
     group bluetooth net_bt_admin
