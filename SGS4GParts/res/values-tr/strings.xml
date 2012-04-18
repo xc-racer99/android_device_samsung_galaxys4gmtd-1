@@ -9,6 +9,10 @@
     <string name="color_green_title">Yeşil</string>
     <string name="color_blue_title">Mavi</string>
 
+	<string name="category_vibe_title">Titreşim</string>
+    <string name="vibe_intensity_title_head">Titreşim Şiddeti</string>
+    <string name="vibe_intensity_summary_head">Cihazın titreşim yoğunluğunu ayarlayın</string>	
+	
     <string name="category_touchkey_title">Dokunmatik Tuşlar</string>
     <string name="backlight_timeout_title_head">Tuş ışığı zaman aşımı</string>
     <string name="backlight_timeout_summary_head">Dokunmatik tuş ışığının otomatik kapanma süresini ayarlayın</string>

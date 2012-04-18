@@ -8,6 +8,10 @@
     <string name="color_red_title">Red</string>
     <string name="color_green_title">Green</string>
     <string name="color_blue_title">Blue</string>
+    
+    <string name="category_vibe_title">Vibration</string>
+	<string name="vibe_intensity_title_head">Vibration Intensity</string>
+	<string name="vibe_intensity_summary_head">Adjust the intensity of the device\'s vibration</string>
 
     <string name="category_touchkey_title">Touch Keys</string>
     <string name="backlight_timeout_title_head">Backlight Timeout</string>

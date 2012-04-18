@@ -9,6 +9,15 @@
 	        android:title="@string/color_tuning_title_head"
 	        android:summary="@string/color_tuning_summary_head" />
 	</PreferenceCategory>
+	
+	<PreferenceCategory
+    	android:title="@string/category_vibe_title">
+	    <!-- Vibration intensity -->
+	    <com.cyanogenmod.SGS4GParts.VibrationTuningPreference
+	        android:key="vibration_intensity"
+	        android:title="@string/vibe_intensity_title_head"
+	        android:summary="@string/vibe_intensity_summary_head" />
+	</PreferenceCategory>
 
 	<PreferenceCategory
     	android:title="@string/category_touchkey_title">

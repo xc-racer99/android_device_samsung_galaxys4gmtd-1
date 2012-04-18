@@ -8,6 +8,10 @@
     <string name="color_red_title">Rot</string>
     <string name="color_green_title">Grün</string>
     <string name="color_blue_title">Blau</string>
+    
+    <string name="category_vibe_title">Vibration</string>
+    <string name="vibe_intensity_title_head">Vibrationsstärke</string>
+    <string name="vibe_intensity_summary_head">Passen Sie die Intensität der Vibration des Geräts</string>
 
     <string name="category_touchkey_title">Tasten</string>
     <string name="backlight_timeout_title_head">Beleuchtung</string>

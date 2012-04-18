@@ -34,6 +34,15 @@ public class Utils {
     public static void writeColor(String filename, int value) {
         writeValue(filename, String.valueOf((long) value * 2));
     }
+    
+    /**
+     * Write the vibration intensity to the specified file.
+     * @param filename      The filename
+     * @param value         The value of max value Integer.MAX
+     */
+    public static void writeVibeIntensity(String filename, int value) {
+    	writeValue(filename, String.valueOf((long) value));
+    }
 
     /**
      * Check if the specified file exists.
