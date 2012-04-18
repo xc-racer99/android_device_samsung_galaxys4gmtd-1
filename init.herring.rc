@@ -23,6 +23,7 @@ on post-fs
     # make symlinks for compatibility
     symlink /system/vendor /vendor
     symlink /system/etc /etc
+    symlink /system/lib /lib
 
     # permissions for MTP device node_temporary permission_will be changed 0660
     chmod 0660 /dev/usb_mtp_gadget
@@ -35,6 +36,26 @@ on post-fs
     chown gps root /sys/class/sec/gps/GPS_PWR_EN/value
     chmod 660 /sys/class/sec/gps/GPS_PWR_EN/value
     chmod 0777 /system/vendor/bin/gpsd
+    chown gps gps /sys/class/sec/gps/GPS_nRST/value
+    chmod 664 /sys/class/sec/gps/GPS_nRST/value
+# not sure if these are needed or not, but it cant hurt...
+    chown gps gps /data/CGPS_LOG.txt
+    chmod 0770 /data/CGPS_LOG.txt
+    chown gps gps /data/EVENT_LOG.txt
+    chmod 0770 /data/EVENT_LOG.txt
+    chown gps gps /data/GNB_DEBUG.txt
+    chmod 0770 /data/GNB_DEBUG.txt
+    chown gps gps /data/GPS_NV_Data.bin
+    chmod 0770 /data/GPS_NV_Data.bin
+    chown gps gps /data/GPS_UTC_Calib.bin
+    chmod 0770 /data/GPS_UTC_Calib.bin
+    chown gps gps /data/HALGPS_conf.cfg
+    chmod 0770 /data/HALGPS_conf.cfg
+    chown gps gps /data/NAV_DEBUG.txt
+    chmod 0770 /data/NAV_DEBUG.txt
+    chown gps gps /data/NMEA_DEBUG.txt
+    chmod 0770 /data/NMEA_DEBUG.txt
+
     symlink /datadata /data/data
 
     symlink /radio/modem.bin /dev/block/bml12
@@ -110,14 +131,8 @@ on post-fs
     # load modules. They need to be loaded to set the permissions for the stuff
     # in 'on boot'
     insmod /system/lib/modules/bthid.ko
-    insmod /system/lib/modules/scsi_wait_scan.ko
     insmod /system/lib/modules/ansi_cprng.ko
-    insmod /system/lib/modules/cifs.ko
-    insmod /system/lib/modules/ext3.ko
-    insmod /system/lib/modules/ext4.ko
-    insmod /system/lib/modules/fuse.ko
-    insmod /system/lib/modules/Si4709_driver.ko
-    insmod /system/lib/modules/tun.ko
+    #insmod /system/lib/modules/Si4709_driver.ko
     insmod /system/lib/modules/vibrator.ko
 
 
@@ -128,7 +143,6 @@ on boot
     setprop ro.build.product herring
     setprop ro.product.device herring
     setprop ro.radio.noril yes
-    setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"    
 
     # Tweak background writeout
     write /proc/sys/vm/dirty_writeback_centisecs 2000
@@ -163,6 +177,14 @@ on boot
 
     # radio permissions
     mkdir /data/misc/radio 0771 radio radio
+
+    # change permission for uart_switch
+    chown radio radio /sys/class/sec/uart_switch/UART_SEL/value
+    chown compass root /sys/class/input/input3/distortion
+    chown compass root /sys/class/input/input3/offsets
+    chown compass root /sys/class/input/input3/shape
+    chown compass root /sys/class/input/input3/threshold
+    chmod 660 /sys/class/sec/uart_switch/UART_SEL/value
 
     #change permissions for USB
     chown radio system /sys/class/sec/switch/usb_sel
@@ -285,6 +307,10 @@ on boot
     chmod 0770 /sys/class/rfkill/rfkill1/state
     chmod 0770 /sys/class/rfkill/rfkill2/state
     chmod 0770 /sys/class/rfkill/rfkill3/state
+    chmod 0770 /sys/class/rfkill/rfkill0/type
+    chmod 0770 /sys/class/rfkill/rfkill1/type
+    chmod 0770 /sys/class/rfkill/rfkill2/type
+    chmod 0770 /sys/class/rfkill/rfkill3/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill2/state
@@ -337,7 +363,7 @@ service geomagneticd /system/vendor/bin/geomagneticd
     user compass
     group system input
 
-service gps-daemon /system/vendor/bin/gpsd -c /system/etc/gps.xml -d -p /tmp/gpsd.pid
+service gps-daemon /system/vendor/bin/gpsd -c /system/etc/gps.xml
     user gps
     group system inet
 
@@ -368,8 +394,8 @@ service bdaddr /system/bin/bdaddr_read
 on property:init.svc.bootanim=running
     start bdaddr
 
-service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
-    --baudrate 3000000 --patchram /vendor/firmware/bcm4329.hcd /dev/s3c2410_serial0
+service hciattach /system/bin/logwrapper /system/bin/brcm_patchram_plus -d --enable_hci --enable_lpm \
+    --baudrate 115200 --patchram /system/bin/BCM4329B1_002.002.023.0746.0832.hcd /dev/s3c2410_serial0
     user bluetooth
     group bluetooth net_bt_admin
     disabled

@@ -113,6 +113,7 @@
 /dev/modem_fmt            0660   radio      radio
 /dev/modem_rfs            0660   radio      radio
 /dev/s3c2410_serial3      0660   radio      radio
+/dev/s3c2410_serial0      0660   bluetooth  bluetooth
 /dev/block/mtdblock6      0660   radio      radio
 # /dev/block/bml12          0660   radio      radio
 /dev/mtd/mtd6ro           0660   radio      radio
