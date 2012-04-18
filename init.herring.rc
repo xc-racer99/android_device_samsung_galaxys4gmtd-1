@@ -24,6 +24,9 @@ on post-fs
     symlink /system/vendor /vendor
     symlink /system/etc /etc
     symlink /system/lib /lib
+    
+    # things like immvibed need TMPDIR
+    export TMPDIR=/data/local/tmp
 
     # permissions for MTP device node_temporary permission_will be changed 0660
     chmod 0660 /dev/usb_mtp_gadget
