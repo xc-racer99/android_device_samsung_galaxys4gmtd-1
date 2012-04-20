@@ -133,10 +133,7 @@ on post-fs
     
     # load modules. They need to be loaded to set the permissions for the stuff
     # in 'on boot'
-    insmod /system/lib/modules/bthid.ko
     insmod /system/lib/modules/ansi_cprng.ko
-    #insmod /system/lib/modules/Si4709_driver.ko
-    insmod /system/lib/modules/vibrator.ko
 
 
 on boot
@@ -398,7 +395,7 @@ on property:init.svc.bootanim=running
     start bdaddr
 
 service hciattach /system/bin/logwrapper /system/bin/brcm_patchram_plus -d --enable_hci --enable_lpm \
-    --baudrate 115200 --patchram /system/bin/BCM4329B1_002.002.023.0746.0832.hcd /dev/s3c2410_serial0
+    --baudrate 115200 --patchram /vendor/firmware/bcm4329.hcd /dev/s3c2410_serial0
     user bluetooth
     group bluetooth net_bt_admin
     disabled
