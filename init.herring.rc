@@ -276,6 +276,9 @@ on boot
     chown system system /sys/class/sec/t_key/brightness
     chown system system /sys/class/sec/t_key/enable_disable
 
+    # Set BLN permissions
+    chown system system /sys/class/misc/backlightnotification/notification_led
+
     chown radio system /sys/class/misc/level/control
 
     # Permissions for System Server and daemons.
