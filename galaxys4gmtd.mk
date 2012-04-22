@@ -111,7 +111,8 @@ PRODUCT_PACKAGES += \
 # Misc other modules
 PRODUCT_PACKAGES += \
     lights.s5pc110 \
-    overlay.s5pc110
+    overlay.s5pc110 \
+    sensors.s5pc110
 
 # Libs
 PRODUCT_PACKAGES += \
