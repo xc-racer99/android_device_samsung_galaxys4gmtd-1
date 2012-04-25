@@ -45,9 +45,9 @@ public class SGS4GParts extends PreferenceActivity  {
 
         mColorTuning = (ColorTuningPreference) findPreference(KEY_COLOR_TUNING);
         mColorTuning.setEnabled(ColorTuningPreference.isSupported());
-        
+
         mVibrationIntensity = (VibrationTuningPreference) findPreference(KEY_VIBRATION);
-        mVibrationIntensity.setEnabled(true);
+        mVibrationIntensity.setEnabled(false);
 
         mBacklightTimeout = (ListPreference) findPreference(KEY_BACKLIGHT_TIMEOUT);
         mBacklightTimeout.setEnabled(TouchKeyBacklightTimeout.isSupported());
