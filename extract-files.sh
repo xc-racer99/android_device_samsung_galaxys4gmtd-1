@@ -86,9 +86,6 @@ lib/libril.so
 lib/libsec-ril.so
 lib/libsecril-client.so
 
-etc/gps.conf
-vendor/bin/gpsd
-lib/libclientgps.so
 lib/hw/gps.s5pc110.so
 
 bin/pvrsrvinit
