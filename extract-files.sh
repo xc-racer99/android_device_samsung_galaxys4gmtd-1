@@ -207,7 +207,6 @@ PRODUCT_COPY_FILES += \\
 # Sensors, Lights etc
 #
 PRODUCT_COPY_FILES += \\
-    vendor/samsung/__DEVICE__/proprietary/immvibed:system/bin/immvibed \\
     vendor/samsung/__DEVICE__/proprietary/bin/geomagneticd:system/bin/geomagneticd \\
     vendor/samsung/__DEVICE__/proprietary/bin/orientationd:system/bin/orientationd \\
     vendor/samsung/__DEVICE__/proprietary/lib/hw/sensors.default.so:system/lib/hw/sensors.default.so \\

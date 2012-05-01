@@ -343,10 +343,6 @@ on property:persist.service.usb.setting=3
 on property:persist.service.usb.setting=4
     write /sys/devices/platform/android_usb/UsbMenuSel 4
 
-service immvibed /system/bin/immvibed
-    user shell
-    group shell
-    oneshot
 
 service orientationd /system/vendor/bin/orientationd
     user compass
