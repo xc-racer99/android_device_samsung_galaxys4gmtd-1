@@ -149,7 +149,7 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/rild:system/bin/rild \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/pppd:system/bin/pppd \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/gpsd:system/vendor/bin/gpsd \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libcamera.so:system/lib/libcamera.so
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libcamera.so:system/lib/libsamsungcamera.so
 
 PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/pvrsrvinit:system/vendor/bin/pvrsrvinit \\
