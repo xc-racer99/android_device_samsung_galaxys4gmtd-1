@@ -39,6 +39,7 @@ unzip -j -o ${ZIPFILE} system/lib/libcamera.so -d ${ANDROID_BUILD_TOP}/vendor/$M
 
 unzip -j -o ${ZIPFILE} system/bin/pvrsrvinit -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/bin/BCM4329B1_002.002.023.0746.0832.hcd -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
+unzip -j -o ${ZIPFILE} system/bin/brcm_patchram_plus -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/vendor/firmware/bcm4329.hcd -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/vendor/firmware/nvram_net.txt -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/etc/wifi/nvram_net.txt -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary/etc
@@ -154,6 +155,7 @@ PRODUCT_COPY_FILES += \\
 PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/pvrsrvinit:system/vendor/bin/pvrsrvinit \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/BCM4329B1_002.002.023.0746.0832.hcd:system/bin/BCM4329B1_002.002.023.0746.0832.hcd \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/brcm_patchram_plus:/system/bin/brcm_patchram_plus \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/nvram_net.txt:system/vendor/firmware/nvram_net.txt \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/etc/nvram_net.txt:system/etc/wifi/nvram_net.txt \\
