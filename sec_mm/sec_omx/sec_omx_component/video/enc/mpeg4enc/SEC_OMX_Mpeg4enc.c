@@ -39,7 +39,7 @@
 
 #undef  SEC_LOG_TAG
 #define SEC_LOG_TAG    "SEC_MPEG4_ENC"
-#define SEC_LOG_OFF
+//#define SEC_LOG_OFF
 #include "SEC_OSAL_Log.h"
 
 

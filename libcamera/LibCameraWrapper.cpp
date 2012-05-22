@@ -20,7 +20,7 @@
 // Samsung's libcamera_client.so
 
 #define LOG_TAG "LibCameraWrapper"
-//#define LOG_NDEBUG 0
+#define LOG_NDEBUG 0
 
 #include <cmath>
 #include <dlfcn.h>

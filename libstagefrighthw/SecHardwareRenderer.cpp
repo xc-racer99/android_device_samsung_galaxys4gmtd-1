@@ -32,7 +32,7 @@
 #define CACHEABLE_BUFFERS 0x1
 
 #define USE_ZERO_COPY
-//#define SEC_DEBUG
+#define SEC_DEBUG
 
 namespace android {
 
