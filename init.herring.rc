@@ -117,6 +117,7 @@ on post-fs
     chown system input /sys/class/input/input8/wake
 
     chown system input /dev/i2c-1
+    chown system input /dev/i2c-12
 
     # Change permissions for modem.
     chown radio system /sys/class/modemctl/xmm/control
@@ -211,13 +212,32 @@ on boot
     chown radio system /sys/class/power_supply/battery/batt_full_check
     chown radio system /sys/class/power_supply/battery/batt_type
     chown radio system /sys/class/power_supply/battery/batt_use
-    chown radio radio /sys/class/power_supply/battery/call
+    chown radio system /sys/class/power_supply/battery/batt_vol_adc_cal
+    chown radio system /sys/class/power_supply/battery/batt_temp_adc_cal
+    chown radio system /sys/class/power_supply/battery/batt_vol_adc_aver
+    chown radio system /sys/class/power_supply/battery/batt_test_mode
+    chown radio system /sys/class/power_supply/battery/batt_vol_aver
+    chown radio system /sys/class/power_supply/battery/batt_temp_aver
+    chown radio system /sys/class/power_supply/battery/batt_temp_adc_aver
+    chown radio system /sys/class/power_supply/battery/batt_v_f_adc
+    chown radio system /sys/class/power_supply/battery/batt_chg_current
+    chown radio system /sys/class/power_supply/battery/charging_source
+    chown radio system /sys/class/power_supply/battery/vibrator
+    chown radio system /sys/class/power_supply/battery/camera
+    chown radio radio /sys/class/power_supply/battery/mp3
     chown radio radio /sys/class/power_supply/battery/video
+    chown radio system /sys/class/power_supply/battery/talk_gsm
+    chown radio system /sys/class/power_supply/battery/talk_wcdma
+    chown radio system /sys/class/power_supply/battery/data_call
+    chown radio system /sys/class/power_supply/battery/wifi
+    chown radio system /sys/class/power_supply/battery/gps
+    chown radio system /sys/class/power_supply/battery/device_state
+    chown radio system /sys/class/power_supply/battery/batt_compendation
+    chown radio system /sys/class/power_supply/battery/is_booting
+    chown radio radio /sys/class/power_supply/battery/call
     chown radio radio /sys/class/power_supply/battery/music
     chown radio radio /sys/class/power_supply/battery/browser
     chown radio radio /sys/class/power_supply/battery/hotspot
-    chown radio radio /sys/class/power_supply/battery/camera
-    chown radio radio /sys/class/power_supply/battery/data_call
     chown radio radio /sys/class/power_supply/battery/wimax
 
     #for jack control
@@ -258,9 +278,6 @@ on boot
     chown radio system /sys/class/sec/sec_lcd/lcdtype_file_cmd
     chown radio radio /sys/class/mdnieset_ui/switch_mdnieset_ui/mdnieset_ui_file_cmd
     chown radio radio /sys/class/mdnieset_outdoor/switch_mdnieset_outdoor/mdnieset_outdoor_file_cmd
-
-    chown radio system /sys/devices/platform/s3cfb/spi_gpio.3/spi3.0/backlight/s5p_bl/brightness
-    chown radio system /sys/devices/platform/s3cfb/lcd_power
 
     #change permissions for touchkey
     chown system system /sys/class/sec/t_key/brightness
@@ -328,6 +345,8 @@ on boot
     # +++++++++++++++++++++++++++++++++++++++++++
 
     chown system system /sys/class/backlight/s5p_bl/brightness
+    
+    setprop net.tcp.buffersize.hspa    4096,87380,393216,4096,16384,110208
 
 
 # Samsung USB Mode : system properties are linked with sysfs
