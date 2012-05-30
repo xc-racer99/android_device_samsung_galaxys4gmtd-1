@@ -117,8 +117,7 @@ PRODUCT_PACKAGES += \
 # Libs
 PRODUCT_PACKAGES += \
     libcamera \
-    libstagefrighthw \
-    libs3cjpeg
+    libstagefrighthw
 
 # Bluetooth MAC Address
 PRODUCT_PACKAGES += \
