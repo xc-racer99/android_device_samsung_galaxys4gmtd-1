@@ -178,6 +178,8 @@
     <!-- crespo doesn't handle this blur effect very quickly. -->
     <bool name="config_sf_slowBlur">true</bool>
 
+    <!-- The default iface on which to monitor data use -->	
+    <string name="config_datause_iface">pdp0</string>
 
     <!-- Boolean indicating if restoring network selection should be skipped -->
     <!-- The restoring is handled by modem if it is true -->
