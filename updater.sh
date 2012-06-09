@@ -41,13 +41,19 @@ if /tmp/busybox test -e /dev/block/bml7 ; then
     # create a backup of efs
     if /tmp/busybox test -e /mnt/sdcard/backup/efs.tar ; then
         /tmp/busybox mv /mnt/sdcard/backup/efs.tar /mnt/sdcard/backup/efs-$$.tar
+        /tmp/busybox mv /mnt/sdcard/backup/efs.tar.md5 /mnt/sdcard/backup/efs-$$.tar.md5
     fi
     /tmp/busybox rm -rf /mnt/sdcard/backup/efs.tar
+    /tmp/busybox rm -rf /mnt/sdcard/backup/efs.tar.md5
 
     /tmp/busybox mkdir -p /mnt/sdcard/backup
     
     cd /efs
     /tmp/busybox tar cf /mnt/sdcard/backup/efs.tar *
+
+    # Now we checksum the file. We'll verify later when we do a restore
+    cd /mnt/sdcard/backup/
+    /tmp/busybox md5sum -t efs.tar > efs.tar.md5
 
     # write the package path to sdcard cyanogenmod.cfg
     if /tmp/busybox test -n "$UPDATE_PACKAGE" ; then
@@ -78,7 +84,7 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
         /tmp/busybox umount -l /dev/block/mmcblk0p1
         if ! /tmp/busybox mount -t vfat /dev/block/mmcblk0p1 /sdcard ; then
             /tmp/busybox echo "Cannot mount sdcard."
-            exit 4  
+            exit 4
         fi
     fi
 
@@ -111,7 +117,7 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
             /tmp/busybox cp /tmp/modem.bin /radio/modem.bin
 	fi
     fi
-	
+
     # unmount radio partition
     /tmp/busybox umount -l /dev/block/mtdblock6
 
@@ -120,14 +126,9 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
     if ! /tmp/busybox test -e /sdcard/cyanogenmod.cfg ; then
         exit 0
     fi
-	
+
     # remove the cyanogenmod.cfg to prevent this from looping
     /tmp/busybox rm -f /sdcard/cyanogenmod.cfg
-
-    # unmount, format and mount system
-    /tmp/busybox umount -l /system
-    /tmp/erase_image system
-    /tmp/busybox mount -t yaffs2 /dev/block/mtdblock2 /system
 
     # unmount and format cache
     /tmp/busybox umount -l /cache
@@ -135,11 +136,7 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
 
     # unmount and format data
     /tmp/busybox umount /data
-    /tmp/make_ext4fs -b 4096 -g 32768 -i 8192 -I 256 -a /data /dev/block/stl10
-
-    # unmount and format datadata
-    /tmp/busybox umount -l /datadata
-    /tmp/erase_image datadata
+    /tmp/make_ext4fs -b 4096 -g 32768 -i 8192 -I 256 -a /data /dev/block/mtdblock3
 
     # restore efs backup
     if /tmp/busybox test -e /sdcard/backup/efs.tar ; then
@@ -147,6 +144,7 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
         /tmp/erase_image efs
         /tmp/busybox mkdir -p /efs
 
+        # make sure we can mount /efs
         if ! /tmp/busybox grep -q /efs /proc/mounts ; then
             if ! /tmp/busybox mount -t yaffs2 /dev/block/mtdblock4 /efs ; then
                 /tmp/busybox echo "Cannot mount efs."
@@ -154,8 +152,20 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
             fi
         fi
 
+        # verify the md5sum of efs.tar before restore
+        cd /sdcard/backup/
+        /tmp/busybox md5sum -c efs.tar.md5
+
+        # save the exit status of md5sum
+        MD5RESULT=$?
+        if ! /tmp/busybox test $MD5RESULT; then
+            echo "efs.tar could not be verified."
+            exit 8
+        fi
+
+        # extract the tar file in the /efs partition
         cd /efs
-        tar xf /sdcard/efs-backup.tar
+        /tmp/busybox tar xf /sdcard/backup/efs.tar
         /tmp/busybox umount -l /efs
     else
         /tmp/busybox echo "Cannot restore efs."
