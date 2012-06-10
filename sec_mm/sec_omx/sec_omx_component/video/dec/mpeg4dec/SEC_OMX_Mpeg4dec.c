@@ -1328,7 +1328,6 @@ OMX_ERRORTYPE SEC_MFC_Mpeg4_Decode(OMX_COMPONENTTYPE *pOMXComponent, SEC_OMX_DAT
             }
                 break;
             case OMX_COLOR_FormatYUV420SemiPlanar:
-            case OMX_SEC_COLOR_FormatANBYUV420SemiPlanar:
             default:
             {
                 SEC_OSAL_Log(SEC_LOG_TRACE, "YUV420SP out");

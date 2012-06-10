@@ -39,7 +39,7 @@
 
 #undef  SEC_LOG_TAG
 #define SEC_LOG_TAG    "SEC_H264_DEC"
-#define SEC_LOG_OFF
+//#define SEC_LOG_OFF
 #include "SEC_OSAL_Log.h"
 
 //#define ADD_SPS_PPS_I_FRAME
@@ -452,7 +452,6 @@ OMX_ERRORTYPE SEC_MFC_H264Dec_SetParameter(
             case OMX_COLOR_FormatYUV420Planar:
             case OMX_COLOR_FormatYUV420SemiPlanar:
             case OMX_SEC_COLOR_FormatNV12TPhysicalAddress:
-            case OMX_SEC_COLOR_FormatANBYUV420SemiPlanar:
                 pSECOutputPort->portDefinition.nBufferSize = (width * height * 3) / 2;
                 break;
             default:
@@ -1183,7 +1182,6 @@ OMX_ERRORTYPE SEC_MFC_H264_Decode(OMX_COMPONENTTYPE *pOMXComponent, SEC_OMX_DATA
             }
                 break;
             case OMX_COLOR_FormatYUV420SemiPlanar:
-            case OMX_SEC_COLOR_FormatANBYUV420SemiPlanar:
             default:
             {
                 SEC_OSAL_Log(SEC_LOG_TRACE, "YUV420SP out");

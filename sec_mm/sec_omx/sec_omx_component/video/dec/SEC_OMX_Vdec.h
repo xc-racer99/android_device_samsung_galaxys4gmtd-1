@@ -31,7 +31,10 @@
 
 #include "OMX_Component.h"
 #include "SEC_OMX_Def.h"
+#include "SEC_OSAL_ETC.h"
+#include "SEC_OSAL_Mutex.h"
 #include "SEC_OSAL_Queue.h"
+#include "SEC_OSAL_Semaphore.h"
 #include "SEC_OMX_Baseport.h"
 
 #define MAX_VIDEO_INPUTBUFFER_NUM    5

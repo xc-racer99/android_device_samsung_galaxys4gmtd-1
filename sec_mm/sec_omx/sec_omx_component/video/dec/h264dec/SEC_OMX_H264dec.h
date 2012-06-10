@@ -30,7 +30,9 @@
 #include "SEC_OMX_Def.h"
 #include "OMX_Component.h"
 #include "OMX_Video.h"
-
+#include "SEC_OSAL_ETC.h"
+#include "SEC_OSAL_Semaphore.h"
+#include "SEC_OSAL_Thread.h"
 
 typedef struct _SEC_MFC_H264DEC_HANDLE
 {
