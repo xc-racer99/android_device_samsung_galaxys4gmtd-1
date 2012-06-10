@@ -126,7 +126,8 @@ PRODUCT_PACKAGES += \
 # Service Mode Secret Code
 PRODUCT_PACKAGES += \
     SamsungServiceMode \
-    SGS4GParts
+    SGS4GParts \
+    tvouthack
 
 # Input device calibration files
 PRODUCT_COPY_FILES += \
