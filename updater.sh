@@ -127,6 +127,10 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
         exit 0
     fi
 
+    # flash boot image
+    /tmp/erase_image boot
+    /tmp/bml_over_mtd.sh boot 72 reservoir 4012 /tmp/boot.img
+
     # remove the cyanogenmod.cfg to prevent this from looping
     /tmp/busybox rm -f /sdcard/cyanogenmod.cfg
 
@@ -171,10 +175,6 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
         /tmp/busybox echo "Cannot restore efs."
         exit 7
     fi
-
-    # flash boot image
-    /tmp/erase_image boot
-    /tmp/bml_over_mtd.sh boot 72 reservoir 4012 /tmp/boot.img
 
     exit 0
 fi
