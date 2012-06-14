@@ -59,6 +59,9 @@ if /tmp/busybox test -e /dev/block/bml7 ; then
     if /tmp/busybox test -n "$UPDATE_PACKAGE" ; then
         PACKAGE_LOCATION=${UPDATE_PACKAGE#/mnt}
         /tmp/busybox echo "$PACKAGE_LOCATION" > /sdcard/cyanogenmod.cfg
+
+        # Make sure that the zip file gets flashed upon reboot
+        /tmp/busybox echo "install_zip(\"$PACKAGE_LOCATION\");" > /sdcard/extendedcommand
     fi
 
     # Scorch any ROM Manager settings to require the user to reflash recovery
