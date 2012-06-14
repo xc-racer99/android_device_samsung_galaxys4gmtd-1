@@ -27,15 +27,12 @@
 #define IOCTL_MFC_GET_IN_BUF                   0x00800010
 #define IOCTL_MFC_FREE_BUF                     0x00800011
 #define IOCTL_MFC_GET_PHYS_ADDR                0x00800012
-#define IOCTL_MFC_GET_MMAP_SIZE                0x00800014
 
 #define IOCTL_MFC_SET_CONFIG                   0x00800101
 #define IOCTL_MFC_GET_CONFIG                   0x00800102
 
-#define IOCTL_MFC_BUF_CACHE                    0x00801000
-
 /* MFC H/W support maximum 32 extra DPB */
-#define MFC_MAX_EXTRA_DPB                      4
+#define MFC_MAX_EXTRA_DPB                      5
 
 #define ENC_PROFILE_LEVEL(profile, level)      ((profile) | ((level) << 8))
 
@@ -120,8 +117,6 @@ typedef struct {
     int in_cb_pad_val;
     int in_cr_pad_val;
 
-    int in_frame_map;                    /* [IN] Encoding input NV12 type linear(0) TILE(1)              */
-
     unsigned int in_mapped_addr;
     mfc_strm_ref_buf_arg_t out_u_addr;
     mfc_strm_ref_buf_arg_t out_p_addr;
@@ -162,8 +157,6 @@ typedef struct {
     int in_luma_pad_val;                 /* [IN] Luma pel value used to fill padding area                */
     int in_cb_pad_val;                   /* [IN] CB pel value used to fill padding area                  */
     int in_cr_pad_val;                   /* [IN] CR pel value used to fill padding area                  */
-
-    int in_frame_map;                    /* [IN] Encoding input NV12 type linear(0) TILE(1)              */
 
     unsigned int in_mapped_addr;
     mfc_strm_ref_buf_arg_t out_u_addr;
@@ -286,11 +279,6 @@ typedef struct tag_mem_free_arg_t
     unsigned int u_addr;
 } mfc_mem_free_arg_t;
 
-typedef enum {
-	MFC_BUFFER_NO_CACHE = 0,
-	MFC_BUFFER_CACHE = 1
-} mfc_buffer_type;
-
 typedef union {
     mfc_enc_init_mpeg4_arg_t enc_init_mpeg4;
     mfc_enc_init_h263_arg_t enc_init_h263;
@@ -306,8 +294,6 @@ typedef union {
     mfc_mem_alloc_arg_t mem_alloc;
     mfc_mem_free_arg_t mem_free;
     mfc_get_phys_addr_arg_t get_phys_addr;
-
-    mfc_buffer_type buf_type;
 } mfc_args;
 
 typedef struct tag_mfc_args {
@@ -342,7 +328,6 @@ typedef struct {
     int out_frametag_bottom;
     unsigned int encoded_Y_paddr;
     unsigned int encoded_C_paddr;
-    unsigned int encode_cnt;
 } _MFCLIB;
 
 #endif /* _MFC_INTERFACE_H_ */
