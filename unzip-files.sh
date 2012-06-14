@@ -34,7 +34,6 @@ unzip -j -o ${ZIPFILE} system/lib/librilswitch.so -d ${ANDROID_BUILD_TOP}/vendor
 unzip -j -o ${ZIPFILE} system/bin/rild -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/bin/pppd -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/hw/gps.s5pc110.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libcamera.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 #unzip -j -o ${ZIPFILE} updates/modem.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 
 unzip -j -o ${ZIPFILE} system/bin/pvrsrvinit -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
@@ -59,25 +58,14 @@ unzip -j -o ${ZIPFILE} system/lib/libpvrANDROID_WSEGL.so -d ${ANDROID_BUILD_TOP}
 unzip -j -o ${ZIPFILE} system/lib/libPVRScopeServices.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libsrv_init.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libsrv_um.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/firmware/CE147F02.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libusc.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libsensor_yamaha_test.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libsensorservice.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/bin/orientationd -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/bin/geomagneticd -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libActionShot.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libarccamera.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libcamera_client.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libcamerafirmwarejni.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libcameraservice.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libCaMotion.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libcaps.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libPanoraMax1.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libPlusMe.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libs3cjpeg.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libseccamera.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libseccameraadaptor.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libsecjpegencoder.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libtvout.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/lib_tvoutengine.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/lib/libtvoutfimc.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
@@ -91,31 +79,6 @@ unzip -j -o ${ZIPFILE} system/firmware/CE147F00.bin -d ${ANDROID_BUILD_TOP}/vend
 unzip -j -o ${ZIPFILE} system/firmware/CE147F01.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/firmware/CE147F02.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ${ZIPFILE} system/firmware/CE147F03.bin -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/bin/charging_mode -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/bin/playlpm -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/lib/libQmageDecoder.so -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_10.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_100.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_15.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_20.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_25.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_30.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_35.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_40.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_45.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_5.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_50.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_55.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_60.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_65.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_70.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_75.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_80.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_85.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_90.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/battery_charging_95.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/chargingwarning.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ${ZIPFILE} system/media/Disconnected.qmg -d ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/proprietary
 
 (cat << EOF) | sed s/__DEVICE__/$DEVICE/g | sed s/__MANUFACTURER__/$MANUFACTURER/g > ${ANDROID_BUILD_TOP}/vendor/$MANUFACTURER/$DEVICE/${DEVICE}-vendor-blobs.mk
 # Copyright (C) 2012 The Android Open Source Project
@@ -174,7 +137,6 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libPVRScopeServices.so:system/vendor/lib/libPVRScopeServices.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsrv_init.so:system/vendor/lib/libsrv_init.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libsrv_um.so:system/vendor/lib/libsrv_um.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/CE147F02.bin:system/vendor/firmware/CE147F02.bin \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libusc.so:system/vendor/lib/libusc.so
 
 # fascinatemtd uses older sensor drivers
@@ -205,33 +167,6 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/CE147F02.bin:system/firmware/CE147F02.bin \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/CE147F03.bin:system/firmware/CE147F03.bin
 
-# low power mode
-PRODUCT_COPY_FILES += \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/charging_mode:system/bin/charging_mode \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/playlpm:system/bin/playlpm \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libQmageDecoder.so:system/lib/libQmageDecoder.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_10.qmg:system/media/battery_charging_10.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_100.qmg:system/media/battery_charging_100.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_15.qmg:system/media/battery_charging_15.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_20.qmg:system/media/battery_charging_20.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_25.qmg:system/media/battery_charging_25.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_30.qmg:system/media/battery_charging_30.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_35.qmg:system/media/battery_charging_35.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_40.qmg:system/media/battery_charging_40.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_45.qmg:system/media/battery_charging_45.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_5.qmg:system/media/battery_charging_5.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_50.qmg:system/media/battery_charging_50.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_55.qmg:system/media/battery_charging_55.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_60.qmg:system/media/battery_charging_60.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_65.qmg:system/media/battery_charging_65.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_70.qmg:system/media/battery_charging_70.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_75.qmg:system/media/battery_charging_75.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_80.qmg:system/media/battery_charging_80.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_85.qmg:system/media/battery_charging_85.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_90.qmg:system/media/battery_charging_90.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/battery_charging_95.qmg:system/media/battery_charging_95.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/chargingwarning.qmg:system/media/chargingwarning.qmg \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/Disconnected.qmg:system/media/Disconnected.qmg
 EOF
 
 

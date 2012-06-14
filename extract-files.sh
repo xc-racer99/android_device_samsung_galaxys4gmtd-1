@@ -34,13 +34,11 @@ else
 fi
 
 DIRS="
-vendor/bin
 bin
 cameradata
 etc/wifi
 lib/egl
 lib/hw
-media
 "
 
 for DIR in $DIRS; do
@@ -100,32 +98,6 @@ lib/hw/copybit.s5pc110.so
 lib/hw/lights.s5pc110.so
 lib/hw/gralloc.s5pc110.so
 lib/hw/overlay.s5pc110.so
-
-bin/playlpm
-bin/charging_mode
-lib/libQmageDecoder.so
-media/battery_charging_5.qmg
-media/battery_charging_10.qmg
-media/battery_charging_15.qmg
-media/battery_charging_20.qmg
-media/battery_charging_25.qmg
-media/battery_charging_30.qmg
-media/battery_charging_35.qmg
-media/battery_charging_40.qmg
-media/battery_charging_45.qmg
-media/battery_charging_50.qmg
-media/battery_charging_55.qmg
-media/battery_charging_60.qmg
-media/battery_charging_65.qmg
-media/battery_charging_70.qmg
-media/battery_charging_75.qmg
-media/battery_charging_80.qmg
-media/battery_charging_85.qmg
-media/battery_charging_90.qmg
-media/battery_charging_95.qmg
-media/battery_charging_100.qmg
-media/chargingwarning.qmg
-media/Disconnected.qmg
 "
 
 for FILE in $FILES; do
@@ -243,36 +215,6 @@ PRODUCT_COPY_FILES += \\
     vendor/samsung/__DEVICE__/proprietary/etc/gps.conf:system/etc/gps.conf \\
     vendor/samsung/__DEVICE__/proprietary/lib/libclientgps.so:system/lib/libclientgps.so \\
     vendor/samsung/__DEVICE__/proprietary/lib/hw/gps.s5pc110.so:system/lib/hw/gps.s5pc110.so
-
-#
-# Files for battery charging screen
-#
-PRODUCT_COPY_FILES += \\
-    vendor/samsung/__DEVICE__/proprietary/bin/playlpm:system/bin/playlpm \\
-    vendor/samsung/__DEVICE__/proprietary/bin/charging_mode:system/bin/charging_mode \\
-    vendor/samsung/__DEVICE__/proprietary/lib/libQmageDecoder.so:system/lib/libQmageDecoder.so \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_5.qmg:system/media/battery_charging_5.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_10.qmg:system/media/battery_charging_10.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_15.qmg:system/media/battery_charging_15.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_20.qmg:system/media/battery_charging_20.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_25.qmg:system/media/battery_charging_25.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_30.qmg:system/media/battery_charging_30.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_35.qmg:system/media/battery_charging_35.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_40.qmg:system/media/battery_charging_40.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_45.qmg:system/media/battery_charging_45.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_50.qmg:system/media/battery_charging_50.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_55.qmg:system/media/battery_charging_55.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_60.qmg:system/media/battery_charging_60.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_65.qmg:system/media/battery_charging_65.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_70.qmg:system/media/battery_charging_70.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_75.qmg:system/media/battery_charging_75.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_80.qmg:system/media/battery_charging_80.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_85.qmg:system/media/battery_charging_85.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_90.qmg:system/media/battery_charging_90.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_95.qmg:system/media/battery_charging_95.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/battery_charging_100.qmg:system/media/battery_charging_100.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/chargingwarning.qmg:system/media/chargingwarning.qmg \\
-    vendor/samsung/__DEVICE__/proprietary/media/Disconnected.qmg:system/media/Disconnected.qmg
 
 EOF
 
