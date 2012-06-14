@@ -41,7 +41,7 @@ BOARD_NEEDS_CUTILS_LOG := true
 
 TARGET_BOARD_PLATFORM := s5pc110
 TARGET_BOOTLOADER_BOARD_NAME := herring
-#TARGET_BOARD_PLATFORM_GPU := POWERVR_SGX540_120
+TARGET_BOARD_PLATFORM_GPU := POWERVR_SGX540_120
 TARGET_RECOVERY_INITRC := device/samsung/galaxys4gmtd/recovery.rc
 
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/samsung/galaxys4gmtd/releasetools/galaxys4gmtd_ota_from_target_files
