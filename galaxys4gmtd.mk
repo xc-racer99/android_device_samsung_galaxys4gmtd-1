@@ -105,8 +105,7 @@ PRODUCT_PACKAGES += \
     libOMX.SEC.AVC.Decoder.s5pc110 \
     libOMX.SEC.M4V.Decoder.s5pc110 \
     libOMX.SEC.M4V.Encoder.s5pc110 \
-    libOMX.SEC.AVC.Encoder.s5pc110 \
-    libaudio
+    libOMX.SEC.AVC.Encoder.s5pc110
 
 # Misc other modules
 PRODUCT_PACKAGES += \
@@ -116,6 +115,7 @@ PRODUCT_PACKAGES += \
 
 # Libs
 PRODUCT_PACKAGES += \
+    libaudio \
     libs3cjpeg \
     libcamera \
     libstagefrighthw
@@ -145,10 +145,9 @@ PRODUCT_COPY_FILES += \
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/base/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/base/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
     frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
