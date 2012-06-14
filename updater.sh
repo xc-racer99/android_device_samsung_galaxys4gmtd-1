@@ -13,20 +13,20 @@ if /tmp/busybox test -e /dev/block/bml7 ; then
 # we're running on a bml device
 
     # make sure sdcard is mounted
-    if ! /tmp/busybox grep -q /mnt/sdcard /proc/mounts ; then
-        /tmp/busybox mkdir -p /mnt/sdcard
+    if ! /tmp/busybox grep -q /sdcard /proc/mounts ; then
+        /tmp/busybox mkdir -p /sdcard
         /tmp/busybox umount -l /dev/block/mmcblk0p1
-        if ! /tmp/busybox mount -t vfat /dev/block/mmcblk0p1 /mnt/sdcard ; then
+        if ! /tmp/busybox mount -t vfat /dev/block/mmcblk0p1 /sdcard ; then
             /tmp/busybox echo "Cannot mount sdcard."
             exit 1
         fi
     fi
 
     # remove old log
-    rm -rf /mnt/sdcard/cyanogenmod_bml.log
+    rm -rf /sdcard/cyanogenmod_bml.log
 
     # everything is logged into /sdcard/cyanogenmod.log
-    exec >> /mnt/sdcard/cyanogenmod_bml.log 2>&1
+    exec >> /sdcard/cyanogenmod_bml.log 2>&1
 
     # make sure efs is mounted
     if ! /tmp/busybox grep -q /efs /proc/mounts ; then
@@ -39,30 +39,30 @@ if /tmp/busybox test -e /dev/block/bml7 ; then
     fi
 
     # create a backup of efs
-    if /tmp/busybox test -e /mnt/sdcard/backup/efs.tar ; then
-        /tmp/busybox mv /mnt/sdcard/backup/efs.tar /mnt/sdcard/backup/efs-$$.tar
-        /tmp/busybox mv /mnt/sdcard/backup/efs.tar.md5 /mnt/sdcard/backup/efs-$$.tar.md5
+    if /tmp/busybox test -e /sdcard/backup/efs.tar ; then
+        /tmp/busybox mv /sdcard/backup/efs.tar /sdcard/backup/efs-$$.tar
+        /tmp/busybox mv /sdcard/backup/efs.tar.md5 /sdcard/backup/efs-$$.tar.md5
     fi
-    /tmp/busybox rm -rf /mnt/sdcard/backup/efs.tar
-    /tmp/busybox rm -rf /mnt/sdcard/backup/efs.tar.md5
+    /tmp/busybox rm -rf /sdcard/backup/efs.tar
+    /tmp/busybox rm -rf /sdcard/backup/efs.tar.md5
 
-    /tmp/busybox mkdir -p /mnt/sdcard/backup
+    /tmp/busybox mkdir -p /sdcard/backup
     
     cd /efs
-    /tmp/busybox tar cf /mnt/sdcard/backup/efs.tar *
+    /tmp/busybox tar cf /sdcard/backup/efs.tar *
 
     # Now we checksum the file. We'll verify later when we do a restore
-    cd /mnt/sdcard/backup/
+    cd /sdcard/backup/
     /tmp/busybox md5sum -t efs.tar > efs.tar.md5
 
     # write the package path to sdcard cyanogenmod.cfg
     if /tmp/busybox test -n "$UPDATE_PACKAGE" ; then
         PACKAGE_LOCATION=${UPDATE_PACKAGE#/mnt}
-        /tmp/busybox echo "$PACKAGE_LOCATION" > /mnt/sdcard/cyanogenmod.cfg
+        /tmp/busybox echo "$PACKAGE_LOCATION" > /sdcard/cyanogenmod.cfg
     fi
 
     # Scorch any ROM Manager settings to require the user to reflash recovery
-    /tmp/busybox rm -f /mnt/sdcard/clockworkmod/.settings
+    /tmp/busybox rm -f /sdcard/clockworkmod/.settings
 
     # write new kernel to boot partition
     /tmp/flash_image boot /tmp/boot.img
@@ -71,7 +71,7 @@ if /tmp/busybox test -e /dev/block/bml7 ; then
     fi
     /tmp/busybox sync
 
-    /sbin/reboot now
+    /sbin/reboot
     exit 0
 
 elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
