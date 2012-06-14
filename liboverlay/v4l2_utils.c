@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define OVERLAY_DEBUG 1
+//#define OVERLAY_DEBUG 1
 #define LOG_TAG "v4l2_utils"
 
 #include <fcntl.h>

@@ -15,7 +15,7 @@
  */
 
 #define LOG_TAG "SecHardwareRenderer"
-#define LOG_NDEBUG 0
+//#define LOG_NDEBUG 0
 #include <utils/Log.h>
 
 #include "SecHardwareRenderer.h"
