@@ -171,6 +171,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mobiledata.interfaces=pdp0,gprs,ppp0 \
     dalvik.vm.heapsize=48m
 
+# HSPA+/HSUPA overrides
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ril.gprsclass=12 \
+    ro.ril.hsdpa.category=14 \
+    ro.ril.hsupa.category=6 \
+    ro.ril.hsxpa=2 \
+    net.tcp.buffersize.hsdpa = 4094,87380,393216,4096,16384,110208
+
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
 #    ro.com.google.networklocation=1
