@@ -124,7 +124,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     bdaddr_read
 
-# Service Mode Secret Code
+# Open source playlpm from replicant
+PRODUCT_PACKAGES += \
+    playlpm
+
+# Device specific packages
 PRODUCT_PACKAGES += \
     SamsungServiceMode \
     SGS4GParts \
