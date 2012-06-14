@@ -143,7 +143,7 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
 
     # unmount and format data
     /tmp/busybox umount /data
-    /tmp/make_ext4fs -b 4096 -g 32768 -i 8192 -I 256 -a /data /dev/block/mtdblock3
+    /tmp/erase_image data
 
     # restore efs backup
     if /tmp/busybox test -e /sdcard/backup/efs.tar ; then
