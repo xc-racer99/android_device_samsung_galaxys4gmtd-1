@@ -32,7 +32,12 @@ on init
 
 on early-fs
     mount tmpfs nodev /tmp
+    mount vfat /dev/block/mmcblk0p1 /sdcard
+    mount yaffs2 mtd@cache /cache
 
+    # Check if we have an extendedcommand on the sdcard from a BML -> MTD flash
+    exec /sbin/mount /sdcard
+    exec /sbin/mv /sdcard/extendedcommand /cache/recovery/extendedcommand
 
 on post-fs
 
@@ -43,7 +48,7 @@ on post-fs
     write /proc/sys/kernel/sched_wakeup_granularity_ns 2000000
     write /proc/sys/kernel/sched_compat_yield 1
     write /proc/sys/kernel/sched_child_runs_first 0
-	
+
 on boot
 
     ifup lo
