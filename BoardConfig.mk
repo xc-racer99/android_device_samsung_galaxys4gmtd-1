@@ -29,15 +29,13 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
-TARGET_GLOBAL_CFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 BOARD_MOBILEDATA_INTERFACE_NAME = "pdp0"
 
-BOARD_NEEDS_CUTILS_LOG := true
+#BOARD_NEEDS_CUTILS_LOG := true
 
 TARGET_BOARD_PLATFORM := s5pc110
 TARGET_BOOTLOADER_BOARD_NAME := herring
@@ -47,37 +45,37 @@ TARGET_RECOVERY_INITRC := device/samsung/galaxys4gmtd/recovery.rc
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/samsung/galaxys4gmtd/releasetools/galaxys4gmtd_ota_from_target_files
 TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/samsung/galaxys4gmtd/releasetools/galaxys4gmtd_img_from_target_files
 
-# Camera
-USE_CAMERA_STUB := false
-ifeq ($(USE_CAMERA_STUB),false)
-BOARD_CAMERA_LIBRARIES := libcamera
-endif
-
-#GPS
-#BOARD_USES_GPSSHIM := true
-
 TARGET_PROVIDES_LIBAUDIO := true
 
 # OpenGL stuff
 BOARD_EGL_CFG := device/samsung/galaxys4gmtd/prebuilt/etc/egl.cfg
+#COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_EGL_PIXEL_FORMAT_YV12 -DMISSING_GRALLOC_BUFFERS
+# (jacked up for now; need to update kernel drivers and pvr blobs)
+USE_OPENGL_RENDERER := true
+BOARD_USE_SKIA_LCDTEXT := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
 # Video Devices
-BOARD_USES_OVERLAY := true
 BOARD_V4L2_DEVICE := /dev/video1
 BOARD_CAMERA_DEVICE := /dev/video0
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 
-# FM Radio
-#BOARD_HAVE_FM_RADIO := true
-#BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+# touchscreen
+BOARD_USE_LEGACY_TOUCHSCREEN := true
 
+# Vold
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun0/file"
 
-TARGET_PREBUILT_KERNEL := device/samsung/galaxys4gmtd/kernel
-BOARD_NAND_PAGE_SIZE := 4096 -s 128
+# Kernel
+TARGET_KERNEL_SOURCE := kernel/samsung/galaxys4gmtd
+TARGET_KERNEL_CONFIG := cyanogen_galaxys4gmtd_defconfig
+
+BOARD_NAND_PAGE_SIZE := 4096
+BOARD_NAND_SPARE_SIZE := 128
 BOARD_KERNEL_BASE := 0x32000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 init=/init no_console_suspend
@@ -91,20 +89,21 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 # WIFI defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-WPA_SUPPLICANT_VERSION := VER_0_6_X
-WIFI_DRIVER_FW_STA_PATH := "/system/vendor/firmware/fw_bcm4329.bin"
-WIFI_DRIVER_FW_AP_PATH := "/system/vendor/firmware/fw_bcm4329_apsta.bin"
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
+WIFI_DRIVER_FW_PATH_STA := "/system/vendor/firmware/fw_bcm4329.bin"
+WIFI_DRIVER_FW_PATH_AP := "/system/vendor/firmware/fw_bcm4329_apsta.bin"
 BOARD_WLAN_DEVICE := bcm4329
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/bcm4329.ko"
 WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/vendor/firmware/fw_bcm4329.bin nvram_path=/system/vendor/firmware/nvram_net.txt dhd_watchdog_ms=10 dhd_poll=1"
 WIFI_DRIVER_MODULE_NAME := "bcm4329"
 
 # Recovery
-BOARD_RECOVERY_HANDLES_MOUNT := true
-BOARD_HAS_DOWNLOAD_MODE := true
+#BOARD_RECOVERY_HANDLES_MOUNT := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USES_BML_OVER_MTD := true
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxys4gmtd/shbootimg.mk
 TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /data/.startrecovery; sync;"
+BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/galaxys4gmtd/recovery/graphics.c
 
 TARGET_OTA_ASSERT_DEVICE := herring,galaxys4g,galaxys4gmtd,SGH-T959V

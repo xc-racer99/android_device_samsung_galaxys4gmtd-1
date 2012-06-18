@@ -24,7 +24,7 @@ copy_from := $(addprefix $(LOCAL_FRAMES_DIR)/,$(copy_from))
 $(copy_to) : $(TARGET_FRAMES_DIR)/% : $(LOCAL_FRAMES_DIR)/% | $(ACP)
 	$(transform-prebuilt-to-target)
 
-ALL_PREBUILT += $(copy_to)
+#ALL_PREBUILT += $(copy_to)
 
 include $(CLEAR_VARS)
 

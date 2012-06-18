@@ -1,5 +1,12 @@
+import init.herring.usb.rc
+
 on init
-    loglevel 8
+    loglevel 9
+
+    export EXTERNAL_STORAGE /mnt/sdcard
+
+    mkdir /mnt/sdcard 0000 system system
+    symlink /mnt/sdcard /sdcard
 
 on fs
     # We chown/chmod /efs because mount is run as root + defaults
@@ -52,24 +59,11 @@ on fs
     chmod 0770 /data/NMEA_DEBUG.txt
 
 on post-fs
-    # make symlinks for compatibility
-    symlink /system/vendor /vendor
-    symlink /system/etc /etc
-    symlink /system/lib /lib
-
     # permissions for MTP device node_temporary permission_will be changed 0660
     chmod 0660 /dev/usb_mtp_gadget
     chown system system /dev/usb_mtp_gadget
 
-    mkdir 0777 /data/property
-
-    symlink /datadata /data/data
-
     symlink /radio/modem.bin /dev/block/bml12
-
-    mkdir /var 777 system system
-    mkdir /var/log 777 system system
-    mkdir /var/run 777 system system
 
     # for sensor control
     chown system input /sys/class/input/input0/enable
@@ -364,14 +358,17 @@ on property:persist.service.usb.setting=4
 
 
 service orientationd /system/vendor/bin/orientationd
+    class late_start
     user compass
     group input
 
 service geomagneticd /system/vendor/bin/geomagneticd
+    class late_start
     user compass
     group system input
 
 service gps-daemon /system/vendor/bin/gpsd -c /system/etc/gps.xml
+    class late_start
     socket gps seqpacket 0660 gps system
     user gps
     group gps system inet
@@ -379,24 +376,29 @@ service gps-daemon /system/vendor/bin/gpsd -c /system/etc/gps.xml
 
 # 3D init
 service pvrsrvinit /system/vendor/bin/pvrsrvinit
+    class core
     user root
     group root
     oneshot
 
 service wpa_supplicant /system/bin/wpa_supplicant -W -Dwext -ieth0 -c /data/misc/wifi/wpa_supplicant.conf
+    class main
     socket wpa_eth0 dgram 0660 wifi wifi
     disabled
     oneshot
 
 service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
+    class main
     disabled
     oneshot
 
 service iprenew_eth0 /system/bin/dhcpcd -n
+    class main
     disabled
     oneshot
 
 service bdaddr /system/bin/bdaddr_read
+    class main
     user root
     disabled
     oneshot
@@ -404,9 +406,13 @@ service bdaddr /system/bin/bdaddr_read
 on property:init.svc.bootanim=running
     start bdaddr
 
+on property:ro.debuggable=1
+    start adbd
+
 # NOTE: lpm is disabled
 service hciattach /system/bin/brcm_patchram_plus --enable_hci \
     --baudrate 3000000 --patchram /system/bin/BCM4329B1_002.002.023.0746.0832.hcd /dev/s3c2410_serial0
+    class main
     user bluetooth
     group bluetooth net_bt_admin
     disabled
@@ -414,11 +420,13 @@ service hciattach /system/bin/brcm_patchram_plus --enable_hci \
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
+    class main
     disabled
     oneshot
     keycodes 114 115 116
 
 service tvout /system/bin/tvoutserver
+    class late_start
     user system
     group graphics
 

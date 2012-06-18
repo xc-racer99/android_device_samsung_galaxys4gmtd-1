@@ -53,14 +53,10 @@ PRODUCT_COPY_FILES := \
 # device/samsung/galaxys4gmtd/init.herring.rc:root/init.herring.rc
 PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/init.herring.rc:root/init.herring.rc \
+    device/samsung/galaxys4gmtd/init.herring.usb.rc:root/init.herring.usb.rc \
+    device/samsung/galaxys4gmtd/init.herring.usb.rc:recovery/root/usb.rc \
     device/samsung/galaxys4gmtd/lpm.rc:root/lpm.rc \
-    device/samsung/galaxys4gmtd/ueventd.herring.rc:root/ueventd.herring.rc \
-    device/samsung/galaxys4gmtd/setupenv.sh:recovery/root/sbin/setupenv.sh
-
-
-# WiFi
-PRODUCT_COPY_FILES += \
-    device/samsung/galaxys4gmtd/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+    device/samsung/galaxys4gmtd/ueventd.herring.rc:root/ueventd.herring.rc
 
 # Keylayout and Keychars
 PRODUCT_COPY_FILES += \
@@ -107,26 +103,31 @@ PRODUCT_PACKAGES += \
     libOMX.SEC.M4V.Encoder.s5pc110 \
     libOMX.SEC.AVC.Encoder.s5pc110
 
+# audio
+PRODUCT_PACKAGES += \
+    audio.primary.s5pc110 \
+    audio_policy.s5pc110
+
 # Misc other modules
 PRODUCT_PACKAGES += \
     lights.s5pc110 \
-    overlay.s5pc110 \
-    sensors.s5pc110
+    sensors.s5pc110 \
+    audio.a2dp.default
 
 # Libs
 PRODUCT_PACKAGES += \
-    libaudio \
+    camera.s5pc110 \
     libs3cjpeg \
-    libcamera \
-    libstagefrighthw
+    libstagefrighthw \
+    hwcomposer.s5pc110
 
 # Bluetooth MAC Address
 PRODUCT_PACKAGES += \
     bdaddr_read
 
-# Open source playlpm from replicant
-PRODUCT_PACKAGES += \
-    playlpm
+# Open source playlpm from replicant - breaks build ATM.. FIXME
+#PRODUCT_PACKAGES += \
+#    playlpm
 
 # Device specific packages
 PRODUCT_PACKAGES += \
@@ -136,7 +137,7 @@ PRODUCT_PACKAGES += \
 
 # Input device calibration files
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys4gmtd/mxt224_ts_input.idc:system/usr/idc/mxt224_ts_input.idc
+    device/samsung/galaxys4gmtd/prebuilt/usr/idc/qt602240_ts_input.idc:system/usr/idc/qt602240_ts_input.idc
 
 # apns config file
 PRODUCT_COPY_FILES += \
@@ -166,10 +167,10 @@ PRODUCT_PROPERTY_OVERRIDES := \
 # be reachable from resources or other mechanisms.
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=eth0 \
-    wifi.supplicant_scan_interval=15 \
-    ro.telephony.ril_class=samsung \
-    mobiledata.interfaces=pdp0,gprs,ppp0 \
-    dalvik.vm.heapsize=48m
+    wifi.supplicant_scan_interval=20 \
+    ro.telephony.ril_class=SamsungRIL \
+    ro.telephony.ril.v3=icccardstatus,datacall,signalstrength,facilitylock \
+    mobiledata.interfaces=pdp0,gprs
 
 # HSPA+/HSUPA overrides
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -195,25 +196,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
-# Screen density is actually considered a locale (since it is taken into account
-# the the build-time selection of resources). The product definitions including
-# this file must pay attention to the fact that the first entry in the final
-# PRODUCT_LOCALES expansion must not be a density.
-PRODUCT_LOCALES := en_US
-
-# kernel modules
-PRODUCT_COPY_FILES += $(foreach module,\
-    $(wildcard device/samsung/galaxys4gmtd/modules/*.ko),\
-    $(module):system/lib/modules/$(notdir $(module)))
-
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-    LOCAL_KERNEL := device/samsung/galaxys4gmtd/kernel
-else
-    LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
+include frameworks/base/build/phone-hdpi-512-dalvik-heap.mk
 
 PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/updater.sh:updater.sh

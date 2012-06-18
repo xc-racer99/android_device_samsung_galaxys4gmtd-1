@@ -89,8 +89,13 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.UnpackPackageDir("recovery", "/system")
   script.UnpackPackageDir("system", "/system")
 
-  symlinks = CopySystemFiles(input_zip, output_zip)
+  (symlinks, retouch_files) = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)
+
+  if OPTIONS.aslr_mode:
+    script.RetouchBinaries(retouch_files)
+  else:
+    script.UndoRetouchBinaries(retouch_files)
 
   Item.GetMetadata(input_zip)
   Item.Get("system").SetPermissions(script)
@@ -101,15 +106,14 @@ def WriteFullOTAPackage(input_zip, output_zip):
     script.ShowProgress(0.2, 10)
     script.RunBackup("restore")
 
-  script.RunModelidCfg()
-
-  script.RunVerifyCachePartitionSize()
+  if OPTIONS.modelidcfg:
+    script.RunConfig("")
 
   CopyBootFiles(input_zip, output_zip)
   CopyBMLoverMTD(output_zip)
 
-  script.ShowProgress(0.2, 10)
-  script.WriteBMLoverMTD("boot", "72", "reservoir", "4012", "boot.img")
+  #script.ShowProgress(0.2, 10)
+  #script.WriteBMLoverMTD("boot", "72", "reservoir", "4012", "boot.img")
 
   script.ShowProgress(0.1, 0)
   device_specific.FullOTA_InstallEnd()

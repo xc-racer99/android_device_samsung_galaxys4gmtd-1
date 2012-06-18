@@ -21,19 +21,20 @@
 
 #include "SecCamera.h"
 #include <utils/threads.h>
-#include <camera/CameraHardwareInterface.h>
+#include <utils/RefBase.h>
 #include <binder/MemoryBase.h>
 #include <binder/MemoryHeapBase.h>
+#include <hardware/camera.h>
+#include <hardware/gralloc.h>
+#include <camera/CameraParameters.h>
 
 namespace android {
-class CameraHardwareSec : public CameraHardwareInterface {
+    class CameraHardwareSec : public virtual RefBase {
 public:
-    virtual sp<IMemoryHeap> getPreviewHeap() const;
-    virtual sp<IMemoryHeap> getRawHeap() const;
-
-    virtual void        setCallbacks(notify_callback notify_cb,
-                                     data_callback data_cb,
-                                     data_callback_timestamp data_cb_timestamp,
+    virtual void        setCallbacks(camera_notify_callback notify_cb,
+                                     camera_data_callback data_cb,
+                                     camera_data_timestamp_callback data_cb_timestamp,
+                                     camera_request_memory get_memory,
                                      void *user);
 
     virtual void        enableMsgType(int32_t msgType);
@@ -41,36 +42,33 @@ public:
     virtual bool        msgTypeEnabled(int32_t msgType);
 
     virtual status_t    startPreview();
-#if defined(BOARD_USES_OVERLAY)
-    virtual bool        useOverlay();
-    virtual status_t    setOverlay(const sp<Overlay> &overlay);
-#endif
     virtual void        stopPreview();
     virtual bool        previewEnabled();
 
     virtual status_t    startRecording();
     virtual void        stopRecording();
     virtual bool        recordingEnabled();
-    virtual void        releaseRecordingFrame(const sp<IMemory> &mem);
+    virtual void        releaseRecordingFrame(const void *opaque);
 
     virtual status_t    autoFocus();
     virtual status_t    cancelAutoFocus();
     virtual status_t    takePicture();
     virtual status_t    cancelPicture();
-    virtual status_t    dump(int fd, const Vector<String16> &args) const;
+    virtual status_t    dump(int fd) const;
     virtual status_t    setParameters(const CameraParameters& params);
     virtual CameraParameters  getParameters() const;
-    virtual status_t    sendCommand(int32_t command, int32_t arg1,
-                                    int32_t arg2);
+    virtual status_t    sendCommand(int32_t command, int32_t arg1, int32_t arg2);
+    virtual status_t    setPreviewWindow(preview_stream_ops *w);
+    virtual status_t    storeMetaDataInBuffers(bool enable);
     virtual void        release();
 
-    static    sp<CameraHardwareInterface> createInstance(int cameraId);
+    inline  int         getCameraId() const;
 
-private:
-                        CameraHardwareSec(int cameraId);
+    CameraHardwareSec(int cameraId, camera_device_t *dev);
     virtual             ~CameraHardwareSec();
-
-    static wp<CameraHardwareInterface> singleton;
+private:
+    status_t    startPreviewInternal();
+    void stopPreviewInternal();
 
     static  const int   kBufferCount = MAX_BUFFERS;
     static  const int   kBufferCountForRecord = MAX_BUFFERS;
@@ -98,7 +96,6 @@ private:
         mHardware(hw) { }
         virtual bool threadLoop() {
             mHardware->pictureThread();
-            mHardware->mSecCamera->endSnapshot();
             return false;
         }
     };
@@ -157,6 +154,9 @@ private:
             void        setSkipFrame(int frame);
             bool        isSupportedPreviewSize(const int width,
                                                const int height) const;
+            bool        isSupportedParameter(const char * const parm,
+                            const char * const supported_parm) const;
+            status_t    waitCaptureCompletion();
     /* used by auto focus thread to block until it's told to run */
     mutable Mutex       mFocusLock;
     mutable Condition   mFocusCondition;
@@ -167,36 +167,32 @@ private:
     mutable Condition   mPreviewCondition;
     mutable Condition   mPreviewStoppedCondition;
             bool        mPreviewRunning;
+            bool        mPreviewStartDeferred;
             bool        mExitPreviewThread;
 
-    /* used to guard threading state */
-    mutable Mutex       mStateLock;
+            preview_stream_ops *mPreviewWindow;
+
+    /* used to guard mCaptureInProgress */
+    mutable Mutex       mCaptureLock;
+    mutable Condition   mCaptureCondition;
 
     CameraParameters    mParameters;
     CameraParameters    mInternalParameters;
 
-    sp<MemoryHeapBase>  mPreviewHeap;
-    sp<MemoryHeapBase>  mRawHeap;
-    sp<MemoryHeapBase>  mRecordHeap;
-    sp<MemoryHeapBase>  mJpegHeap;
-    sp<MemoryBase>      mBuffers[kBufferCount];
-    sp<MemoryBase>      mRecordBuffers[kBufferCountForRecord];
+    camera_memory_t     *mPreviewHeap;
+    camera_memory_t     *mRawHeap;
+    camera_memory_t     *mRecordHeap;
 
-            SecCamera   *mSecCamera;
+    SecCamera           *mSecCamera;
             const __u8  *mCameraSensorName;
 
     mutable Mutex       mSkipFrameLock;
             int         mSkipFrame;
 
-#if defined(BOARD_USES_OVERLAY)
-            sp<Overlay> mOverlay;
-            bool        mUseOverlay;
-            int         mOverlayBufferIdx;
-#endif
-
-    notify_callback     mNotifyCb;
-    data_callback       mDataCb;
-    data_callback_timestamp mDataCbTimestamp;
+    camera_notify_callback     mNotifyCb;
+    camera_data_callback       mDataCb;
+    camera_data_timestamp_callback mDataCbTimestamp;
+    camera_request_memory      mGetMemoryCb;
             void        *mCallbackCookie;
 
             int32_t     mMsgEnabled;
@@ -208,6 +204,9 @@ private:
             int         mPostViewSize;
 
             Vector<Size> mSupportedPreviewSizes;
+
+    camera_device_t *mHalDevice;
+    static gralloc_module_t const* mGrallocHal;
 };
 
 }; // namespace android

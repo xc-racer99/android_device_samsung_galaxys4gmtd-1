@@ -2,6 +2,7 @@
 **
 ** Copyright 2008, The Android Open Source Project
 ** Copyright 2010, Samsung Electronics Co. LTD
+** Copyright 2011, The CyanogenMod Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -33,12 +34,13 @@
 #include <sys/poll.h>
 #include <sys/stat.h>
 
+#include <utils/RefBase.h>
 #include <linux/videodev2.h>
 #include <videodev2_samsung.h>
 
-#include "JpegEncoder.h"
+#include <utils/String8.h>
 
-#include <camera/CameraHardwareInterface.h>
+#include "JpegEncoder.h"
 
 namespace android {
 
@@ -74,28 +76,28 @@ namespace android {
 #define JOIN_AGAIN(x, y) x ## y
 
 #define FRONT_CAM VGA
-#define BACK_CAM CE147
+#define BACK_CAM S5K4ECGX
 
 #if !defined (FRONT_CAM) || !defined(BACK_CAM)
 #error "Please define the Camera module"
 #endif
 
-#define CE147_PREVIEW_WIDTH            1280
-#define CE147_PREVIEW_HEIGHT           720
-#define CE147_SNAPSHOT_WIDTH           2560
-#define CE147_SNAPSHOT_HEIGHT          1920
+#define S5K4ECGX_PREVIEW_WIDTH            1280
+#define S5K4ECGX_PREVIEW_HEIGHT           720
+#define S5K4ECGX_SNAPSHOT_WIDTH           2560
+#define S5K4ECGX_SNAPSHOT_HEIGHT          1920
 
-#define CE147_POSTVIEW_WIDTH           640
-#define CE147_POSTVIEW_WIDE_WIDTH      800
-#define CE147_POSTVIEW_HEIGHT          480
-#define CE147_POSTVIEW_BPP             16
+#define S5K4ECGX_POSTVIEW_WIDTH           640
+#define S5K4ECGX_POSTVIEW_WIDE_WIDTH      800
+#define S5K4ECGX_POSTVIEW_HEIGHT          480
+#define S5K4ECGX_POSTVIEW_BPP             16
 
-#define CE147_THUMBNAIL_WIDTH          320
-#define CE147_THUMBNAIL_HEIGHT         240
-#define CE147_THUMBNAIL_BPP            16
+#define S5K4ECGX_THUMBNAIL_WIDTH          320
+#define S5K4ECGX_THUMBNAIL_HEIGHT         240
+#define S5K4ECGX_THUMBNAIL_BPP            16
 
 /* focal length of 3.43mm */
-#define CE147_FOCAL_LENGTH             343
+#define S5K4ECGX_FOCAL_LENGTH             343
 
 #define VGA_PREVIEW_WIDTH               640
 #define VGA_PREVIEW_HEIGHT              480
@@ -206,8 +208,7 @@ struct camsensor_date_info {
     unsigned int date;
 };
 
-
-class SecCamera {
+class SecCamera : public virtual RefBase {
 public:
 
     enum CAMERA_ID {
@@ -278,17 +279,14 @@ public:
     } gpsInfoAltitude;
 
     SecCamera();
-    ~SecCamera();
+    virtual ~SecCamera();
 
     static SecCamera* createInstance(void)
     {
         static SecCamera singleton;
         return &singleton;
     }
-    status_t dump(int fd, const Vector<String16>& args);
-
-    int             flagCreate(void) const;
-
+    status_t dump(int fd);
 
     int             getCameraId(void);
 
@@ -496,9 +494,6 @@ private:
 
     int             m_cam_fd;
 
-    int             m_cam_fd_temp;
-    int             m_cam_fd2_temp;
-
     int             m_cam_fd2;
     struct pollfd   m_events_c2;
     int             m_flag_record_start;
@@ -528,9 +523,10 @@ private:
     int             m_object_tracking_start_stop;
     int             m_recording_width;
     int             m_recording_height;
-    long            m_gps_latitude;
-    long            m_gps_longitude;
-    long            m_gps_altitude;
+    bool            m_gps_enabled;
+    long            m_gps_latitude;  /* degrees * 1e7 */
+    long            m_gps_longitude; /* degrees * 1e7 */
+    long            m_gps_altitude;  /* metres * 100 */
     long            m_gps_timestamp;
     int             m_vtmode;
     int             m_sensor_mode; /*Camcorder fix fps */
