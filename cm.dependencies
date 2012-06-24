@@ -1,0 +1,15 @@
+[
+	{
+		"repository": "android_packages_apps_SamsungServiceMode",
+		"target_path": "packages/apps/SamsungServiceMode"
+	},
+	{
+		"repository": "android_device_samsung_galaxys4gmtd",
+		"target_path": "device/samsung/galaxys4gmtd"
+	},
+	{
+		"repository": "android_kernel_galaxys4gmtd",
+		"target_path": "kernel/samsung/galaxys4gmtd",
+		"branch": "ics"
+	}
+]
