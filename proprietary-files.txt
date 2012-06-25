@@ -1,0 +1,48 @@
+## radio
+lib/libganril.so
+lib/libril.so
+lib/libsecril-client.so
+lib/libsec-ril.so
+lib/librilswitch.so
+bin/rild
+
+## gps
+lib/libclientgps.so
+vendor/lib/hw/gps.s5pc110.so
+vendor/bin/gpsd
+
+## sensors
+vendor/bin/geomagneticd
+vendor/bin/orientationd
+vendor/lib/libsensor_yamaha_test.so
+
+## wifi
+vendor/firmware/nvram_net.txt
+
+## gfx
+vendor/bin/pvrsrvinit
+lib/egl/libGLES_android.so
+vendor/lib/egl/libEGL_POWERVR_SGX540_120.so
+vendor/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so
+vendor/lib/egl/libGLESv2_POWERVR_SGX540_120.so
+vendor/lib/hw/gralloc.s5pc110.so
+vendor/lib/libglslcompiler.so
+vendor/lib/libIMGegl.so
+vendor/lib/libpvr2d.so
+vendor/lib/libpvrANDROID_WSEGL.so
+vendor/lib/libPVRScopeServices.so
+vendor/lib/libsrv_init.so
+vendor/lib/libsrv_um.so
+vendor/lib/libusc.so
+
+## bluetooth
+bin/BCM4329B1_002.002.023.0746.0832.hcd
+
+## tvout
+lib/lib_tvoutengine.so
+lib/libtvoutfimc.so
+lib/libtvouthdmi.so
+lib/libtvout_jni.so
+lib/libtvoutservice.so
+lib/libtvout.so
+bin/tvoutserver
