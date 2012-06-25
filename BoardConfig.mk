@@ -98,6 +98,10 @@ WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/bcm4329.ko"
 WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/vendor/firmware/fw_bcm4329.bin nvram_path=/system/vendor/firmware/nvram_net.txt dhd_watchdog_ms=10 dhd_poll=1"
 WIFI_DRIVER_MODULE_NAME := "bcm4329"
 
+# Bootanimation
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := false
+
 # Recovery
 #BOARD_RECOVERY_HANDLES_MOUNT := true
 BOARD_HAS_NO_SELECT_BUTTON := true
