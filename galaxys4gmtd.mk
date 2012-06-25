@@ -135,6 +135,10 @@ PRODUCT_PACKAGES += \
     SGS4GParts \
     tvouthack
 
+# Usb accessory
+PRODUCT_PACKAGES += \
+    com.android.future.usb.accessory
+
 # Input device calibration files
 PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/prebuilt/usr/idc/qt602240_ts_input.idc:system/usr/idc/qt602240_ts_input.idc
@@ -154,6 +158,7 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
@@ -185,6 +190,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #    ro.com.google.networklocation=1
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
+    ro.com.google.networklocation=1
 
 # Extended JNI checks
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs
@@ -217,6 +223,7 @@ include frameworks/base/build/phone-hdpi-512-dalvik-heap.mk
 
 PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/updater.sh:updater.sh
+
 # See comment at the top of this file. This is where the other
 # half of the device-specific product definition file takes care
 # of the aspects that require proprietary drivers that aren't
