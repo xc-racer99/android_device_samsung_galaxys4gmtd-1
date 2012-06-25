@@ -138,11 +138,6 @@ on boot
 
     setprop ro.crypto.keyfile.userdata /efs/userdata_footer
 
-    # Tweak background writeout
-    write /proc/sys/vm/dirty_writeback_centisecs 2000
-    write /proc/sys/vm/dirty_expire_centisecs 1000
-    write /proc/sys/vm/dirty_ratio 90
-
     # fake some battery state
     setprop status.battery.state Slow
     setprop status.battery.level 5
