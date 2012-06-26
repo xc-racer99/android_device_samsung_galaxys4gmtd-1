@@ -53,6 +53,7 @@ BOARD_EGL_CFG := device/samsung/galaxys4gmtd/prebuilt/etc/egl.cfg
 # (jacked up for now; need to update kernel drivers and pvr blobs)
 USE_OPENGL_RENDERER := true
 BOARD_USE_SKIA_LCDTEXT := true
+ENABLE_WEBGL := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
