@@ -23,7 +23,6 @@ on init
 
 on fs
     mount tmpfs tmpfs /tmp
-    mount yaffs2 mtd@system /system
 on boot
 
     ifup lo
@@ -42,9 +41,9 @@ service console /system/bin/sh
 service adbd /sbin/adbd
     disabled
 
-service playlpm /system/bin/playlpm
+service charger /charger
+    class default
     user root
-    oneshot
 
 on property:persist.service.adb.enable=1
     start adbd

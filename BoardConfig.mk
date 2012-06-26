@@ -110,4 +110,9 @@ BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxys4gmtd/shbootimg.mk
 TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync;"
 BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/galaxys4gmtd/recovery/graphics.c
 
+# Charging mode
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/charging_mode_booting
+BOARD_BATTERY_DEVICE_NAME := "battery"
+BOARD_CHARGER_RES := device/samsung/galaxys4gmtd/res/charger
+
 TARGET_OTA_ASSERT_DEVICE := herring,galaxys4g,galaxys4gmtd,SGH-T959V

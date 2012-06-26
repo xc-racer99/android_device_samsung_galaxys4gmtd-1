@@ -139,6 +139,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
+# Charger
+PRODUCT_PACKAGES += \
+    charger \
+    charger_res_images
+
 # Input device calibration files
 PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/prebuilt/usr/idc/qt602240_ts_input.idc:system/usr/idc/qt602240_ts_input.idc
