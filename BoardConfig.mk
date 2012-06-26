@@ -108,7 +108,6 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USES_BML_OVER_MTD := true
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxys4gmtd/shbootimg.mk
-TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync;"
 BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/galaxys4gmtd/recovery/graphics.c
 
 # Charging mode
