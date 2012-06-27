@@ -125,10 +125,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     bdaddr_read
 
-# Open source playlpm from replicant - breaks build ATM.. FIXME
-#PRODUCT_PACKAGES += \
-#    playlpm
-
 # Device specific packages
 PRODUCT_PACKAGES += \
     SamsungServiceMode \
@@ -147,10 +143,6 @@ PRODUCT_PACKAGES += \
 # Input device calibration files
 PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/prebuilt/usr/idc/qt602240_ts_input.idc:system/usr/idc/qt602240_ts_input.idc
-
-# apns config file
-PRODUCT_COPY_FILES += \
-    vendor/cyanogen/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
