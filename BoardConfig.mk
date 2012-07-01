@@ -64,9 +64,6 @@ BOARD_V4L2_DEVICE := /dev/video1
 BOARD_CAMERA_DEVICE := /dev/video0
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 
-# touchscreen
-BOARD_USE_LEGACY_TOUCHSCREEN := true
-
 # Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun0/file"
