@@ -741,10 +741,7 @@ int SecCamera::startPreview(void)
     int ret = fimc_v4l2_enum_fmt(m_cam_fd,m_preview_v4lformat);
     CHECK(ret);
 
-    if (m_camera_id == CAMERA_ID_BACK)
-        ret = fimc_v4l2_s_fmt(m_cam_fd, m_preview_width,m_preview_height,m_preview_v4lformat, 0);
-    else
-        ret = fimc_v4l2_s_fmt(m_cam_fd, m_preview_height,m_preview_width,m_preview_v4lformat, 0);
+    ret = fimc_v4l2_s_fmt(m_cam_fd, m_preview_width,m_preview_height,m_preview_v4lformat, 0);
     CHECK(ret);
 
     ret = fimc_v4l2_reqbufs(m_cam_fd, V4L2_BUF_TYPE_VIDEO_CAPTURE, MAX_BUFFERS);
@@ -908,14 +905,9 @@ int SecCamera::startRecord(void)
         setISO(ISO_MOVIE);
         setMetering(METERING_MATRIX);
         setBatchReflection();
-
-        ret = fimc_v4l2_s_fmt(m_cam_fd2, m_recording_width,
+    }
+	ret = fimc_v4l2_s_fmt(m_cam_fd2, m_recording_width,
                               m_recording_height, V4L2_PIX_FMT_NV12T, 0);
-    }
-    else {
-        ret = fimc_v4l2_s_fmt(m_cam_fd2, m_recording_height,
-                              m_recording_width, V4L2_PIX_FMT_NV12T, 0);
-    }
     CHECK(ret);
 
     ret = fimc_v4l2_s_ctrl(m_cam_fd, V4L2_CID_CAMERA_FRAME_RATE,
@@ -1489,8 +1481,7 @@ int SecCamera::getSnapshotAndJpeg(unsigned char *yuv_buf, unsigned char *jpeg_bu
 
     ret = fimc_v4l2_enum_fmt(m_cam_fd,m_snapshot_v4lformat);
     CHECK(ret);
-    // FFC: Swap width and height
-    ret = fimc_v4l2_s_fmt_cap(m_cam_fd, m_snapshot_height, m_snapshot_width, m_snapshot_v4lformat);
+    ret = fimc_v4l2_s_fmt_cap(m_cam_fd, m_snapshot_width, m_snapshot_height, m_snapshot_v4lformat);
     CHECK(ret);
     ret = fimc_v4l2_reqbufs(m_cam_fd, V4L2_BUF_TYPE_VIDEO_CAPTURE, nframe);
     CHECK(ret);
