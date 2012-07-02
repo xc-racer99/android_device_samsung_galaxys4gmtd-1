@@ -1,4 +1,4 @@
-package com.cyanogenmod.SGS4GParts;
+package com.cyanogenmod.settings.device;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,8 +9,10 @@ public class Startup extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, final Intent bootintent) {
         ColorTuningPreference.restore(context);
+        Mdnie.restore(context);
         TouchKeyBacklightTimeout.restore(context);
         Hspa.restore(context);
+        VolumeBoostPreference.restore(context);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.cyanogenmod.SGS4GParts;
+package com.cyanogenmod.settings.device;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,7 +30,7 @@ public class Hspa implements OnPreferenceChangeListener {
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        sendIntent(context, sharedPrefs.getString(SGS4GParts.KEY_HSPA, "23"));
+        sendIntent(context, sharedPrefs.getString(DeviceSettings.KEY_HSPA, "23"));
     }
 
     @Override

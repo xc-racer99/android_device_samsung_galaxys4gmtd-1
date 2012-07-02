@@ -1,4 +1,4 @@
-package com.cyanogenmod.SGS4GParts;
+package com.cyanogenmod.settings.device;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,23 +10,28 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 
-public class SGS4GParts extends PreferenceActivity  {
+public class DeviceSettings extends PreferenceActivity  {
 
     public static final String KEY_COLOR_TUNING = "color_tuning";
+    public static final String KEY_MDNIE = "mdnie";
     public static final String KEY_BACKLIGHT_TIMEOUT = "backlight_timeout";
-    public static final String KEY_VIBRATION  = "vibration_intensity";
     public static final String KEY_HSPA = "hspa";
+    public static final String KEY_HSPA_CATEGORY = "category_radio";
     public static final String KEY_TVOUT_ENABLE = "tvout_enable";
     public static final String KEY_TVOUT_SYSTEM = "tvout_system";
+    public static final String KEY_VOLUME_BOOST = "volume_boost";
+    public static final String KEY_VOLUME_CATEGORY = "category_volume_boost";
 
     private ColorTuningPreference mColorTuning;
+    private ListPreference mMdnie;
     private ListPreference mBacklightTimeout;
-    private VibrationTuningPreference mVibrationIntensity;
     private ListPreference mHspa;
     private CheckBoxPreference mTvOutEnable;
     private ListPreference mTvOutSystem;
     private TvOut mTvOut;
+    private VolumeBoostPreference mVolumeBoost;
 
     private BroadcastReceiver mHeadsetReceiver = new BroadcastReceiver() {
 
@@ -46,16 +51,29 @@ public class SGS4GParts extends PreferenceActivity  {
         mColorTuning = (ColorTuningPreference) findPreference(KEY_COLOR_TUNING);
         mColorTuning.setEnabled(ColorTuningPreference.isSupported());
 
-        mVibrationIntensity = (VibrationTuningPreference) findPreference(KEY_VIBRATION);
-        mVibrationIntensity.setEnabled(false);
+        mMdnie = (ListPreference) findPreference(KEY_MDNIE);
+        mMdnie.setEnabled(Mdnie.isSupported());
+        mMdnie.setOnPreferenceChangeListener(new Mdnie());
 
         mBacklightTimeout = (ListPreference) findPreference(KEY_BACKLIGHT_TIMEOUT);
         mBacklightTimeout.setEnabled(TouchKeyBacklightTimeout.isSupported());
         mBacklightTimeout.setOnPreferenceChangeListener(new TouchKeyBacklightTimeout());
 
         mHspa = (ListPreference) findPreference(KEY_HSPA);
-        mHspa.setEnabled(Hspa.isSupported());
-        mHspa.setOnPreferenceChangeListener(new Hspa(this));
+        if (Hspa.isSupported()) {
+           mHspa.setOnPreferenceChangeListener(new Hspa(this));
+        } else {
+           PreferenceCategory category = (PreferenceCategory) getPreferenceScreen().findPreference(KEY_HSPA_CATEGORY);
+           category.removePreference(mHspa);
+           getPreferenceScreen().removePreference(category);
+        }
+
+        mVolumeBoost = (VolumeBoostPreference) findPreference(KEY_VOLUME_BOOST);
+        if (!VolumeBoostPreference.isSupported()) {
+            PreferenceCategory category = (PreferenceCategory) getPreferenceScreen().findPreference(KEY_VOLUME_CATEGORY);
+            category.removePreference(mVolumeBoost);
+            getPreferenceScreen().removePreference(category);
+        }
 
         mTvOut = new TvOut();
         mTvOutEnable = (CheckBoxPreference) findPreference(KEY_TVOUT_ENABLE);
@@ -66,7 +84,7 @@ public class SGS4GParts extends PreferenceActivity  {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 boolean enable = (Boolean) newValue;
-                Intent i = new Intent(SGS4GParts.this, TvOutService.class);
+                Intent i = new Intent(DeviceSettings.this, TvOutService.class);
                 i.putExtra(TvOutService.EXTRA_COMMAND, enable ? TvOutService.COMMAND_ENABLE : TvOutService.COMMAND_DISABLE);
                 startService(i);
                 return true;
@@ -81,7 +99,7 @@ public class SGS4GParts extends PreferenceActivity  {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 if (mTvOut._isEnabled()) {
                     int newSystem = Integer.valueOf((String) newValue);
-                    Intent i = new Intent(SGS4GParts.this, TvOutService.class);
+                    Intent i = new Intent(DeviceSettings.this, TvOutService.class);
                     i.putExtra(TvOutService.EXTRA_COMMAND, TvOutService.COMMAND_CHANGE_SYSTEM);
                     i.putExtra(TvOutService.EXTRA_SYSTEM, newSystem);
                     startService(i);

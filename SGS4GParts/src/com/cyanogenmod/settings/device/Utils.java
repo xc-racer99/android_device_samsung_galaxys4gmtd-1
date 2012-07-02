@@ -1,4 +1,4 @@
-package com.cyanogenmod.SGS4GParts;
+package com.cyanogenmod.settings.device;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -34,14 +34,14 @@ public class Utils {
     public static void writeColor(String filename, int value) {
         writeValue(filename, String.valueOf((long) value * 2));
     }
-    
+
     /**
-     * Write the vibration intensity to the specified file.
+     * Write the "gamma value" to the specified file.
      * @param filename      The filename
-     * @param value         The value of max value Integer.MAX
+     * @param value         The value
      */
-    public static void writeVibeIntensity(String filename, int value) {
-    	writeValue(filename, String.valueOf((long) value));
+    public static void writeGamma(String filename, int value) {
+        writeValue(filename, String.valueOf(value));
     }
 
     /**

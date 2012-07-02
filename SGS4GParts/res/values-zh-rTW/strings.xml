@@ -8,10 +8,6 @@
     <string name="color_red_title">紅</string>
     <string name="color_green_title">綠</string>
     <string name="color_blue_title">藍</string>
-    
-    <string name="category_vibe_title">振動</string>
-    <string name="vibe_intensity_title_head">振動強度</string>
-    <string name="vibe_intensity_summary_head">調整設備的振動強度</string>
 
     <string name="category_touchkey_title">觸控鍵</string>
     <string name="backlight_timeout_title_head">背光逾時</string>
