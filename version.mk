@@ -1,4 +1,4 @@
-TA_RELEASE := 3
+TA_RELEASE := 4
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.goo.developerid=TeamAcid \
