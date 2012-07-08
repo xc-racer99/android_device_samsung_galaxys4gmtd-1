@@ -245,20 +245,6 @@ void CameraHardwareSec::initDefaultParameters(int cameraId)
     p.set(CameraParameters::KEY_SUPPORTED_EFFECTS, parameterString.string());
 
     if (cameraId == SecCamera::CAMERA_ID_BACK) {
-#ifdef HAVE_FLASH
-        parameterString = CameraParameters::FLASH_MODE_ON;
-        parameterString.append(",");
-        parameterString.append(CameraParameters::FLASH_MODE_OFF);
-        parameterString.append(",");
-        parameterString.append(CameraParameters::FLASH_MODE_AUTO);
-        parameterString.append(",");
-        parameterString.append(CameraParameters::FLASH_MODE_TORCH);
-        p.set(CameraParameters::KEY_SUPPORTED_FLASH_MODES,
-              parameterString.string());
-        p.set(CameraParameters::KEY_FLASH_MODE,
-              CameraParameters::FLASH_MODE_OFF);
-#endif
-
         parameterString = CameraParameters::SCENE_MODE_AUTO;
         parameterString.append(",");
         parameterString.append(CameraParameters::SCENE_MODE_PORTRAIT);
@@ -1633,10 +1619,6 @@ status_t CameraHardwareSec::setParameters(const CameraParameters& params)
     if (mSecCamera->getCameraId() == SecCamera::CAMERA_ID_BACK) {
         int  new_scene_mode = -1;
 
-#ifdef HAVE_FLASH
-        const char *new_flash_mode_str = params.get(CameraParameters::KEY_FLASH_MODE);
-#endif
-
         // fps range is (15000,30000) by default.
         mParameters.set(CameraParameters::KEY_SUPPORTED_PREVIEW_FPS_RANGE, "(15000,30000)");
         mParameters.set(CameraParameters::KEY_PREVIEW_FPS_RANGE,
@@ -1644,86 +1626,44 @@ status_t CameraHardwareSec::setParameters(const CameraParameters& params)
 
         if (!strcmp(new_scene_mode_str, CameraParameters::SCENE_MODE_AUTO)) {
             new_scene_mode = SCENE_MODE_NONE;
-#ifdef HAVE_FLASH
-            mParameters.set(CameraParameters::KEY_SUPPORTED_FLASH_MODES, "on,off,auto,torch");
-#endif
         } else {
             // defaults for non-auto scene modes
             if (mSecCamera->getCameraId() == SecCamera::CAMERA_ID_BACK) {
                 new_focus_mode_str = CameraParameters::FOCUS_MODE_AUTO;
             }
-#ifdef HAVE_FLASH
-            new_flash_mode_str = CameraParameters::FLASH_MODE_OFF;
-#endif
 
             if (!strcmp(new_scene_mode_str,
                        CameraParameters::SCENE_MODE_PORTRAIT)) {
                 new_scene_mode = SCENE_MODE_PORTRAIT;
-#ifdef HAVE_FLASH
-                new_flash_mode_str = CameraParameters::FLASH_MODE_AUTO;
-                mParameters.set(CameraParameters::KEY_SUPPORTED_FLASH_MODES, "auto");
-#endif
             } else if (!strcmp(new_scene_mode_str,
                                CameraParameters::SCENE_MODE_LANDSCAPE)) {
                 new_scene_mode = SCENE_MODE_LANDSCAPE;
-#ifdef HAVE_FLASH
-                new_flash_mode_str = CameraParameters::FLASH_MODE_OFF;
-                mParameters.set(CameraParameters::KEY_SUPPORTED_FLASH_MODES, "off");
-#endif
             } else if (!strcmp(new_scene_mode_str,
                                CameraParameters::SCENE_MODE_SPORTS)) {
                 new_scene_mode = SCENE_MODE_SPORTS;
-#ifdef HAVE_FLASH
-                new_flash_mode_str = CameraParameters::FLASH_MODE_OFF;
-                mParameters.set(CameraParameters::KEY_SUPPORTED_FLASH_MODES, "off");
-#endif
             } else if (!strcmp(new_scene_mode_str,
                                CameraParameters::SCENE_MODE_PARTY)) {
                 new_scene_mode = SCENE_MODE_PARTY_INDOOR;
-#ifdef HAVE_FLASH
-                new_flash_mode_str = CameraParameters::FLASH_MODE_AUTO;
-                mParameters.set(CameraParameters::KEY_SUPPORTED_FLASH_MODES, "auto");
-#endif
             } else if ((!strcmp(new_scene_mode_str,
                                 CameraParameters::SCENE_MODE_BEACH)) ||
                         (!strcmp(new_scene_mode_str,
                                  CameraParameters::SCENE_MODE_SNOW))) {
                 new_scene_mode = SCENE_MODE_BEACH_SNOW;
-#ifdef HAVE_FLASH
-                new_flash_mode_str = CameraParameters::FLASH_MODE_OFF;
-                mParameters.set(CameraParameters::KEY_SUPPORTED_FLASH_MODES, "off");
-#endif
             } else if (!strcmp(new_scene_mode_str,
                                CameraParameters::SCENE_MODE_SUNSET)) {
                 new_scene_mode = SCENE_MODE_SUNSET;
-#ifdef HAVE_FLASH
-                new_flash_mode_str = CameraParameters::FLASH_MODE_OFF;
-                mParameters.set(CameraParameters::KEY_SUPPORTED_FLASH_MODES, "off");
-#endif
             } else if (!strcmp(new_scene_mode_str,
                                CameraParameters::SCENE_MODE_NIGHT)) {
                 new_scene_mode = SCENE_MODE_NIGHTSHOT;
                 mParameters.set(CameraParameters::KEY_SUPPORTED_PREVIEW_FPS_RANGE, "(4000,30000)");
                 mParameters.set(CameraParameters::KEY_PREVIEW_FPS_RANGE,
                                 "4000,30000");
-#ifdef HAVE_FLASH
-                new_flash_mode_str = CameraParameters::FLASH_MODE_OFF;
-                mParameters.set(CameraParameters::KEY_SUPPORTED_FLASH_MODES, "off");
-#endif
             } else if (!strcmp(new_scene_mode_str,
                                CameraParameters::SCENE_MODE_FIREWORKS)) {
                 new_scene_mode = SCENE_MODE_FIREWORKS;
-#ifdef HAVE_FLASH
-                new_flash_mode_str = CameraParameters::FLASH_MODE_OFF;
-                mParameters.set(CameraParameters::KEY_SUPPORTED_FLASH_MODES, "off");
-#endif
             } else if (!strcmp(new_scene_mode_str,
                                CameraParameters::SCENE_MODE_CANDLELIGHT)) {
                 new_scene_mode = SCENE_MODE_CANDLE_LIGHT;
-#ifdef HAVE_FLASH
-                new_flash_mode_str = CameraParameters::FLASH_MODE_OFF;
-                mParameters.set(CameraParameters::KEY_SUPPORTED_FLASH_MODES, "off");
-#endif
             } else {
                 LOGE("%s::unmatched scene_mode(%s)",
                         __func__, new_scene_mode_str); //action, night-portrait, theatre, steadyphoto
@@ -1783,34 +1723,6 @@ status_t CameraHardwareSec::setParameters(const CameraParameters& params)
                 }
             }
         }
-
-#ifdef HAVE_FLASH
-        // flash..
-        if (new_flash_mode_str != NULL) {
-            int  new_flash_mode = -1;
-
-            if (!strcmp(new_flash_mode_str, CameraParameters::FLASH_MODE_OFF))
-                new_flash_mode = FLASH_MODE_OFF;
-            else if (!strcmp(new_flash_mode_str, CameraParameters::FLASH_MODE_AUTO))
-                new_flash_mode = FLASH_MODE_AUTO;
-            else if (!strcmp(new_flash_mode_str, CameraParameters::FLASH_MODE_ON))
-                new_flash_mode = FLASH_MODE_ON;
-            else if (!strcmp(new_flash_mode_str, CameraParameters::FLASH_MODE_TORCH))
-                new_flash_mode = FLASH_MODE_TORCH;
-            else {
-                LOGE("%s::unmatched flash_mode(%s)", __func__, new_flash_mode_str); //red-eye
-                ret = UNKNOWN_ERROR;
-            }
-            if (0 <= new_flash_mode) {
-                if (mSecCamera->setFlashMode(new_flash_mode) < 0) {
-                    LOGE("%s::mSecCamera->setFlashMode(%d) fail", __func__, new_flash_mode);
-                    ret = UNKNOWN_ERROR;
-                } else {
-                    mParameters.set(CameraParameters::KEY_FLASH_MODE, new_flash_mode_str);
-                }
-            }
-        }
-#endif
 
         //  scene..
         if (0 <= new_scene_mode) {
