@@ -54,6 +54,7 @@ PRODUCT_COPY_FILES := \
 PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/init.herring.rc:root/init.herring.rc \
     device/samsung/galaxys4gmtd/init.herring.usb.rc:root/init.herring.usb.rc \
+    device/samsung/galaxys4gmtd/init.herring.gps.rc:root/init.herring.gps.rc \
     device/samsung/galaxys4gmtd/init.herring.usb.rc:recovery/root/usb.rc \
     device/samsung/galaxys4gmtd/lpm.rc:root/lpm.rc \
     device/samsung/galaxys4gmtd/ueventd.herring.rc:root/ueventd.herring.rc
@@ -124,6 +125,10 @@ PRODUCT_PACKAGES += \
 # Bluetooth MAC Address
 PRODUCT_PACKAGES += \
     bdaddr_read
+    
+# GPS wrapper
+PRODUCT_PACKAGES += \
+    gpsd
 
 # Device specific packages
 PRODUCT_PACKAGES += \
