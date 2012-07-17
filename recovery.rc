@@ -97,14 +97,6 @@ loglevel 9
     # 5.0 %
     write /dev/cpuctl/bg_non_interactive/cpu.shares 52
 
-on early-fs
-    mount vfat /dev/block/mmcblk0p1 /sdcard
-    mount yaffs2 mtd@cache /cache
-    # Check if we have cwm/twrp scripts on the sdcard from a BML -> MTD flash
-    exec /sbin/mount /sdcard
-    exec /sbin/mv /sdcard/extendedcommand /cache/recovery/extendedcommand
-    exec /sbin/mv /sdcard/openrecoveryscript /cache/recovery/openrecoveryscript
-
 on fs
 # mount mtd partitions
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
