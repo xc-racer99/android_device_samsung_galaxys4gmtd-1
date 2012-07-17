@@ -77,15 +77,16 @@ def WriteFullOTAPackage(input_zip, output_zip):
   AppendAssertions(script, input_zip)
   device_specific.FullOTA_Assertions()
   if OPTIONS.backuptool:
+    script.Mount("/system")
     script.RunBackup("backup")
-
-  script.ShowProgress(0.5, 0)
+    script.Unmount("/system")
 
   if OPTIONS.wipe_user_data:
     script.FormatPartition("/data")
 
   script.FormatPartition("/system")
   script.Mount("/system")
+  script.ShowProgress(0.7, 30)
   script.UnpackPackageDir("recovery", "/system")
   script.UnpackPackageDir("system", "/system")
 
@@ -98,9 +99,8 @@ def WriteFullOTAPackage(input_zip, output_zip):
     script.UndoRetouchBinaries(retouch_files)
 
   Item.GetMetadata(input_zip)
+  script.ShowProgress(0.15, 5)
   Item.Get("system").SetPermissions(script)
-
-  script.ShowProgress(0.2, 0)
 
   if OPTIONS.backuptool:
     script.ShowProgress(0.2, 10)
@@ -112,10 +112,6 @@ def WriteFullOTAPackage(input_zip, output_zip):
   CopyBootFiles(input_zip, output_zip)
   CopyBMLoverMTD(output_zip)
 
-  #script.ShowProgress(0.2, 10)
-  #script.WriteBMLoverMTD("boot", "72", "reservoir", "4012", "boot.img")
-
-  script.ShowProgress(0.1, 0)
   device_specific.FullOTA_InstallEnd()
 
   if OPTIONS.extra_script is not None:
@@ -128,7 +124,7 @@ ota_from_target_files.WriteFullOTAPackage = WriteFullOTAPackage
 
 
 def WriteIncrementalOTAPackage(target_zip, source_zip, output_zip):
-    print "Incremental OTA Packages are not support on the Samsung Galaxy S at this time"
+    print "Incremental OTA Packages are not support on the Samsung Galaxy S 4G at this time"
     sys.exit(1)
 ota_from_target_files.WriteIncrementalOTAPackage = WriteIncrementalOTAPackage
 

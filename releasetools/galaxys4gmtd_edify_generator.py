@@ -26,6 +26,7 @@ class EdifyGenerator(edify_generator.EdifyGenerator):
       edify_generator.EdifyGenerator.AssertDevice(self, device)
 
       self.script.append('ui_print("Checking state of BML/MTD...");')
+      self.script.append('show_progress(0.15, 5);')
 
       self.script.append(
             ('package_extract_file("modem.bin", "/tmp/modem.bin");\n'
