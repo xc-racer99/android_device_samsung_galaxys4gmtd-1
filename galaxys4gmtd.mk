@@ -224,7 +224,8 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 include frameworks/base/build/phone-hdpi-512-dalvik-heap.mk
 
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys4gmtd/updater.sh:updater.sh
+    device/samsung/galaxys4gmtd/updater.sh:updater.sh  \
+    device/samsung/galaxys4gmtd/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh
 
 # See comment at the top of this file. This is where the other
 # half of the device-specific product definition file takes care
