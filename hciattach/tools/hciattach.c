@@ -1026,6 +1026,10 @@ struct uart_t uart[] = {
 	{ "texasalt",   0x0000, 0x0000, HCI_UART_LL,   115200, 115200,
 				FLOW_CTL, DISABLE_PM, NULL, texasalt, NULL   },
 
+	/* ST-Ericsson CG2900 GPS FM Bluetooth combo controller */
+	{ "cg2900",     0x0000, 0x0000, HCI_UART_STE,  115200, 115200,
+				FLOW_CTL, DISABLE_PM, NULL, NULL     },
+
 	/* ST Microelectronics minikits based on STLC2410/STLC2415 */
 	{ "st",         0x0000, 0x0000, HCI_UART_H4,    57600, 115200,
 				FLOW_CTL, DISABLE_PM,  NULL, st       },
@@ -1133,10 +1137,10 @@ static struct uart_t * get_by_type(char *type)
 }
 
 /* Initialize UART driver */
-static int init_uart(char *dev, struct uart_t *u, int send_break, int raw)
+static int init_uart(char *dev, struct uart_t *u, int send_break, int raw, int line_disc)
 {
 	struct termios ti;
-	int fd, i;
+	int fd;
 	unsigned long flags = 0;
 
 	if (raw)
@@ -1195,9 +1199,8 @@ static int init_uart(char *dev, struct uart_t *u, int send_break, int raw)
 		goto fail;
 	}
 
-	/* Set TTY to N_HCI line discipline */
-	i = N_HCI;
-	if (ioctl(fd, TIOCSETD, &i) < 0) {
+	/* Set TTY to line discipline */
+	if (ioctl(fd, TIOCSETD, &line_disc) < 0) {
 		perror("Can't set line discipline");
 		goto fail;
 	}
@@ -1226,7 +1229,7 @@ static void usage(void)
 {
 	printf("hciattach - HCI UART driver initialization utility\n");
 	printf("Usage:\n");
-	printf("\thciattach [-n] [-p] [-b] [-r] [-t timeout] [-s initial_speed]"
+	printf("\thciattach [-n] [-p] [-a line_disc_nr] [-b] [-r] [-t timeout] [-s initial_speed]"
 			" <tty> <type | id> [speed] [flow|noflow]"
 			" [sleep|nosleep] [bdaddr]\n");
 	printf("\thciattach -l\n");
@@ -1237,6 +1240,7 @@ int main(int argc, char *argv[])
 	struct uart_t *u = NULL;
 	int detach, printpid, raw, opt, i, n, ld, err;
 	int to = 10;
+	int line_disc = N_HCI;
 	int init_speed = 0;
 	int send_break = 0;
 	pid_t pid;
@@ -1249,8 +1253,11 @@ int main(int argc, char *argv[])
 	printpid = 0;
 	raw = 0;
 
-	while ((opt=getopt(argc, argv, "bnpt:s:lr")) != EOF) {
+	while ((opt=getopt(argc, argv, "bnpt:s:lra:")) != EOF) {
 		switch(opt) {
+		case 'a':
+			line_disc = atoi(optarg);
+			break;
 		case 'b':
 			send_break = 1;
 			break;
@@ -1372,7 +1379,7 @@ int main(int argc, char *argv[])
 	alarm(to);
 	bcsp_max_retries = to;
 
-	n = init_uart(dev, u, send_break, raw);
+	n = init_uart(dev, u, send_break, raw, line_disc);
 	if (n < 0) {
 		perror("Can't initialize device");
 		exit(1);
