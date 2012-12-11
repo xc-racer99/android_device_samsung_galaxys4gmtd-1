@@ -20,5 +20,3 @@ PRODUCT_MODEL := SGH-T959V
 
 #Set build fingerprint / ID / Prduct Name ect.
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=samsung BUILD_FINGERPRINT=samsung/SGH-T959V/SGH-T959V:2.3.6/GINGERBREAD/VUVKJ6:user/release-keys PRIVATE_BUILD_DESC="SGH-T959V-user 2.3.6 GINGERBREAD VUVKJ6 release-keys"
-
-$(call inherit-product, device/samsung/galaxys4gmtd/version.mk)
