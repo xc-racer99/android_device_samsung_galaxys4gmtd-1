@@ -125,7 +125,7 @@ PRODUCT_PACKAGES += \
 # Bluetooth MAC Address
 PRODUCT_PACKAGES += \
     bdaddr_read
-    
+
 # GPS wrapper
 PRODUCT_PACKAGES += \
     gpsd
@@ -134,7 +134,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     SamsungServiceMode \
     SGS4GParts \
-    tvouthack
+    tvouthack \
+    CMFileManager \
+    CMFileManagerThemes
 
 # Usb accessory
 PRODUCT_PACKAGES += \
