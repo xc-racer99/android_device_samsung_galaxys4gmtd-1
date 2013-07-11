@@ -23,9 +23,6 @@ TARGET_KERNEL_CONFIG := cyanogenmod_galaxys4gmtd_defconfig
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys4gmtd/recovery/recovery_keys.c
 
-# Telephony
-BOARD_USES_FROYO_RILCLIENT := true
-
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/galaxys4gmtd/bluetooth
 
@@ -33,3 +30,12 @@ TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,SGH-T959V,SGH-T959W
 
 # Import the aries-common BoardConfigCommon.mk
 include device/samsung/aries-common/BoardConfigCommon.mk
+
+# Override stuff that doesn't match aries-common
+TARGET_USERIMAGES_USE_EXT4 := false
+BOARD_SECOND_CAMERA_DEVICE := /dev/video2
+
+# Based on /proc/mtd
+BOARD_BOOTIMAGE_PARTITION_SIZE := 780000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 18100000
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 20800000
