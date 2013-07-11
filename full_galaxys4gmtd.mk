@@ -16,7 +16,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Call our device config
-$(call inherit-product, device/samsung/vibrantmtd/device.mk)
+$(call inherit-product, device/samsung/galaxys4gmtd/device.mk)
 
 # Call the full product config
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
@@ -25,8 +25,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 PRODUCT_LOCALES += hdpi
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := full_vibrantmtd
-PRODUCT_DEVICE := vibrantmtd
+PRODUCT_NAME := full_galaxys4gmtd
+PRODUCT_DEVICE := galaxys4gmtd
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := SGH-T959
+PRODUCT_MODEL := SGH-T959V

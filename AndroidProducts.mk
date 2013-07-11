@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_vibrantmtd.mk
+    $(LOCAL_DIR)/full_galaxys4gmtd.mk

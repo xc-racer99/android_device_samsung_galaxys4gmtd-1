@@ -20,4 +20,5 @@
 # In particular, you can add lunch options with the add_lunch_combo
 # function: add_lunch_combo generic-eng
 
-add_lunch_combo full_vibrantmtd-eng
+add_lunch_combo full_galaxys4gmtd-eng
+add_lunch_combo full_galaxys4gmtd-userdebug

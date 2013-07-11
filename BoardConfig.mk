@@ -18,18 +18,18 @@
 #
 
 # Kernel Config
-TARGET_KERNEL_CONFIG := cyanogenmod_vibrantmtd_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_galaxys4gmtd_defconfig
 
 # Recovery
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/vibrantmtd/recovery/recovery_keys.c
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys4gmtd/recovery/recovery_keys.c
 
 # Telephony
 BOARD_USES_FROYO_RILCLIENT := true
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/vibrantmtd/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/galaxys4gmtd/bluetooth
 
-TARGET_OTA_ASSERT_DEVICE := vibrant,vibrantmtd,SGH-T959
+TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,SGH-T959V,SGH-T959W
 
 # Import the aries-common BoardConfigCommon.mk
 include device/samsung/aries-common/BoardConfigCommon.mk
