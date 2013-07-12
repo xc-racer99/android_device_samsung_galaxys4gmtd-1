@@ -16,6 +16,12 @@ on init
     # rild doesn't like being killed. (During device encryption.)
     stop ril-daemon
 
+    # Delay the RIL boot till bootanim has started.
+    stop aries-ril-daemon
+
+    # Disable address randomization
+    write /proc/sys/kernel/randomize_va_space 0
+
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
@@ -145,6 +151,9 @@ service bdaddr /system/bin/bdaddr_read
 
 on property:ril.bt_macaddr=*
     start bdaddr
+
+on property:init.svc.bootanim=running
+    start aries-ril-daemon
 
 # bugreport is triggered by holding down volume down, volume up and power
 # service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
