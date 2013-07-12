@@ -34,7 +34,7 @@ include device/samsung/aries-common/BoardConfigCommon.mk
 # Override stuff that doesn't match aries-common
 TARGET_USERIMAGES_USE_EXT4 := false
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
-BOARD_PROVIDES_LIBCAMERA := true
+TARGET_PROVIDES_LIBCAMERA := true
 
 # Based on kernel header
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 403701760
