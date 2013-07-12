@@ -28,6 +28,12 @@ PRODUCT_COPY_FILES += \
 	device/samsung/galaxys4gmtd/keys/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
 	device/samsung/galaxys4gmtd/keys/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
 
+# We unfortunately need our own updater.sh and fstab
+PRODUCT_COPY_FILES += \
+	device/samsung/galaxys4gmtd/updater.sh:updater.sh \
+	device/samsung/galaxys4gmtd/vold.fstab:system/etc/vold.fstab \
+	device/samsung/galaxys4gmtd/fstab.aries:root/fstab.aries
+
 # Inherit common configuration
 $(call inherit-product, device/samsung/aries-common/device_base.mk)
 
