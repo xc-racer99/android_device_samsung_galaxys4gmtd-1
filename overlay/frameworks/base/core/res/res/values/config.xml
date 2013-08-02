@@ -31,4 +31,7 @@
          For example, a device with Home, Back, Menu, and Search keys would set this
          config to 15. -->
     <integer name="config_deviceHardwareKeys">15</integer>
+    
+    <!-- Fadeout works fine on sgs4g -->
+    <bool name="config_animateScreenLights">true</bool>
 </resources>
