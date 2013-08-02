@@ -47,3 +47,5 @@ TW_FLASH_FROM_STORAGE := true
 # Leave this as false for now, we can attempt to enable it later when we
 # make sure that the ramdisk can be injected to
 TW_INCLUDE_INJECTTWRP := false
+# Disable exfat, as it conflicts with something in the CM tree
+TW_NO_EXFAT := true
