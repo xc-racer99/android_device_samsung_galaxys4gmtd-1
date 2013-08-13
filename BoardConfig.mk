@@ -38,6 +38,11 @@ TARGET_PROVIDES_LIBCAMERA := true
 TARGET_RECOVERY_FSTAB := device/samsung/galaxys4gmtd/fstab.aries
 RECOVERY_FSTAB_VERSION := 2
 
+# SELinux
+BOARD_SEPOLICY_DIRS := $(filter-out device/samsung/aries-common/sepolicy,$BOARD_SEPOLICY_DIRS)
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/galaxys4gmtd/sepolicy
+
 # Based on kernel header
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 403701760
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 545259520
