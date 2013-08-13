@@ -31,7 +31,6 @@ PRODUCT_COPY_FILES += \
 # We unfortunately need our own updater.sh and fstab
 PRODUCT_COPY_FILES += \
 	device/samsung/galaxys4gmtd/updater.sh:updater.sh \
-	device/samsung/galaxys4gmtd/vold.fstab:system/etc/vold.fstab \
 	device/samsung/galaxys4gmtd/fstab.aries:root/fstab.aries
 
 # Inherit common configuration
