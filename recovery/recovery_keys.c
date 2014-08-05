@@ -4,9 +4,6 @@
 #include "common.h"
 #include "extendedcommands.h"
 
-int device_toggle_display(volatile char* key_pressed, int key_code) {
-    return get_allow_toggle_display() && key_pressed[139] && key_pressed[KEY_VOLUMEUP];
-}
 
 int device_handle_key(int key_code, int visible) {
     if (visible) {
@@ -23,7 +20,6 @@ int device_handle_key(int key_code, int visible) {
                 return SELECT_ITEM;
 
             case 102: // BACK
-                if (!get_allow_toggle_display())
                     return GO_BACK;
 
             case KEY_POWER:
