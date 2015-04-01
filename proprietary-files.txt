@@ -6,11 +6,6 @@ lib/libsec-ril.so
 lib/librilswitch.so
 bin/rild
 
-## gps
-lib/libclientgps.so
-vendor/lib/hw/gps.s5pc110.so
-vendor/bin/gpsd
-
 ## sensors
 vendor/bin/geomagneticd
 vendor/bin/orientationd

@@ -33,9 +33,6 @@
 /dev/proximity_sensor     0660   system     system
 /dev/light                0660   system     system
 
-# for GPS
-/dev/s3c2410_serial1      0600   gps        gps
-
 #for vibrator
 /dev/tspdrv               0660   shell      shell
 

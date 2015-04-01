@@ -44,9 +44,7 @@ DEVICE_PACKAGE_OVERLAYS := device/samsung/galaxys4gmtd/overlay
 # These are the hardware-specific configuration files
 PRODUCT_COPY_FILES := \
     device/samsung/galaxys4gmtd/prebuilt/etc/asound.conf:system/etc/asound.conf \
-    device/samsung/galaxys4gmtd/prebuilt/etc/vendor/samsung-agps/secgps.conf:system/etc/vendor/samsung-agps/secgps.conf \
     device/samsung/galaxys4gmtd/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
-    device/samsung/galaxys4gmtd/prebuilt/etc/gps.xml:system/etc/gps.xml \
     device/samsung/galaxys4gmtd/prebuilt/etc/egl.cfg:system/lib/egl/egl.cfg
 
 # Init files
@@ -54,7 +52,6 @@ PRODUCT_COPY_FILES := \
 PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/init.herring.rc:root/init.herring.rc \
     device/samsung/galaxys4gmtd/init.herring.usb.rc:root/init.herring.usb.rc \
-    device/samsung/galaxys4gmtd/init.herring.gps.rc:root/init.herring.gps.rc \
     device/samsung/galaxys4gmtd/init.herring.usb.rc:recovery/root/usb.rc \
     device/samsung/galaxys4gmtd/lpm.rc:root/lpm.rc \
     device/samsung/galaxys4gmtd/ueventd.herring.rc:root/ueventd.herring.rc
@@ -126,10 +123,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     bdaddr_read
 
-# GPS wrapper
-PRODUCT_PACKAGES += \
-    gpsd
-
 # Device specific packages
 PRODUCT_PACKAGES += \
     SamsungServiceMode \
@@ -157,7 +150,6 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/base/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
