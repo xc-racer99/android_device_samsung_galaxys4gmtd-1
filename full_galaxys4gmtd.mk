@@ -34,7 +34,7 @@ PRODUCT_LOCALES += hdpi
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := full_galaxys4gmtd
-PRODUCT_DEVICE := SGH-T959V
+PRODUCT_DEVICE := SGH-T959P
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := SGH-T959V
+PRODUCT_MODEL := SGH-T959P
