@@ -430,8 +430,9 @@ on property:ro.debuggable=1
     start adbd
 
 # NOTE: lpm is disabled
-service hciattach /system/bin/brcm_patchram_plus --enable_hci \
-    --baudrate 3000000 --patchram /system/bin/BCM4329B1_002.002.023.0746.0832.hcd /dev/s3c2410_serial0
+service hciattach /system/bin/brcm_patchram_plus --enable_hci --no2bytes --tosleep 50000 \
+    --baudrate 3000000 --use_baudrate_for_download --patchram /system/bin/BCM4329B1_002.002.023.0746.0832.hcd \
+	--scopcm=0,0,0,0,0,0,0,3,3,0 /dev/s3c2410_serial0
     class main
     user bluetooth
     group bluetooth net_bt_admin
