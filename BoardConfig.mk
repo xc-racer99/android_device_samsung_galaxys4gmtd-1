@@ -115,7 +115,7 @@ BOARD_CHARGER_RES := device/samsung/telusgalaxys4gmtd/res/charger
 # header overrides
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/infuse4g/overlay/include
 
-TARGET_OTA_ASSERT_DEVICE := herring,telusgalaxys4g,telusgalaxys4gmtd,SGH-T959P,SGH-T959W
+TARGET_OTA_ASSERT_DEVICE := herring,telusgalaxys4g,telusgalaxys4gmtd,SGH-T959P
 
 # TWRP options
 DEVICE_RESOLUTION := 480x800
