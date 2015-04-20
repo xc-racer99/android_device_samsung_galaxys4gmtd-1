@@ -23,7 +23,7 @@ BOARD_USES_GENERIC_AUDIO := false
 BOARD_USES_LIBSECRIL_STUB := true
 
 # Use the non-open-source parts, if they're present
--include vendor/samsung/galaxys4gmtd/BoardConfigVendor.mk
+-include vendor/samsung/telusgalaxys4gmtd/BoardConfigVendor.mk
 
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
@@ -40,15 +40,15 @@ BOARD_MOBILEDATA_INTERFACE_NAME = "pdp0"
 TARGET_BOARD_PLATFORM := s5pc110
 TARGET_BOOTLOADER_BOARD_NAME := herring
 TARGET_BOARD_PLATFORM_GPU := POWERVR_SGX540_120
-TARGET_RECOVERY_INITRC := device/samsung/galaxys4gmtd/recovery.rc
+TARGET_RECOVERY_INITRC := device/samsung/telusgalaxys4gmtd/recovery.rc
 
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/samsung/galaxys4gmtd/releasetools/galaxys4gmtd_ota_from_target_files
-TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/samsung/galaxys4gmtd/releasetools/galaxys4gmtd_img_from_target_files
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/samsung/telusgalaxys4gmtd/releasetools/telusgalaxys4gmtd_ota_from_target_files
+TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/samsung/telusgalaxys4gmtd/releasetools/telusgalaxys4gmtd_img_from_target_files
 
 TARGET_PROVIDES_LIBAUDIO := true
 
 # OpenGL stuff
-BOARD_EGL_CFG := device/samsung/galaxys4gmtd/prebuilt/etc/egl.cfg
+BOARD_EGL_CFG := device/samsung/telusgalaxys4gmtd/prebuilt/etc/egl.cfg
 #COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_EGL_PIXEL_FORMAT_YV12 -DMISSING_GRALLOC_BUFFERS
 # (jacked up for now; need to update kernel drivers and pvr blobs)
 USE_OPENGL_RENDERER := true
@@ -69,8 +69,8 @@ BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun0/file"
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/samsung/galaxys4gmtd
-TARGET_KERNEL_CONFIG := cyanogen_galaxys4gmtd_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/telusgalaxys4gmtd
+TARGET_KERNEL_CONFIG := cyanogen_telusgalaxys4gmtd_defconfig
 
 BOARD_NAND_PAGE_SIZE := 4096
 BOARD_NAND_SPARE_SIZE := 128
@@ -104,18 +104,18 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 #BOARD_RECOVERY_HANDLES_MOUNT := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USES_BML_OVER_MTD := true
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxys4gmtd/shbootimg.mk
-BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/galaxys4gmtd/recovery/graphics.c
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/telusgalaxys4gmtd/shbootimg.mk
+BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/telusgalaxys4gmtd/recovery/graphics.c
 
 # Charging mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/charging_mode_booting
 BOARD_BATTERY_DEVICE_NAME := "battery"
-BOARD_CHARGER_RES := device/samsung/galaxys4gmtd/res/charger
+BOARD_CHARGER_RES := device/samsung/telusgalaxys4gmtd/res/charger
 
 # header overrides
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/infuse4g/overlay/include
 
-TARGET_OTA_ASSERT_DEVICE := herring,galaxys4g,galaxys4gmtd,SGH-T959P,SGH-T959W
+TARGET_OTA_ASSERT_DEVICE := herring,telusgalaxys4g,telusgalaxys4gmtd,SGH-T959P,SGH-T959W
 
 # TWRP options
 DEVICE_RESOLUTION := 480x800

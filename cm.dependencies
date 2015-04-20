@@ -4,12 +4,12 @@
 		"target_path": "packages/apps/SamsungServiceMode"
 	},
 	{
-		"repository": "android_device_samsung_galaxys4gmtd",
-		"target_path": "device/samsung/galaxys4gmtd"
+		"repository": "android_device_samsung_telusgalaxys4gmtd",
+		"target_path": "device/samsung/telusgalaxys4gmtd"
 	},
 	{
-		"repository": "android_kernel_galaxys4gmtd",
-		"target_path": "kernel/samsung/galaxys4gmtd",
+		"repository": "android_kernel_telusgalaxys4gmtd",
+		"target_path": "kernel/samsung/telusgalaxys4gmtd",
 		"branch": "ics"
 	}
 ]

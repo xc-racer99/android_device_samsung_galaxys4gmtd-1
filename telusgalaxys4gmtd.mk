@@ -39,38 +39,38 @@
 # These is the hardware-specific overlay, which points to the location
 # of hardware-specific resource overrides, typically the frameworks and
 # application settings that are stored in resourced.
-DEVICE_PACKAGE_OVERLAYS := device/samsung/galaxys4gmtd/overlay
+DEVICE_PACKAGE_OVERLAYS := device/samsung/telusgalaxys4gmtd/overlay
 
 # These are the hardware-specific configuration files
 PRODUCT_COPY_FILES := \
-    device/samsung/galaxys4gmtd/prebuilt/etc/asound.conf:system/etc/asound.conf \
-    device/samsung/galaxys4gmtd/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
-    device/samsung/galaxys4gmtd/prebuilt/etc/egl.cfg:system/lib/egl/egl.cfg
+    device/samsung/telusgalaxys4gmtd/prebuilt/etc/asound.conf:system/etc/asound.conf \
+    device/samsung/telusgalaxys4gmtd/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
+    device/samsung/telusgalaxys4gmtd/prebuilt/etc/egl.cfg:system/lib/egl/egl.cfg
 
 # Init files
-# device/samsung/galaxys4gmtd/init.herring.rc:root/init.herring.rc
+# device/samsung/telusgalaxys4gmtd/init.herring.rc:root/init.herring.rc
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys4gmtd/init.herring.rc:root/init.herring.rc \
-    device/samsung/galaxys4gmtd/init.herring.usb.rc:root/init.herring.usb.rc \
-    device/samsung/galaxys4gmtd/init.herring.usb.rc:recovery/root/usb.rc \
-    device/samsung/galaxys4gmtd/lpm.rc:root/lpm.rc \
-    device/samsung/galaxys4gmtd/ueventd.herring.rc:root/ueventd.herring.rc
+    device/samsung/telusgalaxys4gmtd/init.herring.rc:root/init.herring.rc \
+    device/samsung/telusgalaxys4gmtd/init.herring.usb.rc:root/init.herring.usb.rc \
+    device/samsung/telusgalaxys4gmtd/init.herring.usb.rc:recovery/root/usb.rc \
+    device/samsung/telusgalaxys4gmtd/lpm.rc:root/lpm.rc \
+    device/samsung/telusgalaxys4gmtd/ueventd.herring.rc:root/ueventd.herring.rc
 
 # Keylayout and Keychars
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys4gmtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
-    device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
-    device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-    device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
-    device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/melfas_touchkey.kl:system/usr/keylayout/melfas_touchkey.kl \
-    device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
-    device/samsung/galaxys4gmtd/prebuilt/usr/keylayout/Broadcom_Bluetooth_HID.kl:system/usr/keylayout/Broadcom_Bluetooth_HID.kl \
-    device/samsung/galaxys4gmtd/prebuilt/usr/keychars/Broadcom_Bluetooth_HID.kcm.bin:system/usr/keychars/Broadcom_Bluetooth_HID.kcm.bin \
-    device/samsung/galaxys4gmtd/prebuilt/usr/keychars/melfas_touchkey.kcm.bin:system/usr/keychars/melfas_touchkey.kcm.bin \
-    device/samsung/galaxys4gmtd/prebuilt/usr/keychars/qwerty.kcm.bin:system/usr/keychars/qwerty.kcm.bin \
-    device/samsung/galaxys4gmtd/s3c-keypad.kl:system/usr/keylayout/s3c-keypad.kl \
-    device/samsung/galaxys4gmtd/prebuilt/usr/keychars/aries-keypad.kcm.bin:system/usr/keychars/aries-keypad.kcm.bin \
-    device/samsung/galaxys4gmtd/prebuilt/usr/keychars/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin
+    device/samsung/telusgalaxys4gmtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/keylayout/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/keylayout/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/keylayout/melfas_touchkey.kl:system/usr/keylayout/melfas_touchkey.kl \
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/keylayout/Broadcom_Bluetooth_HID.kl:system/usr/keylayout/Broadcom_Bluetooth_HID.kl \
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/keychars/Broadcom_Bluetooth_HID.kcm.bin:system/usr/keychars/Broadcom_Bluetooth_HID.kcm.bin \
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/keychars/melfas_touchkey.kcm.bin:system/usr/keychars/melfas_touchkey.kcm.bin \
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/keychars/qwerty.kcm.bin:system/usr/keychars/qwerty.kcm.bin \
+    device/samsung/telusgalaxys4gmtd/s3c-keypad.kl:system/usr/keylayout/s3c-keypad.kl \
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/keychars/aries-keypad.kcm.bin:system/usr/keychars/aries-keypad.kcm.bin \
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/keychars/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin
 
 # Generated kcm keymaps
 PRODUCT_PACKAGES := \
@@ -90,8 +90,8 @@ PRODUCT_PACKAGES += \
 
 # These are the OpenMAX IL configuration files
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys4gmtd/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry \
-    device/samsung/galaxys4gmtd/media_profiles.xml:system/etc/media_profiles.xml
+    device/samsung/telusgalaxys4gmtd/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry \
+    device/samsung/telusgalaxys4gmtd/media_profiles.xml:system/etc/media_profiles.xml
 
 # These are the OpenMAX IL modules
 PRODUCT_PACKAGES += \
@@ -142,7 +142,7 @@ PRODUCT_PACKAGES += \
 
 # Input device calibration files
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys4gmtd/prebuilt/usr/idc/qt602240_ts_input.idc:system/usr/idc/qt602240_ts_input.idc
+    device/samsung/telusgalaxys4gmtd/prebuilt/usr/idc/qt602240_ts_input.idc:system/usr/idc/qt602240_ts_input.idc
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -220,11 +220,11 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 include frameworks/base/build/phone-hdpi-512-dalvik-heap.mk
 
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys4gmtd/updater.sh:updater.sh  \
-    device/samsung/galaxys4gmtd/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh
+    device/samsung/telusgalaxys4gmtd/updater.sh:updater.sh  \
+    device/samsung/telusgalaxys4gmtd/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh
 
 # See comment at the top of this file. This is where the other
 # half of the device-specific product definition file takes care
 # of the aspects that require proprietary drivers that aren't
 # commonly available
-$(call inherit-product-if-exists, vendor/samsung/galaxys4gmtd/galaxys4gmtd-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/telusgalaxys4gmtd/telusgalaxys4gmtd-vendor.mk)

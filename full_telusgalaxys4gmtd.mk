@@ -23,7 +23,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # This is where we'd set a backup provider if we had one
 #$(call inherit-product, device/sample/products/backup_overlay.mk)
-$(call inherit-product, device/samsung/galaxys4gmtd/galaxys4gmtd.mk)
+$(call inherit-product, device/samsung/telusgalaxys4gmtd/telusgalaxys4gmtd.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 
 # Screen density is actually considered a locale (since it is taken into account
@@ -33,7 +33,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 PRODUCT_LOCALES += hdpi
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := full_galaxys4gmtd
+PRODUCT_NAME := full_telusgalaxys4gmtd
 PRODUCT_DEVICE := SGH-T959P
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
