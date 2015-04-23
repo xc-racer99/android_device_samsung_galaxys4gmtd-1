@@ -18,15 +18,15 @@
 #
 
 # Kernel Config
-TARGET_KERNEL_CONFIG := cyanogenmod_galaxys4gmtd_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_telusgalaxys4gmtd_defconfig
 
 # Recovery
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys4gmtd/recovery/recovery_keys.c
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/telusgalaxys4gmtd/recovery/recovery_keys.c
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/galaxys4gmtd/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/telusgalaxys4gmtd/bluetooth
 
-TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,SGH-T959V,SGH-T959W
+TARGET_OTA_ASSERT_DEVICE := telusgalaxys4g,telusgalaxys4gmtd,SGH-T959P,galaxys4gmtd
 
 # Import the aries-common BoardConfigCommon.mk
 include device/samsung/aries-common/BoardConfigCommon.mk

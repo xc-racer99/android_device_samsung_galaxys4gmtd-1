@@ -1,5 +1,5 @@
 #
-# system.prop for galaxys4gmtd
+# system.prop for telusgalaxys4gmtd
 #
 
 rild.libpath=/system/lib/libsec-ril.so
