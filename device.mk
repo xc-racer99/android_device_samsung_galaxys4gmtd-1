@@ -20,8 +20,7 @@ PRODUCT_COPY_FILES := \
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4gmtd/ramdisk/init.aries.rc:root/init.aries.rc \
-	device/samsung/galaxys4gmtd/ramdisk/init.aries.gps.rc:root/init.aries.gps.rc
+	device/samsung/galaxys4gmtd/ramdisk/init.aries.rc:root/init.aries.rc
 
 # Prebuilt kl keymaps
 PRODUCT_COPY_FILES += \
