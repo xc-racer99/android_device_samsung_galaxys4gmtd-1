@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# low ram device
+# Use 44.1 kHz UI sounds
+$(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackage13.mk)
+
+# Low ram device
 TARGET_LOW_RAM_DEVICE := true
 
 # Inherit from the common Open Source product configuration
