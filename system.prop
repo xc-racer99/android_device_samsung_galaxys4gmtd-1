@@ -5,6 +5,7 @@
 rild.libpath=/system/lib/libsec-ril.so
 rild.libargs=-d /dev/ttyS0
 ro.sf.lcd_density=240
+ro.ril.def.agps.mode = 2
 
 # CWM key repeat
 ro.cwm.enable_key_repeat=true
