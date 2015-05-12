@@ -147,6 +147,15 @@ on post-fs-data
     chown gps system /data/gps
     chown radio system /sys/class/power_supply/battery/gps
 
+    # download cache
+    mkdir /data/download 0770 system cache
+
+    # logs
+    mkdir /data/log 0775 root root
+    chmod 0775 /data/log
+
+    setprop vold.post_fs_data_done 1
+
 # +STE UART Contol Application
 service ste-cg29xx_ctrl /system/vendor/bin/ste-cg29xx_ctrl -b 115200 /dev/s3c2410_serial1
      class main
@@ -161,15 +170,6 @@ service agpsd /system/vendor/bin/agpsd
      user gps
      group system inet
      oneshot
-
-    # download cache
-    mkdir /data/download 0770 system cache
-
-    # logs
-    mkdir /data/log 0775 root root
-    chmod 0775 /data/log
-
-    setprop vold.post_fs_data_done 1
 
 service aries-ril-daemon /system/bin/rild
     class core
