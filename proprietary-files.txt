@@ -1,11 +1,18 @@
-etc/vendor/samsung-agps/secgps.conf
-vendor/bin/samsung-gpsd
-vendor/lib/libsamsung_hwlegacy.so
-lib/libclientgps.so
+#GPS
+etc/gps.conf
+vendor/bin/ste-cg29xx_ctrl
+vendor/bin/gpsd
+vendor/bin/agpsd
+vendor/lib/libclientgps.so
+vendor/lib/hw/gps.aries.so
+
+# RIL
 lib/libril.so
 lib/libsecril-client.so
 lib/libsec-ril.so
 bin/rild
+
+#Sensors
 vendor/lib/libsensor_yamaha_test.so
 vendor/bin/orientationd
 vendor/bin/geomagneticd
