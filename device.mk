@@ -36,13 +36,5 @@ PRODUCT_COPY_FILES += \
 # Inherit common configuration
 $(call inherit-product, device/samsung/aries-common/device_base.mk)
 
-# Fm app
-PRODUCT_PACKAGES += \
-	FmRxApp \
-	FmTxApp \
-	fmradioif \
-	FmService \
-	FmRadio
-
 # Proprietary
 $(call inherit-product-if-exists, vendor/samsung/telusgalaxys4gmtd/telusgalaxys4gmtd-vendor.mk)
