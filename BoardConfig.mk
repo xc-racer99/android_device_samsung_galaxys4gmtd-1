@@ -26,6 +26,10 @@ BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/telusgalaxys4gmtd/recov
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/telusgalaxys4gmtd/bluetooth
 
+# FM Radio
+BOARD_USES_STE_FMRADIO := true
+COMMON_GLOBAL_CFLAGS += -DSTE_FM
+
 TARGET_OTA_ASSERT_DEVICE := telusgalaxys4g,telusgalaxys4gmtd,SGH-T959P,galaxys4gmtd
 
 # header overrides
