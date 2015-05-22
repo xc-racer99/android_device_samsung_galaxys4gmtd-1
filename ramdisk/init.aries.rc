@@ -134,6 +134,17 @@ on post-fs
 	  chown system system /dev/cg2900_us_ctrl
       chmod 0770 /dev/cg2900_us_ctrl
 
+#fm radio
+# ST-Ericsson Set radio device and parameters permissions
+    chown system system /sys/module/radio_cg2900/parameters/band
+    chown system system /sys/module/radio_cg2900/parameters/grid
+    chmod 0660 /sys/module/radio_cg2900/parameters/band
+    chmod 0660 /sys/module/radio_cg2900/parameters/grid
+
+#added by me for fm radio
+    chown system system /dev/radio0
+    chmod 0660 /dev/radio0
+
 # trigger governor change uevent
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
 

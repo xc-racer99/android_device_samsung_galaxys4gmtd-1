@@ -33,6 +33,9 @@ PRODUCT_COPY_FILES += \
 	device/samsung/telusgalaxys4gmtd/vold.fstab:system/etc/vold.fstab \
 	device/samsung/telusgalaxys4gmtd/fstab.aries:root/fstab.aries
 
+PRODUCT_PACKAGES += \
+	FmRadioReceiver
+
 # Inherit common configuration
 $(call inherit-product, device/samsung/aries-common/device_base.mk)
 
