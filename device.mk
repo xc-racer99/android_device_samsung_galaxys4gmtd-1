@@ -36,20 +36,20 @@
 
 # These are the hardware-specific configuration files
 DEVICE_PACKAGE_OVERLAYS += \
-	device/samsung/vibrantmtd/overlay
+	device/samsung/galaxys4gmtd/overlay
 
 PRODUCT_COPY_FILES := \
-	device/samsung/vibrantmtd/asound.conf:system/etc/asound.conf
+	device/samsung/galaxys4gmtd/asound.conf:system/etc/asound.conf
 
 # Prebuilt kl and kcm keymaps
 PRODUCT_COPY_FILES += \
-	device/samsung/vibrantmtd/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
-	device/samsung/vibrantmtd/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
-	device/samsung/vibrantmtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
+	device/samsung/galaxys4gmtd/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
+	device/samsung/galaxys4gmtd/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
+	device/samsung/galaxys4gmtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/vibrantmtd/init.aries.gps.rc:root/init.aries.gps.rc
+	device/samsung/galaxys4gmtd/init.aries.gps.rc:root/init.aries.gps.rc
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -62,4 +62,4 @@ $(call inherit-product, device/samsung/aries-common/device_base.mk)
 # half of the device-specific product definition file takes care
 # of the aspects that require proprietary drivers that aren't
 # commonly available
-$(call inherit-product-if-exists, vendor/samsung/vibrantmtd/vibrantmtd-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/galaxys4gmtd/galaxys4gmtd-vendor.mk)

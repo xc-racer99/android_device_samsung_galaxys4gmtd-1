@@ -1,7 +1,7 @@
 #
 # init rc file for GPS: this is here to allow for devices
 # to provide their own GPS initialization code without
-# conflicting with the default GPS init. (i.e. Vibrant)
+# conflicting with the default GPS init. (i.e. GalaxyS4G)
 #
 
 # ST-Ericsson GNS7560

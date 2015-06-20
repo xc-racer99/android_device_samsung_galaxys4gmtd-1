@@ -1,5 +1,5 @@
 #
-# system.prop for vibrantmtd
+# system.prop for galaxys4gmtd
 #
 
 rild.libpath=/system/lib/libsec-ril.so

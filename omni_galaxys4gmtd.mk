@@ -28,18 +28,18 @@ TARGET_BOOTANIMATION_SIZE := 480x320
 $(call inherit-product, vendor/omni/config/common.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/samsung/vibrantmtd/device.mk)
+$(call inherit-product, device/samsung/galaxys4gmtd/device.mk)
 
 # Galaxy S uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Device identifier
-PRODUCT_RELEASE_NAME := Vibrant
-PRODUCT_DEVICE := vibrantmtd
-PRODUCT_NAME := omni_vibrantmtd
+PRODUCT_RELEASE_NAME := GalaxyS4G
+PRODUCT_DEVICE := galaxys4gmtd
+PRODUCT_NAME := omni_galaxys4gmtd
 PRODUCT_BRAND := samsung
-PRODUCT_MODEL := SGH-T959
+PRODUCT_MODEL := SGH-T959V
 
 #Set build fingerprint / ID / Prduct Name ect.
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=SGH-T959 TARGET_DEVICE=SGH-T959 BUILD_FINGERPRINT=Samsung/SGH-T959/SGH-T959/SGH-T959:2.2/FROYO/UVKB5:user/release-keys PRIVATE_BUILD_DESC="SGH-T959-user 2.2 FROYO UVKB5 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=SGH-T959V TARGET_DEVICE=SGH-T959V BUILD_FINGERPRINT=Samsung/SGH-T959V/SGH-T959V/SGH-T959V:2.2/FROYO/UVKB5:user/release-keys PRIVATE_BUILD_DESC="SGH-T959V-user 2.2 FROYO UVKB5 release-keys"

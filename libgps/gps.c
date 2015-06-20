@@ -1,5 +1,5 @@
 /*
- * Vibrant GPS Shim (forked off the generic shim by arcee)
+ * GalaxyS4G GPS Shim (forked off the generic shim by arcee)
  *
  * Copyright (C) 2006 Ricardo Cerquiera
  * Copyright (C) 2012 Daniel Bateman
@@ -18,7 +18,7 @@
  */
 
 #define LOG_NDEBUG 0
-#define LOG_TAG "VibrantGps"
+#define LOG_TAG "GalaxyS4GGps"
 
 #include <stdlib.h>
 #include <utils/Log.h>
@@ -478,7 +478,7 @@ struct hw_module_t HAL_MODULE_INFO_SYM = {
     .version_major = 1,
     .version_minor = 0,
     .id = GPS_HARDWARE_MODULE_ID,
-    .name = "Vibrant GPS HAL Wrapper Module",
+    .name = "GalaxyS4G GPS HAL Wrapper Module",
     .author = "The CyanogenMod Project",
     .methods = &gps_module_methods,
 };

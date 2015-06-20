@@ -1,5 +1,5 @@
 /*
- * Vibrant GPS Shim (forked off the generic shim by arcee)
+ * GalaxyS4G GPS Shim (forked off the generic shim by arcee)
  *
  * Copyright (C) 2006 Ricardo Cerquiera
  * Copyright (C) 2012 Daniel Bateman
