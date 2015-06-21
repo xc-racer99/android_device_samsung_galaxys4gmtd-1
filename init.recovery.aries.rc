@@ -1,0 +1,11 @@
+import usb.rc # Renamed init.aries.usb.rc, we can't use init*.rc because the build script will delete it
+
+on init
+
+    export PATH /sbin
+    export LD_LIBRARY_PATH .:/sbin
+
+on boot
+
+    # mass_storage support
+    setprop sys.usb.config mass_storage,adb
