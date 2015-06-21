@@ -1,0 +1,6 @@
+###########################
+# OmniROM Aries sepolicy
+#
+rild.                   u:object_r:radio_prop:s0
+net.pdp0                u:object_r:net_radio_prop:s0
+bt.                     u:object_r:bluetooth_prop:s0

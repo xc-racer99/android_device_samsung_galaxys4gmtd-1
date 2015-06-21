@@ -1,0 +1,10 @@
+###########################
+# OmniROM Aries sepolicy
+#
+allow bluetooth radio_device:dir { search };
+allow bluetooth sysfs:file { write };
+
+allow bluetooth datadata_file:file { create_file_perms relabelfrom relabelto execute execute_no_trans };
+allow bluetooth datadata_file:dir { create_dir_perms relabelfrom relabelto };
+allow bluetooth datadata_file:lnk_file create_file_perms;
+

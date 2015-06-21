@@ -39,6 +39,11 @@ BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 TARGET_PROVIDES_LIBCAMERA := true
 TARGET_RECOVERY_FSTAB := device/samsung/galaxys4gmtd/fstab.aries
 
+# SELinux
+BOARD_SEPOLICY_DIRS := $(filter-out device/samsung/aries-common/sepolicy,$BOARD_SEPOLICY_DIRS)
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/galaxys4gmtd/sepolicy
+
 # Based on kernel header
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 403701760
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 545259520

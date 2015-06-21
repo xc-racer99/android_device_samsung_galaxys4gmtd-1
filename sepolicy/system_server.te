@@ -1,0 +1,15 @@
+###########################
+# OmniROM Aries sepolicy
+#
+allow system_server zygote:binder { call transfer };
+allow system_server default_prop:property_service { set };
+
+allow system_server app_data_file:file { create_file_perms relabelfrom relabelto };
+allow system_server app_data_file:dir { create_dir_perms relabelfrom relabelto };
+allow system_server app_data_file:lnk_file create_file_perms;
+
+allow system_server datadata_file:file { create_file_perms relabelfrom relabelto execute execute_no_trans };
+allow system_server datadata_file:dir { create_dir_perms relabelfrom relabelto };
+allow system_server datadata_file:lnk_file create_file_perms;
+
+allow system_server sysfs_ksm:dir { create_dir_perms relabelfrom relabelto };

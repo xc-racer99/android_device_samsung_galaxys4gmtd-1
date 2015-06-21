@@ -1,0 +1,4 @@
+###########################
+# OmniROM Aries sepolicy
+#
+allow sdcardd unlabeled:file { read write getattr setattr};

@@ -1,0 +1,4 @@
+###########################
+# OmniROM Aries sepolicy
+#
+type mfc_device, dev_type;

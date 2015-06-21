@@ -1,0 +1,16 @@
+###########################
+# OmniROM Aries sepolicy
+#
+allow radio system_data_file:file { lock };
+
+allow radio datadata_file:file { create_file_perms relabelfrom relabelto execute execute_no_trans };
+allow radio datadata_file:dir { create_dir_perms relabelfrom relabelto };
+allow radio datadata_file:lnk_file create_file_perms;
+
+allow radio app_data_file:file { create_file_perms relabelfrom relabelto };
+allow radio app_data_file:dir { create_dir_perms relabelfrom relabelto };
+allow radio app_data_file:lnk_file create_file_perms;
+
+allow radio system_app_data_file:file { create_file_perms relabelfrom relabelto };
+allow radio system_app_data_file:dir { create_dir_perms relabelfrom relabelto };
+allow radio system_app_data_file:lnk_file create_file_perms;
