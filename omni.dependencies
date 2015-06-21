@@ -12,8 +12,8 @@
     "revision":     "android-5.1"
   },
   {
-    "remote":       "omnirom",
-    "repository":   "android_kernel_samsung_aries",
+    "remote":       "github",
+    "repository":   "xc-racer99/android_kernel_samsung_aries",
     "target_path":  "kernel/samsung/aries",
     "revision":     "android-5.1"
   },
