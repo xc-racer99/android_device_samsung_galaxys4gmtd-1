@@ -61,7 +61,15 @@ PRODUCT_COPY_FILES += \
 
 # Misc files
 PRODUCT_COPY_FILES += \
-	    device/samsung/galaxys4gmtd/updater.sh:updater.sh
+	device/samsung/galaxys4gmtd/updater.sh:updater.sh
+
+# GPSInit files
+PRODUCT_COPY_FILES += \
+	device/samsung/galaxys4gmtd/gps:system/etc/init.d/gps
+
+# GPS wrapper
+PRODUCT_PACKAGES += \
+	gpsd
 
 # Inherit Aries common device configuration.
 $(call inherit-product, device/samsung/aries-common/device_base.mk)
