@@ -37,6 +37,7 @@ include device/samsung/aries-common/BoardConfigCommon.mk
 #TARGET_USERIMAGES_USE_EXT4 := false
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 TARGET_PROVIDES_LIBCAMERA := true
+TARGET_RECOVERY_FSTAB := device/samsung/galaxys4gmtd/fstab.aries
 
 # Based on kernel header
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 403701760
