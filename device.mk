@@ -52,7 +52,8 @@ PRODUCT_COPY_FILES += \
 	device/samsung/galaxys4gmtd/init.aries.rc:root/init.aries.rc \
 	device/samsung/galaxys4gmtd/init.recovery.aries.rc:root/init.recovery.aries.rc \
 	device/samsung/galaxys4gmtd/init.aries.gps.rc:root/init.aries.gps.rc \
-	device/samsung/galaxys4gmtd/ueventd.aries.rc:root/ueventd.aries.rc
+	device/samsung/galaxys4gmtd/ueventd.aries.rc:root/ueventd.aries.rc \
+	device/samsung/galaxys4gmtd/bml_over_mtd.sh:bml_over_mtd.sh
 
 # FSTAB files
 PRODUCT_COPY_FILES += \
