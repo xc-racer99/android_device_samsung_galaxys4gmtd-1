@@ -1,4 +1,4 @@
-ifneq ($(TARGET_PROVIDES_LIBCAMERA),true)
+ifeq ($(TARGET_PROVIDES_LIBCAMERA),true)
 
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
