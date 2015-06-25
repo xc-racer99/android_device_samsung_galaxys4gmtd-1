@@ -34,6 +34,7 @@ TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,SGH-T959V,SGH-T959W,SGH-T959P
 include device/samsung/aries-common/BoardConfigCommon.mk
 
 # Override stuff that doesn't match aries-common
+# Warning - unsetting this next one causes the build to fail
 #TARGET_USERIMAGES_USE_EXT4 := false
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 TARGET_PROVIDES_LIBCAMERA := true
@@ -42,7 +43,7 @@ TARGET_RECOVERY_FSTAB := device/samsung/galaxys4gmtd/fstab.aries
 # SELinux
 BOARD_SEPOLICY_DIRS := $(filter-out device/samsung/aries-common/sepolicy,$BOARD_SEPOLICY_DIRS)
 BOARD_SEPOLICY_DIRS += \
-    device/samsung/galaxys4gmtd/sepolicy
+	device/samsung/galaxys4gmtd/sepolicy
 
 # Based on kernel header
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 403701760
@@ -61,3 +62,6 @@ undefine TW_INTERNAL_STORAGE_MOUNT_POINT
 TW_EXTERNAL_STORAGE_PATH := "/sdcard"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
 TW_DEFAULT_EXTERNAL_STORAGE := true
+# Use MTP in recovery and also include SuperSu
+undefine TW_EXLCUDE_MTP
+undefine TW_EXCLUDE_SUPERSU
