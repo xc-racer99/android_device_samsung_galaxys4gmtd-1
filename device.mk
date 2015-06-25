@@ -36,37 +36,37 @@
 
 # These are the hardware-specific configuration files
 DEVICE_PACKAGE_OVERLAYS += \
-	device/samsung/galaxys4gmtd/overlay
+	device/samsung/telusgalaxys4gmtd/overlay
 
 PRODUCT_COPY_FILES := \
-	device/samsung/galaxys4gmtd/asound.conf:system/etc/asound.conf
+	device/samsung/telusgalaxys4gmtd/asound.conf:system/etc/asound.conf
 
 # Prebuilt kl and kcm keymaps
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4gmtd/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
-	device/samsung/galaxys4gmtd/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
-	device/samsung/galaxys4gmtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
+	device/samsung/telusgalaxys4gmtd/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
+	device/samsung/telusgalaxys4gmtd/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
+	device/samsung/telusgalaxys4gmtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4gmtd/init.aries.rc:root/init.aries.rc \
-	device/samsung/galaxys4gmtd/init.recovery.aries.rc:root/init.recovery.aries.rc \
-	device/samsung/galaxys4gmtd/init.aries.gps.rc:root/init.aries.gps.rc \
-	device/samsung/galaxys4gmtd/ueventd.aries.rc:root/ueventd.aries.rc \
-	device/samsung/galaxys4gmtd/bml_over_mtd.sh:bml_over_mtd.sh
+	device/samsung/telusgalaxys4gmtd/init.aries.rc:root/init.aries.rc \
+	device/samsung/telusgalaxys4gmtd/init.recovery.aries.rc:root/init.recovery.aries.rc \
+	device/samsung/telusgalaxys4gmtd/init.aries.gps.rc:root/init.aries.gps.rc \
+	device/samsung/telusgalaxys4gmtd/ueventd.aries.rc:root/ueventd.aries.rc \
+	device/samsung/telusgalaxys4gmtd/bml_over_mtd.sh:bml_over_mtd.sh
 
 # FSTAB files
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4gmtd/fstab.aries:root/fstab.aries \
-	device/samsung/galaxys4gmtd/twrp.fstab:recovery/root/etc/twrp.fstab
+	device/samsung/telusgalaxys4gmtd/fstab.aries:root/fstab.aries \
+	device/samsung/telusgalaxys4gmtd/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Misc files
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4gmtd/updater.sh:updater.sh
+	device/samsung/telusgalaxys4gmtd/updater.sh:updater.sh
 
 # GPSInit files
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4gmtd/gps:system/etc/init.d/gps
+	device/samsung/telusgalaxys4gmtd/gps:system/etc/init.d/gps
 
 # GPS wrapper
 PRODUCT_PACKAGES += \
@@ -87,4 +87,4 @@ $(call inherit-product, device/samsung/aries-common/device_base.mk)
 # half of the device-specific product definition file takes care
 # of the aspects that require proprietary drivers that aren't
 # commonly available
-$(call inherit-product-if-exists, vendor/samsung/galaxys4gmtd/galaxys4gmtd-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/telusgalaxys4gmtd/telusgalaxys4gmtd-vendor.mk)

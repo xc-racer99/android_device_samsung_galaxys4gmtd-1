@@ -17,6 +17,6 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME   "Samsung GalaxyS4G"
+#define BTM_DEF_LOCAL_NAME   "Samsung Galaxy S SGH-T959P"
 
 #endif

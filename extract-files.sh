@@ -16,7 +16,7 @@
 # limitations under the License.
 
 VENDOR=samsung
-DEVICE=galaxys4gmtd
+DEVICE=telusgalaxys4gmtd
 COMMON=aries-common
 
 BASE=../../../vendor/$VENDOR/$DEVICE/proprietary

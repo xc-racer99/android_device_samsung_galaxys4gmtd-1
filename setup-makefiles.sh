@@ -16,7 +16,7 @@
 # limitations under the License.
 
 VENDOR=samsung
-DEVICE=galaxys4gmtd
+DEVICE=telusgalaxys4gmtd
 COMMON=aries-common
 OUTDIR=vendor/$VENDOR/$DEVICE
 OUTCOMMON=vendor/$VENDOR/$COMMON

@@ -14,6 +14,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),galaxys4gmtd)
+ifeq ($(TARGET_DEVICE),telusgalaxys4gmtd)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 endif

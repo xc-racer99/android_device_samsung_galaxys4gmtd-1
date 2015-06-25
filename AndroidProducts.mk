@@ -27,4 +27,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_galaxys4gmtd.mk
+    $(LOCAL_DIR)/omni_telusgalaxys4gmtd.mk

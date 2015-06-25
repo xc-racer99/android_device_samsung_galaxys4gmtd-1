@@ -37,7 +37,7 @@ ifdef BOARD_CAMERA_HAVE_FLASH
     LOCAL_CFLAGS += -DHAVE_FLASH
 endif
 
-ifeq ($(TARGET_DEVICE),galaxys4gmtd)
+ifeq ($(TARGET_DEVICE),telusgalaxys4gmtd)
     LOCAL_CFLAGS += -DFFC_FLIPPED
 endif
 
