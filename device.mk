@@ -72,6 +72,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	gpsd
 
+# HSPA+/HSUPA Overrides
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.ril.gprsclass=12 \
+	ro.ril.hsdpa.category=14 \
+	ro.ril.hsupa.category=6 \
+	ro.ril.hsxpa=2 \
+	net.tcp.buffersize.hsdpa = 4094,87380,393216,4096,16384,110208
+
 # Inherit Aries common device configuration.
 $(call inherit-product, device/samsung/aries-common/device_base.mk)
 
