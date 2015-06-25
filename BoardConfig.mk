@@ -30,6 +30,9 @@ BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/telusgalaxys4gmtd/recov
 
 TARGET_OTA_ASSERT_DEVICE := telusgalaxys4g,telusgalaxys4gmtd,SGH-T959P
 
+# Header Overrides for the CG2900 chip
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/telusgalaxys4gmtd/overlay/include
+
 # Import the aries-common BoardConfigCommon.mk
 include device/samsung/aries-common/BoardConfigCommon.mk
 
