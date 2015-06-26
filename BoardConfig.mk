@@ -62,6 +62,5 @@ undefine TW_INTERNAL_STORAGE_MOUNT_POINT
 TW_EXTERNAL_STORAGE_PATH := "/sdcard"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
 TW_DEFAULT_EXTERNAL_STORAGE := true
-# Use MTP in recovery and also include SuperSu
+# Use MTP in recovery
 undefine TW_EXLCUDE_MTP
-undefine TW_EXCLUDE_SUPERSU
