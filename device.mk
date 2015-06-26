@@ -62,15 +62,7 @@ PRODUCT_COPY_FILES += \
 
 # Misc files
 PRODUCT_COPY_FILES += \
-	device/samsung/telusgalaxys4gmtd/updater.sh:updater.sh
-
-# GPSInit files
-PRODUCT_COPY_FILES += \
-	device/samsung/telusgalaxys4gmtd/gps:system/etc/init.d/gps
-
-# GPS wrapper
-PRODUCT_PACKAGES += \
-	gpsd
+	    device/samsung/galaxys4gmtd/updater.sh:updater.sh
 
 # HSPA+/HSUPA Overrides
 PRODUCT_PROPERTY_OVERRIDES += \
