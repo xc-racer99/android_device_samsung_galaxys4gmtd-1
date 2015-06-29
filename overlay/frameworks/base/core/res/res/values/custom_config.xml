@@ -35,4 +35,7 @@
     <!-- Fadeout works fine on sgs4g -->
     <bool name="config_animateScreenLights">true</bool>
 
+    <!-- Set Home Button Wake Support isn't present on SGS4G. -->
+    <bool name="config_persistHomeWakeSupport">false</bool>
+
 </resources>
