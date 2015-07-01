@@ -6,8 +6,8 @@
     "revision":     "android-5.1"
   },
   {
-    "remote":       "omnirom",
-    "repository":   "android_device_samsung_aries-common",
+    "remote":       "github",
+    "repository":   "xc-racer99/android_device_samsung_aries-common",
     "target_path":  "device/samsung/aries-common",
     "revision":     "android-5.1"
   },
