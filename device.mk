@@ -62,6 +62,7 @@ PRODUCT_COPY_FILES += \
 
 # Misc files
 PRODUCT_COPY_FILES += \
+	device/samsung/galaxys4gmtd/audio_policy.conf:system/etc/audio_policy.conf \
 	device/samsung/galaxys4gmtd/updater.sh:updater.sh
 
 # GPSInit files
