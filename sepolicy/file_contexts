@@ -39,6 +39,12 @@
 
 # GPS
 /dev/s3c2410_serial1                                                    u:object_r:gps_device:s0
+/system/vendor/bin/agpsd						u:object_r:gpsd_exec:s0
+/system/vendor/bin/ste-cg29xx_ctrl					u:object_r:gpsd_exec:s0
+
+# CG2900 GPS
+/dev/cg2900_.*								u:object_r:gps_device:s0
+/dev/cg2900_gnss							u:object_r:gps_device:s0
 
 # Bluetooth
 /system/bin/bdaddr_read                                                 u:object_r:bdaddr_read_exec:s0
