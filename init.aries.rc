@@ -103,6 +103,10 @@ on fs
     chmod 660 /sys/class/misc/notification/bl_timeout
     restorecon /sys/class/misc/notification/bl_timeout
 
+    chown system system /sys/kernel/bigmem
+    chmod 660 /sys/kernel/bigmem
+    restorecon /sys/kernel/bigmem
+
     chown system system /sys/class/misc/pwm_duty/pwm_duty
     chmod 660 /sys/class/misc/pwm_duty/pwm_duty
     restorecon /sys/class/misc/pwm_duty/pwm_duty
