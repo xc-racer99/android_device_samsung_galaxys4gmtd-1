@@ -62,7 +62,7 @@ PRODUCT_COPY_FILES += \
 
 # Misc files
 PRODUCT_COPY_FILES += \
-	    device/samsung/galaxys4gmtd/updater.sh:updater.sh
+	device/samsung/telusgalaxys4gmtd/updater.sh:updater.sh
 
 # HSPA+/HSUPA Overrides
 PRODUCT_PROPERTY_OVERRIDES += \
