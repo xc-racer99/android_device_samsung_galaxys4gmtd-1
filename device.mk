@@ -66,7 +66,7 @@ PRODUCT_COPY_FILES += \
 
 # GPSInit files
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4gmtd/gps:system/etc/init.d/gps
+	device/samsung/galaxys4gmtd/gps:system/bin/gps.sh
 
 # GPS wrapper
 PRODUCT_PACKAGES += \
