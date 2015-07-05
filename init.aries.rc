@@ -68,9 +68,11 @@ on fs
 #   Radio set up
     mkdir /radio 0775 radio radio
     mount yaffs2 mtd@radio /radio
-    mount yaffs2 mtd@userdata /data
+    mount yaffs2 mtd@userdata /data nosuid nodev
     mount yaffs2 mtd@cache /cache nosuid nodev
-    mount yaffs2 mtd@system /system ro
+    # Mount /system rw first to give the filesystem a chance to save a checkpoint
+    mount yaffs2 mtd@system /system
+    mount yaffs2 mtd@system /system ro remount
     chown radio radio /radio/modem.bin
     restorecon_recursive /radio
 
