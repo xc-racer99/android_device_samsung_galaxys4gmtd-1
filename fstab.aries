@@ -12,7 +12,7 @@ system                      /system             yaffs2      ro                  
 userdata                    /data               yaffs2      noatime,nodev,nosuid,nomblk_io_submit,errors=panic  recoveryonly
 
 # Micro SD Card
-/devices/platform/s3c-sdhci.2/mmc_host/mmc1* auto vfat defaults voldmanaged=sdcard0:auto,noemulatedsd
+/devices/platform/s3c-sdhci.2/mmc_host/mmc1* auto auto defaults voldmanaged=sdcard0:auto,noemulatedsd
 
 # zRAM
 /dev/block/zram0            none                swap        defaults                                            zramsize=201326592
