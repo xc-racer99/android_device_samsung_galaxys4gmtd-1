@@ -34,8 +34,6 @@ TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,SGH-T959V,SGH-T959W,SGH-T959P
 include device/samsung/aries-common/BoardConfigCommon.mk
 
 # Override stuff that doesn't match aries-common
-# Warning - unsetting this next one causes the build to fail
-#TARGET_USERIMAGES_USE_EXT4 := false
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 TARGET_PROVIDES_LIBCAMERA := true
 TARGET_RECOVERY_FSTAB := device/samsung/galaxys4gmtd/fstab.aries
@@ -50,17 +48,12 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 403701760
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 545259520
 
 # TWRP options
-DEVICE_RESOLUTION := 480x800
-TW_NO_REBOOT_BOOTLOADER := true
-TW_FLASH_FROM_STORAGE := true
-# Leave this as false for now, we can attempt to enable it later when we
-# make sure that the ramdisk can be injected to
-TW_INCLUDE_INJECTTWRP := false
 # Override some settings in aries-common as we don't have an external_sd/emmc
 undefine TW_INTERNAL_STORAGE_PATH
 undefine TW_INTERNAL_STORAGE_MOUNT_POINT
 TW_EXTERNAL_STORAGE_PATH := "/sdcard"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
 TW_DEFAULT_EXTERNAL_STORAGE := true
+
 # Use MTP in recovery
 undefine TW_EXCLUDE_MTP
