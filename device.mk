@@ -41,6 +41,11 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_COPY_FILES := \
 	device/samsung/telusgalaxys4gmtd/asound.conf:system/etc/asound.conf
 
+# This device is hdpi
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+PRODUCT_LOCALES += hdpi
+
 # Prebuilt kl and kcm keymaps
 PRODUCT_COPY_FILES += \
 	device/samsung/telusgalaxys4gmtd/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
