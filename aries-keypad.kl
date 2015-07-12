@@ -1,7 +1,7 @@
-key 115    VOLUME_UP      WAKE
-key 114    VOLUME_DOWN    WAKE
-key 116    POWER          WAKE
-key 139    MENU           VIRTUAL
-key 172    HOME           VIRTUAL
-key 158    BACK           VIRTUAL
-key 217    SEARCH         VIRTUAL
+key 115    VOLUME_UP
+key 114    VOLUME_DOWN
+key 116    POWER
+key 139    MENU
+key 172    HOME
+key 158    BACK
+key 217    SEARCH
