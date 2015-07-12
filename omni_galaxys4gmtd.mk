@@ -30,15 +30,12 @@ $(call inherit-product, vendor/omni/config/common.mk)
 # Inherit device configuration
 $(call inherit-product, device/samsung/galaxys4gmtd/device.mk)
 
-# Galaxy S uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
-
 # Device identifier
 PRODUCT_RELEASE_NAME := GalaxyS4G
 PRODUCT_DEVICE := galaxys4gmtd
 PRODUCT_NAME := omni_galaxys4gmtd
 PRODUCT_BRAND := samsung
+PRODUCT_MANUFACTURER := samsung
 PRODUCT_MODEL := SGH-T959V
 
 #Set build fingerprint / ID / Prduct Name ect.
