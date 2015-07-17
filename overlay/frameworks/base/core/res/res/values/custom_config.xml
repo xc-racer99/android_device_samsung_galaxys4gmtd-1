@@ -38,4 +38,7 @@
     <!-- Set Home Button Wake Support isn't present on SGS4G. -->
     <bool name="config_persistHomeWakeSupport">false</bool>
 
+    <!-- SD card is used as /data, so don't support hot-plugging -->
+    <bool name="config_batterySdCardAccessibility">false</bool>
+
 </resources>
