@@ -69,6 +69,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/samsung/telusgalaxys4gmtd/updater.sh:updater.sh
 
+# GPSInit files
+PRODUCT_COPY_FILES += \
+	device/samsung/telusgalaxys4gmtd/gps.sh:system/bin/gps.sh
+
 # HSPA+/HSUPA Overrides
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.ril.gprsclass=12 \
