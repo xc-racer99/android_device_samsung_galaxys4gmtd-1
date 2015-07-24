@@ -7,4 +7,4 @@
 /system			yaffs2	        system					flags=backup=1;canbewiped;wipeingui
 /datadata		yaffs2	        datadata				flags=backup=1;canbewiped;wipeduringfactoryreset;subpartitionof=/data
 /sdcard			vfat	        /dev/block/mmcblk0p1			flags=display="Micro SD Card";storage;wipeingui;settingsstorage;removable
-/data			ext4		/dev/block/mmcblk0p2	length=-16384	flags=backup=1;canbewiped;wipeingui;wipeduringfactoryreset
+/data			auto		/dev/block/mmcblk0p2	length=-16384	flags=backup=1;canbewiped;wipeingui;wipeduringfactoryreset
