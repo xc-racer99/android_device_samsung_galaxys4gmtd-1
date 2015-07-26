@@ -53,6 +53,8 @@
 /sys/class/misc/dockaudio/(.*)_enable                                   u:object_r:sysfs_writable:s0
 /sys/devices/virtual/misc/color_tuning/(.*)                             u:object_r:sysfs_writable:s0
 /sys/kernel/bigmem/enable						u:object_r:sysfs_writable:s0
+/sys/kernel/fast_charge/force_fast_charge				u:object_r:sysfs_writable:s0
+/sys/class/misc/touchwake						u:object_r:sysfs_writable:s0
 
 # DSP Manager
 /sys/devices/virtual/misc/voodoo_sound/adc_osr128                       u:object_r:sysfs_dspmanager:s0
