@@ -5,7 +5,7 @@
 #
 
 service gps_init /system/bin/gps.sh
-    user gps
+    user root
     oneshot
     disabled
 
