@@ -8,3 +8,4 @@ allow gpsd sysfs_wake_lock:file { read write open };
 allow gpsd binder_device:chr_file { execute };
 allow gpsd system_data_file:file { create open write setattr getattr append };
 allow gpsd system_data_file:dir { add_name write };
+allow gpsd self:capability { dac_override net_raw };
