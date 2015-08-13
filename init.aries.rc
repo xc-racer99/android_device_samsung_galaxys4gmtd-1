@@ -215,6 +215,16 @@ on post-fs-data
 
     setprop vold.post_fs_data_done 1
 
+# Manually unmount /data/data
+on property:vold.decrypt=trigger_shutdown_framework
+    start umount_datadata
+
+# Unmount /data/data during encryption
+service umount_datadata /sbin/umountdatadata.sh
+    user root
+    disabled
+    oneshot
+
 # Setup /datadata
 service setup_datadata /sbin/setupdatadata.sh
     disabled
