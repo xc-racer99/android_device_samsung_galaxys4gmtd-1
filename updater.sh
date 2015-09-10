@@ -170,7 +170,7 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     /tmp/make_ext4fs -b 4096 -l -16384 -a /data /dev/block/mmcblk0p2
 
     # unmount and format datadata
-    /tmp/buybox/umount -l /datadata
+    /tmp/busybox umount -l /datadata
     /tmp/erase_image datadata
  
     # restart into recovery so the user can install further packages such as gapps and SuperSU before booting
