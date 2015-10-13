@@ -11,13 +11,11 @@ on init
 
     loglevel 9
 
-    export EXTERNAL_STORAGE /storage/sdcard0
+#   By default, primary storage is physical
+    setprop ro.vold.primary_physical 1
 
 #   FIXME: Market checks this variable for space-checking, but downloads to /datadata
     export DOWNLOAD_CACHE /data/download
-
-    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
-    mkdir /storage/sdcard0 0700 root root
 
 #   for backwards compatibility
     symlink /storage/sdcard0 /sdcard
@@ -244,11 +242,6 @@ service pvrsrvinit /system/bin/pvrsrvinit
     user root
     group root
     oneshot
-
-# FUSE sdcard daemon for rich permissions (runs as media_rw)
-service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -t 4 /mnt/media_rw/sdcard0 /storage/sdcard0
-    class late_start
-    disabled
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
