@@ -27,9 +27,6 @@ on init
 #   rild doesn't like being killed. (During device encryption.)
     stop ril-daemon
 
-#   Disable address randomization
-    write /proc/sys/kernel/randomize_va_space 0
-
 on boot
 
     setprop ro.build.product aries
