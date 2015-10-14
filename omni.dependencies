@@ -1,38 +1,44 @@
 [
   {
-    "remote":       "omnirom",
-    "repository":   "android_packages_apps_SamsungServiceMode",
+    "remote":       "github",
+    "repository":   "xc-racer99/android_packages_apps_SamsungServiceMode",
     "target_path":  "packages/apps/SamsungServiceMode",
-    "revision":     "android-5.1"
+    "revision":     "android-6.0"
   },
   {
     "remote":       "github",
     "repository":   "xc-racer99/android_device_samsung_aries-common",
     "target_path":  "device/samsung/aries-common",
-    "revision":     "android-5.1"
+    "revision":     "android-6.0"
   },
   {
     "remote":       "github",
     "repository":   "xc-racer99/android_kernel_samsung_aries",
     "target_path":  "kernel/samsung/aries",
-    "revision":     "android-5.1"
+    "revision":     "android-6.0"
   },
   {
-    "remote":       "omnirom",
-    "repository":   "android_hardware_samsung",
+    "remote":       "github",
+    "repository":   "xc-racer99/android_hardware_samsung",
     "target_path":  "hardware/samsung",
-    "revision":     "android-5.1"
+    "revision":     "android-6.0"
+  },
+  {
+    "remote":       "github",
+    "repository":   "CyanogenMod/android_external_yaffs2",
+    "target_path":  "external/yaffs2",
+    "revision":     "cm-13.0"
   },
   {
     "remote":       "omnirom",
     "repository":   "android_prebuilts_gcc_linux-x86_arm_arm-eabi-4.7",
     "target_path":  "prebuilts/gcc/linux-x86/arm/arm-eabi-4.7",
-    "revision":     "android-5.1"
+    "revision":     "android-6.0"
   },
   {
     "remote":       "omnirom",
     "repository":   "android_prebuilts_gcc_darwin-x86_arm_arm-eabi-4.7",
     "target_path":  "prebuilts/gcc/darwin-x86/arm/arm-eabi-4.7",
-    "revision":     "android-5.1"
+    "revision":     "android-6.0"
   }
 ]
