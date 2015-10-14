@@ -1,4 +1,0 @@
-###########################
-# OmniROM Aries sepolicy
-#
-allow shared_relro unlabeled:file { write unlink };

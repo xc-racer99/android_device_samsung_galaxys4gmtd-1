@@ -1,6 +1,0 @@
-###########################
-# OmniROM Aries sepolicy
-#
-allow mediaserver system_server:unix_stream_socket { read write };
-allow mediaserver mfc_device:chr_file rw_file_perms;
-allow mediaserver graphics_device:chr_file { read write open ioctl };

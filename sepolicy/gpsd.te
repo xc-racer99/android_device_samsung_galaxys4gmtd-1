@@ -1,11 +1,8 @@
 ###########################
-# OmniROM Aries sepolicy
+# OmniROM Telusgalaxys4gmtd sepolicy
 #
-allow gpsd self:process { execmem };
-allow gpsd properties_device:file { execute };
-allow gpsd sysfs_wake_lock:file { read write open };
-allow gpsd binder_device:chr_file { execute };
-allow gpsd system_data_file:file { create open write setattr getattr };
+
+# allow gpsd system_data_file:file { create open write setattr getattr };
 allow gpsd system_data_file:dir { add_name read write };
 allow gpsd gps_device:chr_file { setattr};
-allow gpsd self:capability { chown fowner fsetid };
+# allow gpsd self:capability { chown fowner fsetid };

@@ -1,91 +1,17 @@
 ###########################
-# OmniROM Aries sepolicy
+# OmniROM Telusgalaxys4gmtd sepolicy
 #
-# We shifted /data/data stuff around
-/data/data2/.*                                                          u:object_r:app_data_file:s0
-/datadata(/.*)?                                                         u:object_r:datadata_file:s0
-/data/data2/com.android.providers.downloads/cache                       u:object_r:download_file:s0
-/data/download(/.*)?                                                    u:object_r:backup_data_file:s0
 
-# RIL
-/dev/s3c2410_serial3                                                    u:object_r:radio_device:s0
-/dev/onedram                                                            u:object_r:radio_device:s0
-/dev/modem_ctl                                                          u:object_r:radio_device:s0
-/dev/modem_fmt                                                          u:object_r:radio_device:s0
-/dev/modem_rfs                                                          u:object_r:radio_device:s0
+# Radio
 /dev/mtd/mtd6                                                           u:object_r:radio_device:s0
 /dev/mtd/mtd6ro                                                         u:object_r:radio_device:s0
 /dev/block/mtdblock6                                                    u:object_r:radio_device:s0
-/radio(/.*)?                                                            u:object_r:rild_file:s0
-
-# camera
-/dev/video0                                                             u:object_r:camera_device:s0
-/dev/video1                                                             u:object_r:camera_device:s0
-/dev/video2                                                             u:object_r:camera_device:s0
-/dev/s3c-jpg                                                            u:object_r:camera_device:s0
-/dev/s3c-mem                                                            u:object_r:camera_device:s0
-/dev/s3c-mfc                                                            u:object_r:graphics_device:s0
-/dev/i2c-1                                                              u:object_r:graphics_device:s0
-
-# Bluetooth
-/dev/s3c2410_serial0                                                    u:object_r:hci_attach_dev:s0
-
-# GFX
-/system/bin/pvrsrvinit                                                  u:object_r:pvrsrvinit_exec:s0
-
-# Sensors
-/system/vendor/bin/geomagneticd                                         u:object_r:geomagneticd_exec:s0
-/system/vendor/bin/orientationd                                         u:object_r:orientationd_exec:s0
 
 # GPS
-/dev/s3c2410_serial1                                                    u:object_r:gps_device:s0
-/system/vendor/bin/agpsd						u:object_r:gpsd_exec:s0
-/system/vendor/bin/ste-cg29xx_ctrl					u:object_r:gpsd_exec:s0
-/system/bin/gps.sh							u:object_r:gpsd_exec:s0
+/system/vendor/bin/agpsd                                                u:object_r:gpsd_exec:s0
+/system/vendor/bin/ste-cg29xx_ctrl                                      u:object_r:gpsd_exec:s0
+/system/bin/gps.sh                                                      u:object_r:gpsd_exec:s0
 
 # CG2900 GPS
-/dev/cg2900_.*								u:object_r:gps_device:s0
-/dev/cg2900_gnss							u:object_r:gps_device:s0
-
-# Bluetooth
-/system/bin/bdaddr_read                                                 u:object_r:bdaddr_read_exec:s0
-
-# Advanced settings
-# TODO: sysfs_writable may not be a good choice
-/sys/class/misc/notification/bl_timeout                                 u:object_r:sysfs_writable:s0
-/sys/class/misc/pwm_duty/pwm_duty                                       u:object_r:sysfs_writable:s0
-/sys/class/mdnieset_ui/switch_mdnieset_ui/mdnieset_ui_file_cmd          u:object_r:sysfs_writable:s0
-/sys/class/misc/dockaudio/(.*)_enable                                   u:object_r:sysfs_writable:s0
-/sys/devices/virtual/misc/color_tuning/(.*)                             u:object_r:sysfs_writable:s0
-/sys/kernel/bigmem/enable						u:object_r:sysfs_writable:s0
-/sys/kernel/fast_charge/force_fast_charge				u:object_r:sysfs_writable:s0
-/sys/class/misc/touchwake						u:object_r:sysfs_writable:s0
-
-# DSP Manager
-/sys/devices/virtual/misc/voodoo_sound/adc_osr128                       u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/dac_direct                       u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/dac_osr128                       u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/debug_log                        u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/digital_gain                     u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/fll_tuning                       u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/fm_radio_headset_normalize_gain  u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/fm_radio_headset_restore_bass    u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/fm_radio_headset_restore_highs   u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/headphone_amplifier_level        u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/headphone_eq                     u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/headphone_eq_b1_gain             u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/headphone_eq_b2_gain             u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/headphone_eq_b3_gain             u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/headphone_eq_b4_gain             u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/headphone_eq_b5_gain             u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/headphone_eq_bands_values        u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/mono_downmix                     u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/recording_preset                 u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/speaker_tuning                   u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/stereo_expansion                 u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound/stereo_expansion_gain            u:object_r:sysfs_dspmanager:s0
-/sys/devices/virtual/misc/voodoo_sound_control/enable                   u:object_r:sysfs_dspmanager:s0
-
-# LVM
-/dev/mapper/lvpool-(.*)                                                 u:object_r:block_device:s0
-/lvm/sbin(/.*)?                                                         u:object_r:rootfs:s0
+/dev/cg2900_.*                                                          u:object_r:gps_device:s0
+/dev/cg2900_gnss                                                        u:object_r:gps_device:s0
