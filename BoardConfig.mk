@@ -49,13 +49,3 @@ BOARD_SEPOLICY_DIRS += \
 # Based on kernel header
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 403701760
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 545259520
-
-# TWRP options
-DEVICE_RESOLUTION := 480x800
-TW_NO_REBOOT_BOOTLOADER := true
-TW_FLASH_FROM_STORAGE := true
-# Leave this as false for now, we can attempt to enable it later when we
-# make sure that the ramdisk can be injected to
-TW_INCLUDE_INJECTTWRP := false
-# Disable exfat, as it conflicts with something in the CM tree
-TW_NO_EXFAT := true
