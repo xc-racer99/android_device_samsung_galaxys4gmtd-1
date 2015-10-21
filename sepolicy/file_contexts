@@ -1,5 +1,7 @@
 # We shifted /data/data stuff around
-# /data/data/.*                                       u:object_r:app_data_file:s0
+/data/data2/.*                                      u:object_r:app_data_file:s0
+/datadata                                           u:object_r:system_data_file:s0
+/data/data2/com.android.providers.downloads/cache   u:object_r:download_file:s0
 
 # RIL
 /dev/s3c2410_serial3                                u:object_r:radio_device:s0
@@ -34,3 +36,6 @@
 /sys/class/misc/dockaudio/(.*)_enable               u:object_r:sysfs_writable:s0
 /sys/devices/virtual/misc/color_tuning/(.*)         u:object_r:sysfs_writable:s0
 /sys/devices/virtual/misc/voodoo_sound/(.*)         u:object_r:sysfs_writable:s0
+
+# LVM
+/dev/mapper/lvpool-(.*)                             u:object_r:block_device:s0

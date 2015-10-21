@@ -1,0 +1,1 @@
+allow ueventd sysfs_writable:dir { open read search };

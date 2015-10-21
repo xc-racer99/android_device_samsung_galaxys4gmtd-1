@@ -46,6 +46,9 @@ BOARD_SEPOLICY_DIRS := $(filter-out device/samsung/aries-common/sepolicy,$BOARD_
 BOARD_SEPOLICY_DIRS += \
     device/samsung/telusgalaxys4gmtd/sepolicy
 
+BOARD_SEPOLICY_UNION += \
+    ueventd.te
+
 # Based on kernel header
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 403701760
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 545259520
