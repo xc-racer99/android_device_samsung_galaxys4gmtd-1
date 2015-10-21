@@ -34,4 +34,7 @@
     
     <!-- Fadeout works fine on sgs4g -->
     <bool name="config_animateScreenLights">true</bool>
+
+    <!-- SD card is not hot-pluggable on this device -->
+    <bool name="config_batterySdCardAccessibility">false</bool>
 </resources>

@@ -25,8 +25,8 @@ set -x
 export PATH=/:/sbin:/system/xbin:/system/bin:/tmp:$PATH
 
 # check if we're running on a bml or mtd device
-if /tmp/busybox test -e /dev/block/bml7 ; then
-    # we're running on a bml device
+if /tmp/busybox test -e /dev/block/bml7 && /tmp/busybox test -e /dev/block/mmcblk0p2 ; then
+    # we're running on a bml device with a second sd card partition
 
     # make sure sdcard is mounted
     check_mount /sdcard /dev/block/mmcblk0p1 vfat
@@ -66,6 +66,7 @@ if /tmp/busybox test -e /dev/block/bml7 ; then
 
     # Scorch any ROM Manager settings to require the user to reflash recovery
     /tmp/busybox rm -f /sdcard/clockworkmod/.settings
+    /tmp/busybox rm -f /sdcard/TWRP/.settings
 
     # write new kernel to boot partition
     /tmp/flash_image boot /tmp/boot.img
@@ -81,8 +82,8 @@ if /tmp/busybox test -e /dev/block/bml7 ; then
     /sbin/reboot
     exit 0
 
-elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
-# we're running on a mtd device
+elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/block/mmcblk0p2 ; then
+# we're running on an mtd device with a second parition
 
     # make sure sdcard is mounted
     check_mount /sdcard /dev/block/mmcblk0p1 vfat
@@ -126,11 +127,31 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
     /tmp/busybox umount -l /system
     /tmp/erase_image system
 
-    # if a cyanogenmod.cfg exists, then this is a first time install
-    # let's format the volumes and restore radio and efs
+    # if a cyanogenmod.cfg exists, then this is an update from BML
+    # lets check if it doesn't exist
     if ! /tmp/busybox test -e /sdcard/cyanogenmod.cfg ; then
-        /tmp/busybox echo "Updating CyanogenMod, Not formating /cache and /data, not restoring /efs"
-        exit 0
+        if [ "$(/tmp/busybox cat /sys/class/mtd/mtd3/name)" != "datadata" ] ; then
+            # We're running an old parition system, format userdata, cache, and second parition on sd card
+            /tmp/busybox echo "Updating partition scheme, formatting old userdata, old sd-ext, and cache; not restoring efs"
+            # unmount and format data
+            /tmp/busybox umount -l /sd-ext
+            /tmp/make_ext4fs -b 4096 -l -16384 -a /data /dev/block/mmcblk0p2
+            # unmount and format cache
+            /tmp/busybox umount -l /cache
+            /tmp/erase_image cache
+            if [ "$(/tmp/busybox cat /sys/class/mtd/mtd3/name)" == "userdata" ] ; then
+                # Confirmation of old filesystem
+                /tmp/busybox umount -l /data
+                /tmp/erase_image userdata
+                exit 0
+            else
+                /tmp/busybox echo "Unrecognized parition scheme - aborting!"
+                exit 9
+            fi
+        else
+            /tmp/busybox echo "Updating cyanogenmod, Not formating /cache and /data, not restoring /efs"
+            exit 0
+        fi
     fi
 
     /tmp/busybox echo "Updating from a BML rom. Format /cache and /data, and attempt to restore /efs"
@@ -146,7 +167,14 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
 
     # unmount and format data
     /tmp/busybox umount -l /data
-    /tmp/erase_image userdata
+    /tmp/make_ext4fs -b 4096 -l -16384 -a /data /dev/block/mmcblk0p2
+
+    # unmount and format datadata
+    /tmp/busybox umount -l /datadata
+    /tmp/erase_image datadata
+
+    # restart into recovery so the user can install further packages such as gapps and SuperSU before booting
+    /tmp/busybox touch /cache/.startrecovery
 
     # restore efs backup
     if /tmp/busybox test -e /sdcard/backup/efs.tar ; then
@@ -178,4 +206,8 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
     fi
 
     exit 0
+
+else
+    /tmp/busybox echo "Incompatible layout - make sure you have a secondary parition on your SD card"
+    exit 2
 fi

@@ -4,13 +4,19 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 # MTD Volumes
-radio			/radio			mtd	defaults	recoveryonly
-boot			/boot			mtd	defaults	recoveryonly
-recovery		/recovery		mtd	defaults	recoveryonly
-cache			/cache		 	yaffs2	defaults	recoveryonly
+radio			/radio			mtd	defaults                                                   recoveryonly
+boot			/boot			mtd	defaults                                                   recoveryonly
+recovery		/recovery		mtd	defaults                                                   recoveryonly
+cache			/cache		 	yaffs2	defaults                                                   recoveryonly
 
-system         		/system               	yaffs2	ro	wait
-userdata	       	/data                 	yaffs2	noatime,nodev,nosuid,nomblk_io_submit,errors=panic	wait
+system         		/system               	yaffs2	ro	                                                   recoveryonly
+datadata	       	/datadata              	yaffs2	noatime,nodev,nosuid,nomblk_io_submit,errors=panic	   recoveryonly
+
+# Data on SD card
+/dev/block/mmcblk0p2    /data                   ext4    noatime,discard,nodev,nosuid,nomblk_io_submit,errors=panic wait,encryptable=footer,length=-16384
 
 # SD Card
 /devices/platform/s3c-sdhci.2/mmc_host/mmc1 auto auto defaults voldmanaged=sdcard0:auto
+
+# zRAM
+/dev/block/zram0            none                swap        defaults                                            zramsize=134217728
