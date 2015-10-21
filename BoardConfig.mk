@@ -18,15 +18,15 @@
 #
 
 # Kernel Config
-TARGET_KERNEL_CONFIG := cyanogenmod_galaxys4gmtd_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_telusgalaxys4gmtd_defconfig
 
 # Recovery
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys4gmtd/recovery/recovery_keys.c
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/telusgalaxys4gmtd/recovery/recovery_keys.c
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/galaxys4gmtd/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/telusgalaxys4gmtd/bluetooth
 
-TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,SGH-T959V,SGH-T959W
+TARGET_OTA_ASSERT_DEVICE := telusgalaxys4g,telusgalaxys4gmtd,SGH-T959P,SGH-T959W
 
 # Import the aries-common BoardConfigCommon.mk
 include device/samsung/aries-common/BoardConfigCommon.mk
@@ -35,13 +35,13 @@ include device/samsung/aries-common/BoardConfigCommon.mk
 TARGET_USERIMAGES_USE_EXT4 := false
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 TARGET_PROVIDES_LIBCAMERA := true
-TARGET_RECOVERY_FSTAB := device/samsung/galaxys4gmtd/fstab.aries
+TARGET_RECOVERY_FSTAB := device/samsung/telusgalaxys4gmtd/fstab.aries
 RECOVERY_FSTAB_VERSION := 2
 
 # SELinux
 BOARD_SEPOLICY_DIRS := $(filter-out device/samsung/aries-common/sepolicy,$BOARD_SEPOLICY_DIRS)
 BOARD_SEPOLICY_DIRS += \
-    device/samsung/galaxys4gmtd/sepolicy
+    device/samsung/telusgalaxys4gmtd/sepolicy
 
 # Based on kernel header
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 403701760
