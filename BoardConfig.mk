@@ -45,7 +45,7 @@ TARGET_RECOVERY_FSTAB := device/samsung/telusgalaxys4gmtd/fstab.aries
 BOARD_SEPOLICY_DIRS += device/samsung/telusgalaxys4gmtd/sepolicy
 
 # Based on kernel header
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 403701760
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 508559360
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 545259520
 
 # TWRP options
