@@ -72,9 +72,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/samsung/galaxys4gmtd/gps.sh:system/bin/gps.sh
 
-# GPS wrapper
+# GPS packages
 PRODUCT_PACKAGES += \
-	gpsd
+	gpsd \
+	libdmitry
 
 # HSPA+/HSUPA Overrides
 PRODUCT_PROPERTY_OVERRIDES += \
