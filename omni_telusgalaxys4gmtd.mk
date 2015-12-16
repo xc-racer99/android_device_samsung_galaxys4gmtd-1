@@ -34,8 +34,8 @@ $(call inherit-product, device/samsung/telusgalaxys4gmtd/device.mk)
 PRODUCT_RELEASE_NAME := TelusFascinate4G
 PRODUCT_DEVICE := telusgalaxys4gmtd
 PRODUCT_NAME := omni_telusgalaxys4gmtd
-PRODUCT_BRAND := samsung
-PRODUCT_MANUFACTURER := samsung
+PRODUCT_BRAND := SEC
+PRODUCT_MANUFACTURER := SEC
 PRODUCT_MODEL := SGH-T959P
 
 #Set build fingerprint / ID / Prduct Name ect.

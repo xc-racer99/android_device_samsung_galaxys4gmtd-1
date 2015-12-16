@@ -47,6 +47,7 @@ BOARD_SEPOLICY_DIRS += device/samsung/telusgalaxys4gmtd/sepolicy
 # Based on kernel header
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 508559360
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 545259520
+BOARD_CACHEIMAGE_PARTITION_SIZE := 41943040
 
 # TWRP options
 # Override some settings in aries-common as we don't have an external_sd/emmc
