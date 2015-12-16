@@ -1,0 +1,88 @@
+From f48efb3d35d1b2e87f51b59136a6119f77d1b8fc Mon Sep 17 00:00:00 2001
+From: Michael Bestas <mikeioannina@gmail.com>
+Date: Wed, 28 Oct 2015 17:09:40 -0700
+Subject: [PATCH] Revert "Remove mkyaffs2image references."
+
+* Can be enabled on devices that need it with TARGET_USERIMAGES_USE_YAFFS
+Cherry-picked from http://review.cyanogenmod.org/#/c/114641/ for Omni
+
+Change-Id: Iae76a2e580b2e7923b3b2cc90c565221b53f2d91
+---
+ core/Makefile  | 17 +++++++++++++++--
+ core/config.mk |  1 +
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/core/Makefile b/core/Makefile
+index 323daa3..5d79ab5 100644
+--- a/core/Makefile
++++ b/core/Makefile
+@@ -732,6 +732,9 @@ INTERNAL_USERIMAGES_EXT_VARIANT := ext4
+ endif
+ endif
+ endif
++ifeq ($(TARGET_USERIMAGES_USE_YAFFS),true)
++INTERNAL_USERIMAGES_USE_YAFFS := true
++endif
+ 
+ # These options tell the recovery updater/installer how to mount the partitions writebale.
+ # <fstype>=<fstype_opts>[|<fstype_opts>]...
+@@ -751,6 +754,9 @@ ifeq ($(TARGET_USERIMAGES_USE_F2FS),true)
+ INTERNAL_USERIMAGES_DEPS += $(MKF2FSUSERIMG) $(MAKE_F2FS)
+ endif
+ endif
++ifeq ($(INTERNAL_USERIMAGES_USE_YAFFS),true)
++INTERNAL_USERIMAGES_DEPS += $(MKYAFFS2)
++endif
+ 
+ ifeq ($(BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE),squashfs)
+ INTERNAL_USERIMAGES_DEPS += $(MAKE_SQUASHFS) $(MKSQUASHFSUSERIMG) $(IMG2SIMG)
+@@ -789,6 +795,7 @@ $(if $(BOARD_VENDORIMAGE_JOURNAL_SIZE),$(hide) echo "vendor_journal_size=$(BOARD
+ $(if $(BOARD_OEMIMAGE_PARTITION_SIZE),$(hide) echo "oem_size=$(BOARD_OEMIMAGE_PARTITION_SIZE)" >> $(1))
+ $(if $(BOARD_OEMIMAGE_JOURNAL_SIZE),$(hide) echo "oem_journal_size=$(BOARD_OEMIMAGE_JOURNAL_SIZE)" >> $(1))
+ $(if $(INTERNAL_USERIMAGES_SPARSE_EXT_FLAG),$(hide) echo "extfs_sparse_flag=$(INTERNAL_USERIMAGES_SPARSE_EXT_FLAG)" >> $(1))
++$(if $(mkyaffs2_extra_flags),$(hide) echo "mkyaffs2_extra_flags=$(mkyaffs2_extra_flags)" >> $(1))
+ $(hide) echo "selinux_fc=$(SELINUX_FC)" >> $(1)
+ $(if $(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_SUPPORTS_BOOT_SIGNER),$(hide) echo "boot_signer=$(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_SUPPORTS_BOOT_SIGNER)" >> $(1))
+ $(if $(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_SUPPORTS_VERITY),$(hide) echo "verity=$(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_SUPPORTS_VERITY)" >> $(1))
+@@ -1003,11 +1010,16 @@ endif
+ .PHONY: recoveryimage
+ recoveryimage: $(INSTALLED_RECOVERYIMAGE_TARGET) $(RECOVERY_RESOURCE_ZIP)
+ 
+-ifeq ($(BOARD_NAND_PAGE_SIZE),)
++ifneq ($(BOARD_NAND_PAGE_SIZE),)
++mkyaffs2_extra_flags := -c $(BOARD_NAND_PAGE_SIZE)
++else
++mkyaffs2_extra_flags :=
+ BOARD_NAND_PAGE_SIZE := 2048
+ endif
+ 
+-ifeq ($(BOARD_NAND_SPARE_SIZE),)
++ifneq ($(BOARD_NAND_SPARE_SIZE),)
++mkyaffs2_extra_flags += -s $(BOARD_NAND_SPARE_SIZE)
++else
+ BOARD_NAND_SPARE_SIZE := 64
+ endif
+ 
+@@ -1383,6 +1395,7 @@ DISTTOOLS :=  $(HOST_OUT_EXECUTABLES)/minigzip \
+   $(HOST_OUT_EXECUTABLES)/mkbootfs \
+   $(HOST_OUT_EXECUTABLES)/mkbootimg \
+   $(HOST_OUT_EXECUTABLES)/fs_config \
++  $(HOST_OUT_EXECUTABLES)/mkyaffs2image \
+   $(HOST_OUT_EXECUTABLES)/zipalign \
+   $(HOST_OUT_EXECUTABLES)/bsdiff \
+   $(HOST_OUT_EXECUTABLES)/imgdiff \
+diff --git a/core/config.mk b/core/config.mk
+index bfda70d..30510ee 100644
+--- a/core/config.mk
++++ b/core/config.mk
+@@ -411,6 +411,7 @@ MKBOOTIMG := $(HOST_OUT_EXECUTABLES)/mkbootimg$(HOST_EXECUTABLE_SUFFIX)
+ else
+ MKBOOTIMG := $(BOARD_CUSTOM_MKBOOTIMG)
+ endif
++MKYAFFS2 := $(HOST_OUT_EXECUTABLES)/mkyaffs2image$(HOST_EXECUTABLE_SUFFIX)
+ APICHECK := $(HOST_OUT_EXECUTABLES)/apicheck$(HOST_EXECUTABLE_SUFFIX)
+ FS_GET_STATS := $(HOST_OUT_EXECUTABLES)/fs_get_stats$(HOST_EXECUTABLE_SUFFIX)
+ MAKE_EXT4FS := $(HOST_OUT_EXECUTABLES)/make_ext4fs$(HOST_EXECUTABLE_SUFFIX)
+-- 
+2.1.4
+
