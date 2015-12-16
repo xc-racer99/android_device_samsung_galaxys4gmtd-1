@@ -1,0 +1,28 @@
+From 26d4a95d84cd7aac18e4523a68efdb69e7ef85d2 Mon Sep 17 00:00:00 2001
+From: xc-racer99 <xc-racer2@live.ca>
+Date: Tue, 15 Dec 2015 19:00:02 -0800
+Subject: [PATCH] [1/2]base: Increase timeout for slow CPUs
+
+Increase watchdog timeout
+
+Change-Id: I498280ba3960886e6ed9f08e4eb13d17b164269c
+---
+ services/core/java/com/android/server/pm/PackageManagerService.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/services/core/java/com/android/server/pm/PackageManagerService.java b/services/core/java/com/android/server/pm/PackageManagerService.java
+index c1d091b..dc195af 100644
+--- a/services/core/java/com/android/server/pm/PackageManagerService.java
++++ b/services/core/java/com/android/server/pm/PackageManagerService.java
+@@ -339,7 +339,7 @@ public class PackageManagerService extends IPackageManager.Stub {
+      * minute but we sometimes do very lengthy I/O operations on this thread,
+      * such as installing multi-gigabyte applications, so ours needs to be longer.
+      */
+-    private static final long WATCHDOG_TIMEOUT = 1000*60*10;     // ten minutes
++    private static final long WATCHDOG_TIMEOUT = 1000*60*20;     // twenty minutes
+ 
+     /**
+      * Wall-clock timeout (in milliseconds) after which we *require* that an fstrim
+-- 
+2.1.4
+
