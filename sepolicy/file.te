@@ -1,8 +1,0 @@
-###########################
-# OmniROM Aries sepolicy
-#
-# DSP Manager
-type sysfs_dspmanager, fs_type, sysfs_type;
-
-# Datadata files
-type datadata_file, file_type, data_file_type;

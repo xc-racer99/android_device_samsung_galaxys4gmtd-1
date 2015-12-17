@@ -1,5 +1,0 @@
-###########################
-# OmniROM Aries sepolicy
-#
-allow netd self:capability { sys_module };
-allow netd kernel:system { module_request };
