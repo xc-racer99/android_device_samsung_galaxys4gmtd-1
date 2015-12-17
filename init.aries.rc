@@ -20,8 +20,8 @@ on init
     export DOWNLOAD_CACHE /data/download
 
 #   for backwards compatibility
-    symlink /storage/sdcard0 /sdcard
-    symlink /storage/sdcard0 /mnt/sdcard
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
 
     mkdir /datadata 0771 system system
 
