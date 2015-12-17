@@ -293,8 +293,9 @@ service bdaddr /system/bin/bdaddr_read
     disabled
     oneshot
 
-service charger /sbin/healthd
+service charger /sbin/healthd -c
     class charger
+    group log
     critical
     seclabel u:r:healthd:s0
 
