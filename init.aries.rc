@@ -60,6 +60,11 @@ on boot
 
 on fs
 
+# Mount /system rw first to give the filesystem a chance to save a checkpoint.
+# /system needs to be mounted before swapon_all so mkswapfs is available
+    mount yaffs2 mtd@system /system
+    mount yaffs2 mtd@system /system ro remount
+
     mount_all /fstab.aries
     swapon_all /fstab.aries
 
@@ -68,9 +73,6 @@ on fs
     mount yaffs2 mtd@radio /radio
     mount yaffs2 mtd@datadata /datadata
     mount yaffs2 mtd@cache /cache nosuid nodev
-    # Mount /system rw first to give the filesystem a chance to save a checkpoint
-    mount yaffs2 mtd@system /system
-    mount yaffs2 mtd@system /system ro remount
     chown radio radio /radio/modem.bin
     restorecon_recursive /radio
 
