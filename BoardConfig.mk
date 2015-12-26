@@ -45,8 +45,7 @@ TARGET_RECOVERY_FSTAB := device/samsung/telusgalaxys4gmtd/fstab.aries
 BOARD_SEPOLICY_DIRS += device/samsung/telusgalaxys4gmtd/sepolicy
 
 # Based on kernel header
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 508559360
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 545259520
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 629145600
 BOARD_CACHEIMAGE_PARTITION_SIZE := 41943040
 
 # We use a yaffs system image
