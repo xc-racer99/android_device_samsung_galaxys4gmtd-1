@@ -8,10 +8,7 @@
 /dev/block/mtdblock6                                                    u:object_r:radio_device:s0
 
 # GPS
-/system/vendor/bin/agpsd                                                u:object_r:gpsd_exec:s0
-/system/vendor/bin/ste-cg29xx_ctrl                                      u:object_r:gpsd_exec:s0
-/system/bin/gps.sh                                                      u:object_r:gpsd_exec:s0
-
-# CG2900 GPS
-/dev/cg2900_.*                                                          u:object_r:gps_device:s0
-/dev/cg2900_gnss                                                        u:object_r:gps_device:s0
+/system/vendor/bin/ste-cg29xx_ctrl                                      u:object_r:cg2900_exec:s0
+/data/HALGPS_conf.cfg                                                   u:object_r:gps_data_file:s0
+/system/vendor/bin/agpsd                                                u:object_r:agpsd_exec:s0
+/dev/cg2900_(.*)                                                        u:object_r:cg2900_device:s0

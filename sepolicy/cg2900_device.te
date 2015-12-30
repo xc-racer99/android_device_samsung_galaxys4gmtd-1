@@ -1,0 +1,10 @@
+###########################
+# OmniROM Telusgalaxys4gmtd sepolicy
+#
+type cg2900, domain;
+type cg2900_exec, exec_type, file_type;
+type cg2900_device, dev_type;
+
+init_daemon_domain(cg2900)
+
+allow cg2900 gps_device:chr_file { read write open ioctl };

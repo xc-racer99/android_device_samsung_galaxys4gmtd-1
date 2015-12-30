@@ -1,8 +1,5 @@
 ###########################
 # OmniROM Telusgalaxys4gmtd sepolicy
 #
-
-# allow gpsd system_data_file:file { create open write setattr getattr };
-allow gpsd system_data_file:dir { add_name read write };
-allow gpsd gps_device:chr_file { setattr};
-# allow gpsd self:capability { chown fowner fsetid };
+allow gpsd system_file:file { execmod };
+allow gpsd system_data_file:dir { write add_name };
