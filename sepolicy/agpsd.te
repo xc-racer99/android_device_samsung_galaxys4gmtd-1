@@ -8,7 +8,7 @@ type agpsd_data_file, file_type, data_file_type;
 init_daemon_domain(agpsd)
 
 allow agpsd system_file:file { execmod };
-allow agpsd self:tcp_socket { create setopt bind listen connect accept getopt read write };
+allow agpsd self:tcp_socket { create setopt bind listen connect accept getopt read write getattr };
 
 allow agpsd port:tcp_socket { name_bind name_connect };
 allow agpsd node:tcp_socket { node_bind };
