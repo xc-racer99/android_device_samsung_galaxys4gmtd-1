@@ -57,8 +57,11 @@ on boot
 
 on fs
 
-# /system needs to be mounted before swapon_all so mkswapfs is available
+#   /system needs to be mounted before swapon_all so mkswapfs is available
     mount yaffs2 mtd@system /system
+
+#   Remount ro, was mounted rw to save a checkpoint
+    mount yaffs2 mtd@system /system ro remount
 
     mount_all /fstab.aries
     swapon_all /fstab.aries
