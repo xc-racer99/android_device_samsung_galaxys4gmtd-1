@@ -1,53 +1,48 @@
-From 53435fe0edd3061a7698f4c173589a02d5c24c3b Mon Sep 17 00:00:00 2001
-From: Dmitry Grinberg <dmitrygr@gmail.com>
-Date: Fri, 30 Oct 2015 05:32:44 +0000
-Subject: [PATCH] Allow crespo to boot
+From 716be1c45d9306581115265db34c54db5689075a Mon Sep 17 00:00:00 2001
+From: xc-racer99 <xc-racer2@live.ca>
+Date: Sat, 16 Jan 2016 15:31:01 -0800
+Subject: [PATCH] native: Restore Workaround for bug 10194508
 
+Needed for SGX540 graphics chips to boot.
+
+Based off of Dmitry Grinberg's patch
+
+Change-Id: Iccbb36115c37e199fc92e431976b1a709ca78f0d
 ---
- opengl/libs/EGL/eglApi.cpp                         | 29 ++++++----------------
- 1 file changed, 7 insertions(+), 22 deletions(-)
+ opengl/libs/EGL/eglApi.cpp | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/opengl/libs/EGL/eglApi.cpp b/opengl/libs/EGL/eglApi.cpp
-index 8378907..704a1b2 100644
+index cdec565..841b92c 100644
 --- a/opengl/libs/EGL/eglApi.cpp
 +++ b/opengl/libs/EGL/eglApi.cpp
-@@ -460,29 +460,14 @@ EGLSurface eglCreateWindowSurface(  EGLDisplay dpy, EGLConfig config,
-         // Whether to use sRGB gamma is not part of the EGLconfig, but is part
+@@ -461,6 +461,18 @@ EGLSurface eglCreateWindowSurface(  EGLDisplay dpy, EGLConfig config,
          // of our native format. So if sRGB gamma is requested, we have to
          // modify the EGLconfig's format before setting the native window's
--        // format.
--
--        // by default, just pick RGBA_8888
--        EGLint format = HAL_PIXEL_FORMAT_RGBA_8888;
-+        // format
-         android_dataspace dataSpace = HAL_DATASPACE_UNKNOWN;
--
--        EGLint a = 0;
--        cnx->egl.eglGetConfigAttrib(iDpy, config, EGL_ALPHA_SIZE, &a);
--        if (a > 0) {
--            // alpha-channel requested, there's really only one suitable format
--            format = HAL_PIXEL_FORMAT_RGBA_8888;
--        } else {
--            EGLint r, g, b;
--            r = g = b = 0;
--            cnx->egl.eglGetConfigAttrib(iDpy, config, EGL_RED_SIZE,   &r);
--            cnx->egl.eglGetConfigAttrib(iDpy, config, EGL_GREEN_SIZE, &g);
--            cnx->egl.eglGetConfigAttrib(iDpy, config, EGL_BLUE_SIZE,  &b);
--            EGLint colorDepth = r + g + b;
--            if (colorDepth <= 16) {
--                format = HAL_PIXEL_FORMAT_RGB_565;
--            } else {
--                format = HAL_PIXEL_FORMAT_RGBX_8888;
--            }
+         // format.
++#if WORKAROUND_BUG_10194508
++#warning "WORKAROUND_10194508 enabled"
++        android_dataspace dataSpace = HAL_DATASPACE_UNKNOWN;
++
 +        EGLint format;
 +        if (!cnx->egl.eglGetConfigAttrib(iDpy, config, EGL_NATIVE_VISUAL_ID,
 +                &format)) {
 +            ALOGE("eglGetConfigAttrib(EGL_NATIVE_VISUAL_ID) failed: %#x",
 +                    eglGetError());
 +            format = 0;
++        }
++#else
+ 
+         // by default, just pick RGBA_8888
+         EGLint format = HAL_PIXEL_FORMAT_RGBA_8888;
+@@ -484,6 +496,7 @@ EGLSurface eglCreateWindowSurface(  EGLDisplay dpy, EGLConfig config,
+                 format = HAL_PIXEL_FORMAT_RGBX_8888;
+             }
          }
++#endif
  
          // now select a corresponding sRGB format if needed
+         if (attrib_list && dp->haveExtension("EGL_KHR_gl_colorspace")) {
 -- 
-1.9.1
+2.1.4
 

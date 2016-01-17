@@ -32,17 +32,14 @@ DIRECTORY[4]="external/busybox"
 PATCHFILE[5]="android_frameworks_base.patch"
 DIRECTORY[5]="frameworks/base"
 
-PATCHFILE[6]="android_frameworks_base_2.patch"
-DIRECTORY[6]="frameworks/base"
+PATCHFILE[6]="android_frameworks_native.patch"
+DIRECTORY[6]="frameworks/native"
 
-PATCHFILE[7]="android_frameworks_native.patch"
-DIRECTORY[7]="frameworks/native"
+PATCHFILE[7]="android_system_bt.patch"
+DIRECTORY[7]="system/bt"
 
-PATCHFILE[8]="android_system_bt.patch"
-DIRECTORY[8]="system/bt"
-
-PATCHFILE[9]="android_system_extras.patch"
-DIRECTORY[9]="system/extras"
+PATCHFILE[8]="android_system_extras.patch"
+DIRECTORY[8]="system/extras"
 
 
 ARRAY_LENGTH=${#PATCHFILE[@]}
@@ -52,6 +49,8 @@ while [  $COUNTER -lt $ARRAY_LENGTH ]; do
 	ABS_PATCHFILE=$SCRIPTPATH${PATCHFILE[$COUNTER]}
 
 	CMD_OUTPUT=$(git am $ABS_PATCHFILE)
+
+        echo $CMD_OUTPUT
 
 	if [[ $CMD_OUTPUT =~ error.|fail. ]]; then
 		git am --abort
