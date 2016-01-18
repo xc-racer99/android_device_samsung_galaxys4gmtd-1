@@ -1,0 +1,111 @@
+From c57128efd77baf5bf9f1a6b023e5da893c1e499c Mon Sep 17 00:00:00 2001
+From: AndDiSa <anddisa@googlemail.com>
+Date: Fri, 27 Nov 2015 21:31:09 +0100
+Subject: [PATCH 1/2] base: correct sensor handling
+
+Older sensors are not setting event.timestamp correctly.  Setting to
+true will use SystemClock.elapsedRealtimeNanos() to set timestamp
+
+Change-Id: I2adfb9974d14afd4a5feef790cf847470c55aa5d
+---
+ core/res/res/values/custom_config.xml                        |  5 +++++
+ core/res/res/values/custom_symbols.xml                       |  2 ++
+ .../com/android/server/policy/WindowOrientationListener.java | 12 +++++++++++-
+ 3 files changed, 18 insertions(+), 1 deletion(-)
+
+diff --git a/core/res/res/values/custom_config.xml b/core/res/res/values/custom_config.xml
+index 08d64ba..6ffb1ff 100644
+--- a/core/res/res/values/custom_config.xml
++++ b/core/res/res/values/custom_config.xml
+@@ -82,4 +82,9 @@
+          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+     -->
+     <integer name="config_longPressOnMenuBehavior">0</integer>
++
++    <!-- Older sensors are not setting event.timestamp correctly.  Setting to
++          true will use SystemClock.elapsedRealtimeNanos() to set timestamp-->
++    <bool name="config_useSystemClockforSensors">false</bool>
++
+ </resources>
+diff --git a/core/res/res/values/custom_symbols.xml b/core/res/res/values/custom_symbols.xml
+index a3d3769..45cd02f 100644
+--- a/core/res/res/values/custom_symbols.xml
++++ b/core/res/res/values/custom_symbols.xml
+@@ -94,4 +94,6 @@
+   <java-symbol type="drawable" name="ic_audio_notification_mute_new" />
+   <java-symbol type="drawable" name="ic_audio_notification_mute_alpha" />
+   <java-symbol type="bool" name="config_enableScreenrecordChord" />
++
++  <java-symbol type="bool" name="config_useSystemClockforSensors" />
+ </resources>
+diff --git a/services/core/java/com/android/server/policy/WindowOrientationListener.java b/services/core/java/com/android/server/policy/WindowOrientationListener.java
+index 9916223..b97c68e 100644
+--- a/services/core/java/com/android/server/policy/WindowOrientationListener.java
++++ b/services/core/java/com/android/server/policy/WindowOrientationListener.java
+@@ -56,6 +56,7 @@ public abstract class WindowOrientationListener {
+     private int mRate;
+     private String mSensorType;
+     private Sensor mSensor;
++    private boolean museSystemClockforSensors;
+     private OrientationJudge mOrientationJudge;
+     private int mCurrentRotation = -1;
+ 
+@@ -105,9 +106,13 @@ public abstract class WindowOrientationListener {
+             }
+         }
+ 
++        museSystemClockforSensors = context.getResources().getBoolean(
++                com.android.internal.R.bool.config_useSystemClockforSensors);
++
+         if (mOrientationJudge == null) {
+             mSensor = mSensorManager.getDefaultSensor(USE_GRAVITY_SENSOR
+                     ? Sensor.TYPE_GRAVITY : Sensor.TYPE_ACCELEROMETER);
++
+             if (mSensor != null) {
+                 // Create listener only if sensors do exist
+                 mOrientationJudge = new AccelSensorJudge(context);
+@@ -598,7 +603,12 @@ public abstract class WindowOrientationListener {
+                 // Reset the orientation listener state if the samples are too far apart in time
+                 // or when we see values of (0, 0, 0) which indicates that we polled the
+                 // accelerometer too soon after turning it on and we don't have any data yet.
+-                final long now = event.timestamp;
++                final long now;
++                if (museSystemClockforSensors) {
++                    now = SystemClock.elapsedRealtimeNanos();
++                } else {
++                    now = event.timestamp;
++                }
+                 final long then = mLastFilteredTimestampNanos;
+                 final float timeDeltaMS = (now - then) * 0.000001f;
+                 final boolean skipSample;
+-- 
+2.1.4
+
+
+From f19ef743f235a732ec29b8e1b69d03884fbf4823 Mon Sep 17 00:00:00 2001
+From: xc-racer99 <xc-racer2@live.ca>
+Date: Mon, 18 Jan 2016 15:22:25 -0800
+Subject: [PATCH 2/2] [1/2]base: Increase timeout for slow CPUs
+
+Increase to 30min for all devices
+Change-Id: I7f6f86e32f8ee7f78fcb348a33e8a52d20e3658f
+---
+ services/core/java/com/android/server/pm/PackageManagerService.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/services/core/java/com/android/server/pm/PackageManagerService.java b/services/core/java/com/android/server/pm/PackageManagerService.java
+index c1d091b..8992689 100644
+--- a/services/core/java/com/android/server/pm/PackageManagerService.java
++++ b/services/core/java/com/android/server/pm/PackageManagerService.java
+@@ -339,7 +339,7 @@ public class PackageManagerService extends IPackageManager.Stub {
+      * minute but we sometimes do very lengthy I/O operations on this thread,
+      * such as installing multi-gigabyte applications, so ours needs to be longer.
+      */
+-    private static final long WATCHDOG_TIMEOUT = 1000*60*10;     // ten minutes
++    private static final long WATCHDOG_TIMEOUT = 1000*60*30;     // thirty minutes
+ 
+     /**
+      * Wall-clock timeout (in milliseconds) after which we *require* that an fstrim
+-- 
+2.1.4
+
