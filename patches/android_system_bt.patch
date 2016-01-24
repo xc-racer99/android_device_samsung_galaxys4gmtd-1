@@ -195,7 +195,7 @@ new mode 100755
 From 0ae781919ed6cfd8f61fb816e7a5e155972803c2 Mon Sep 17 00:00:00 2001
 From: sooti <sooti85@gmail.com>
 Date: Thu, 10 Dec 2015 04:33:40 -0800
-Subject: [PATCH 2/3] fix another bt compilation error
+Subject: [PATCH 2/3] fix another bt compilation problem
 
 Change-Id: I6084fa03441974796c2df7f3a6845562c7e371d8
 ---
