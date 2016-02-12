@@ -32,14 +32,11 @@ DIRECTORY[4]="external/busybox"
 PATCHFILE[5]="android_frameworks_base.patch"
 DIRECTORY[5]="frameworks/base"
 
-PATCHFILE[6]="android_frameworks_native.patch"
-DIRECTORY[6]="frameworks/native"
+PATCHFILE[6]="android_system_bt.patch"
+DIRECTORY[6]="system/bt"
 
-PATCHFILE[7]="android_system_bt.patch"
-DIRECTORY[7]="system/bt"
-
-PATCHFILE[8]="android_system_extras.patch"
-DIRECTORY[8]="system/extras"
+PATCHFILE[7]="android_system_extras.patch"
+DIRECTORY[7]="system/extras"
 
 
 ARRAY_LENGTH=${#PATCHFILE[@]}
