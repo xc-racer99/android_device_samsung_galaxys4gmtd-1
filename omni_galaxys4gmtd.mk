@@ -24,6 +24,9 @@ $(call inherit-product, vendor/omni/config/gsm.mk)
 # bootanimation
 TARGET_BOOTANIMATION_SIZE := 640x362
 
+# Exclude Live Wallpapers
+TARGET_EXCLUDE_LIVEWALLPAPERS := true
+
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
