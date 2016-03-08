@@ -38,6 +38,9 @@ DIRECTORY[6]="system/bt"
 PATCHFILE[7]="android_system_extras.patch"
 DIRECTORY[7]="system/extras"
 
+PATCHFILE[8]="android_packages_apps_OpenDelta.patch"
+DIRECTORY[8]="packages/apps/OpenDelta"
+
 
 ARRAY_LENGTH=${#PATCHFILE[@]}
 COUNTER=0
