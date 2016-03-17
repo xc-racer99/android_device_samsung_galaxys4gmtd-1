@@ -161,7 +161,7 @@ on post-fs
 
     chown system system /datadata
     chmod 0771 /datadata
-    restorecon_recursive /datadata
+    restorecon /datadata
 
 #   Samsung RIL
     symlink /radio/modem.bin /dev/block/bml12
