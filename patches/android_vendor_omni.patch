@@ -1,0 +1,25 @@
+From d80a7c386b9cef94b6f3fcb247ad35f2e4d3fe41 Mon Sep 17 00:00:00 2001
+From: xc-racer99 <xc-racer2@live.ca>
+Date: Mon, 21 Mar 2016 09:31:39 -0700
+Subject: [PATCH] vendor: Omni: Add 480x270 bootanimation
+
+Change-Id: Ic522e0fd8bb85865829e7e1c778123c9fe897bd6
+---
+ prebuilt/bootanimation/res/generate-packages.sh | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/prebuilt/bootanimation/res/generate-packages.sh b/prebuilt/bootanimation/res/generate-packages.sh
+index d1be94f..6b19bc3 100755
+--- a/prebuilt/bootanimation/res/generate-packages.sh
++++ b/prebuilt/bootanimation/res/generate-packages.sh
+@@ -21,6 +21,7 @@ clear;
+ 
+ # resolutions
+ RESOLUTIONS="\
++    480x270 \
+     640x362 \
+     720x407 \
+     1440x814 \
+-- 
+2.1.4
+

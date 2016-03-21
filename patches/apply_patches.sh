@@ -41,7 +41,6 @@ DIRECTORY[7]="system/extras"
 PATCHFILE[8]="android_packages_apps_OpenDelta.patch"
 DIRECTORY[8]="packages/apps/OpenDelta"
 
-
 ARRAY_LENGTH=${#PATCHFILE[@]}
 COUNTER=0
 while [  $COUNTER -lt $ARRAY_LENGTH ]; do
@@ -59,3 +58,19 @@ while [  $COUNTER -lt $ARRAY_LENGTH ]; do
 
 	let COUNTER=COUNTER+1
 done
+
+if test -e $SCRIPTPATH$ROOT_LOCATION/vendor/omni/prebuilt/bootanimation/res/480x270.zip; then
+	echo Bootanimation already created
+else
+	cd $SCRIPTPATH$ROOT_LOCATION/vendor/omni/prebuilt/bootanimation/res
+	CMD_OUTPUT=$(git am $SCRIPTPATH/android_vendor_omni.patch)
+
+	echo $CMD_OUTPUT
+
+	if [[ $CMD_OUTPUT =~ error.|fail. ]]; then
+		git am --abort
+		echo Ran git am --abort
+	fi
+
+	$SCRIPTPATH$ROOT_LOCATION/vendor/omni/prebuilt/bootanimation/res/generate-packages.sh
+fi

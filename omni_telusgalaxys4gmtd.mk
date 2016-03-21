@@ -22,7 +22,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, vendor/omni/config/gsm.mk)
 
 # bootanimation
-TARGET_BOOTANIMATION_SIZE := 640x362
+TARGET_BOOTANIMATION_SIZE := 480x270
 
 # Exclude Live Wallpapers
 TARGET_EXCLUDE_LIVEWALLPAPERS := true
