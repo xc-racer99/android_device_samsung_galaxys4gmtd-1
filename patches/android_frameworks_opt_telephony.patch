@@ -1,0 +1,64 @@
+From d1aac1cddf8e6fd17365a2cced2894a0808991a6 Mon Sep 17 00:00:00 2001
+From: xc-racer99 <xc-racer2@live.ca>
+Date: Thu, 24 Mar 2016 13:32:59 -0700
+Subject: [PATCH] telephony: Set more things to protected
+
+Needed for device-specific RILs to be able to be brought inline with current RIL
+
+Change-Id: I8083f5353d620632bc292db025e4f4ce31f9401b
+---
+ src/java/com/android/internal/telephony/RIL.java | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/java/com/android/internal/telephony/RIL.java b/src/java/com/android/internal/telephony/RIL.java
+index efb8c42..ca254bf 100644
+--- a/src/java/com/android/internal/telephony/RIL.java
++++ b/src/java/com/android/internal/telephony/RIL.java
+@@ -2757,7 +2757,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
+         return rr;
+     }
+ 
+-    private RadioCapability makeStaticRadioCapability() {
++    protected RadioCapability makeStaticRadioCapability() {
+         // default to UNKNOWN so we fail fast.
+         int raf = RadioAccessFamily.RAF_UNKNOWN;
+ 
+@@ -3393,7 +3393,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
+         return response;
+     }
+ 
+-    private Object
++    protected Object
+     responseFailCause(Parcel p) {
+         LastCallFailCause failCause = new LastCallFailCause();
+         failCause.causeCode = p.readInt();
+@@ -4107,7 +4107,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
+         return rc;
+     }
+ 
+-    private Object responseLceData(Parcel p) {
++    protected Object responseLceData(Parcel p) {
+         final ArrayList<Integer> capacityResponse = new ArrayList<Integer>();
+         final int capacityDownKbps = p.readInt();
+         final int confidenceLevel = p.readByte();
+@@ -4124,7 +4124,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
+         return capacityResponse;
+     }
+ 
+-    private Object responseLceStatus(Parcel p) {
++    protected Object responseLceStatus(Parcel p) {
+         final ArrayList<Integer> statusResponse = new ArrayList<Integer>();
+         final int lceStatus = (int)p.readByte();
+         final int actualInterval = p.readInt();
+@@ -4137,7 +4137,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
+         return statusResponse;
+     }
+ 
+-    private Object responseActivityData(Parcel p) {
++    protected Object responseActivityData(Parcel p) {
+         final int sleepModeTimeMs = p.readInt();
+         final int idleModeTimeMs = p.readInt();
+         int [] txModeTimeMs = new int[ModemActivityInfo.TX_POWER_LEVELS];
+-- 
+2.1.4
+
