@@ -34,8 +34,9 @@ TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,SGH-T959V,SGH-T959W,SGH-T959P
 include device/samsung/aries-common/BoardConfigCommon.mk
 
 # Override stuff that doesn't match aries-common
-BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 TARGET_PROVIDES_LIBCAMERA := true
+BOARD_SECOND_CAMERA_DEVICE := /dev/video2
+BOARD_CAMERA_FFC_FLIPPED := true
 TARGET_RECOVERY_FSTAB := device/samsung/galaxys4gmtd/fstab.aries
 
 # SELinux
