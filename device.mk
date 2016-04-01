@@ -74,8 +74,7 @@ PRODUCT_COPY_FILES += \
 
 # GPS packages
 PRODUCT_PACKAGES += \
-	gpsd \
-	libdmitry
+	gpsd
 
 # HSPA+/HSUPA Overrides
 PRODUCT_PROPERTY_OVERRIDES += \
