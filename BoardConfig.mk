@@ -49,9 +49,6 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 41943040
 # We use a yaffs system image
 TARGET_USERIMAGES_USE_YAFFS := true
 
-# Use our own releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/galaxys4gmtd
-
 # TWRP options
 # Override some settings in aries-common as we don't have an external_sd/emmc
 undefine TW_INTERNAL_STORAGE_PATH
