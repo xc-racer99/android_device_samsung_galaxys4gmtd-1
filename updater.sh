@@ -173,6 +173,11 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     /tmp/busybox umount -l /datadata
     /tmp/erase_image datadata
 
+    # restart into recovery so the user can install further packages such as gapps and SuperSU before booting
+    /tmp/busybox mount -t yaffs2 /dev/block/mtdblock5 /cache
+    /tmp/busybox touch /cache/.startrecovery
+    /tmp/busybox umount -l /cache
+
     # restore efs backup
     if /tmp/busybox test -e /sdcard/backup/efs.tar ; then
         /tmp/busybox umount -l /efs
