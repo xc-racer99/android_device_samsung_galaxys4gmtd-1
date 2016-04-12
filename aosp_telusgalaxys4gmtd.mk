@@ -15,20 +15,11 @@
 # low ram device
 TARGET_LOW_RAM_DEVICE := true
 
+# Get the long list of APNs
+PRODUCT_COPY_FILES := device/samsung/aries-common/apns-full-conf.xml:system/etc/apns-conf.xml
+
 # Inherit from the common Open Source product configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
-# Inherit Omni GSM telephony parts
-$(call inherit-product, vendor/omni/config/gsm.mk)
-
-# bootanimation
-TARGET_BOOTANIMATION_SIZE := 480x270
-
-# Exclude Live Wallpapers
-TARGET_EXCLUDE_LIVEWALLPAPERS := true
-
-# Inherit from our custom product configuration
-$(call inherit-product, vendor/omni/config/common.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/samsung/telusgalaxys4gmtd/device.mk)
@@ -36,10 +27,11 @@ $(call inherit-product, device/samsung/telusgalaxys4gmtd/device.mk)
 # Device identifier
 PRODUCT_RELEASE_NAME := TelusFascinate4G
 PRODUCT_DEVICE := telusgalaxys4gmtd
-PRODUCT_NAME := omni_telusgalaxys4gmtd
+PRODUCT_NAME := aosp_telusgalaxys4gmtd
 PRODUCT_BRAND := SEC
 PRODUCT_MANUFACTURER := SEC
 PRODUCT_MODEL := SGH-T959P
 
-#Set build fingerprint / ID / Prduct Name ect.
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=SGH-T959P TARGET_DEVICE=SGH-T959P BUILD_FINGERPRINT=samsung/SGH-T959P/SGH-T959P:2.3.4/GINGERBREAD/PTLKH2:user/release-keys PRIVATE_BUILD_DESC="SGH-T959P-user 2.3.4 GINGERBREAD PTLKH2 release-keys"
+# Build Launcher
+PRODUCT_PACKAGES += \
+	Launcher3
