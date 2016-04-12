@@ -38,7 +38,7 @@
 DEVICE_PACKAGE_OVERLAYS += \
 	device/samsung/galaxys4gmtd/overlay
 
-PRODUCT_COPY_FILES := \
+PRODUCT_COPY_FILES += \
 	device/samsung/galaxys4gmtd/asound.conf:system/etc/asound.conf
 
 # This device is hdpi
@@ -83,10 +83,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.ril.hsupa.category=6 \
 	ro.ril.hsxpa=2 \
 	net.tcp.buffersize.hsdpa = 4094,87380,393216,4096,16384,110208
-
-# Build messaging app
-PRODUCT_PACKAGES += \
-	messaging
 
 # Inherit Aries common device configuration.
 $(call inherit-product, device/samsung/aries-common/device_base.mk)
