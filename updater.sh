@@ -69,7 +69,7 @@ if /tmp/busybox test -e /dev/block/bml7 && /tmp/busybox test -e /dev/block/mmcbl
     /tmp/busybox rm -f /sdcard/TWRP/.settings
 
     # write new kernel to boot partition
-    /tmp/flash_image boot /tmp/boot.img
+    /tmp/flash_image boot /tmp/kernel
     if [ "$?" != "0" ] ; then
         /tmp/busybox echo "Failed to write kernel to boot partition"
         exit 3
@@ -121,7 +121,7 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
 
     # flash boot image
     /tmp/erase_image boot
-    /tmp/bml_over_mtd.sh boot 72 reservoir 4012 /tmp/boot.img
+    /tmp/bml_over_mtd.sh boot 72 reservoir 4012 /tmp/kernel
 
     # unmount and format system (recovery seems to expect system to be unmounted)
     /tmp/busybox umount -l /system
