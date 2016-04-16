@@ -24,14 +24,6 @@ on boot
     chmod 0770 /dev/cg2900_hci_logger
     chown system system /dev/cg2900_us_ctrl
     chmod 0770 /dev/cg2900_us_ctrl
-    restorecon /dev/cg2900_audio
-    restorecon /dev/cg2900_bt_audio
-    restorecon /dev/cg2900_core
-    restorecon /dev/cg2900_driver0
-    restorecon /dev/cg2900_fm_audio
-    restorecon /dev/cg2900_gnss
-    restorecon /dev/cg2900_hci_logger
-    restorecon /dev/cg2900_us_ctrl
 
 on post-fs
 
@@ -40,14 +32,6 @@ on post-fs
 #   +Scott.Re-setup permission right
     chown system system /dev/s3c2410_serial1
     chmod 0770 /dev/s3c2410_serial1
-    restorecon /dev/s3c2410_serial1
-
-on post-fs-data
-
-#   create data/gps for GPS demon
-    mkdir /data/gps 770 gps system
-    chown gps system /data/gps
-    restorecon_recursive /data/gps
 
 # +STE UART Contol Application
 service ste-cg29xx_ctrl /system/vendor/bin/ste-cg29xx_ctrl -b 115200 /dev/s3c2410_serial1

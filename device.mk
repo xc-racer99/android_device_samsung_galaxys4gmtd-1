@@ -76,10 +76,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.ril.hsxpa=2 \
 	net.tcp.buffersize.hsdpa = 4094,87380,393216,4096,16384,110208
 
-# Build messaging app
-PRODUCT_PACKAGES += \
-	messaging
-
 # Inherit Aries common device configuration.
 $(call inherit-product, device/samsung/aries-common/device_base.mk)
 
