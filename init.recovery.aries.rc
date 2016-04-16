@@ -4,8 +4,3 @@ on init
 
     export PATH /sbin
     export LD_LIBRARY_PATH .:/sbin
-
-on boot
-
-    # mass_storage support
-    setprop sys.usb.config mass_storage,adb
