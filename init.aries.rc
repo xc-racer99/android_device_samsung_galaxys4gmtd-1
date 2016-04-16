@@ -1,12 +1,6 @@
 import /init.aries.usb.rc
 import /init.aries.gps.rc
 
-on early-init
-
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-    write /sys/block/mmcblk0/queue/scheduler row
-
 on init
 
     export LD_PRELOAD "/system/lib/libsamsung_symbols.so"
@@ -26,12 +20,6 @@ on init
 
 on boot
 
-#   Fake some battery state
-    setprop status.battery.state Slow
-    setprop status.battery.level 5
-    setprop status.battery.level_raw  50
-    setprop status.battery.level_scale 9
-
 #   KSM
     write /sys/kernel/mm/ksm/pages_to_scan 256
     write /sys/kernel/mm/ksm/sleep_millisecs 1500
@@ -49,6 +37,10 @@ on boot
     write /sys/block/mtdblock0/queue/add_random 0
     write /sys/block/mtdblock1/queue/add_random 0
     write /sys/block/mtdblock2/queue/add_random 0
+    write /sys/block/mtdblock3/queue/add_random 0
+    write /sys/block/mtdblock4/queue/add_random 0
+    write /sys/block/mtdblock5/queue/add_random 0
+    write /sys/block/mtdblock6/queue/add_random 0
 
 on fs
 #   Use lz4 for zRam algorithm
@@ -85,8 +77,6 @@ on fs
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
-    restorecon /sys/class/rfkill/rfkill0/state
-    restorecon /sys/class/rfkill/rfkill0/type
 
 #   Permissions for System Server and daemons.
     chown system system /sys/class/backlight/s5p_bl/brightness
@@ -98,23 +88,18 @@ on fs
 #   Permission for tuning knobs
     chown system system /sys/devices/virtual/misc/notification/bl_timeout
     chmod 660 /sys/devices/virtual/misc/notification/bl_timeout
-    restorecon /sys/devices/virtual/misc/notification/bl_timeout
 
     chown system system /sys/kernel/bigmem/enable
     chmod 660 /sys/kernel/bigmem/enable
-    restorecon /sys/kernel/bigmem/enable
 
     chown system system /sys/devices/virtual/misc/touchwake
     chmod 660 /sys/devices/virtual/misc/touchwake
-    restorecon /sys/devices/virtual/misc/touchwake
 
     chown system system /sys/devices/virtual/misc/pwm_duty/pwm_duty
     chmod 660 /sys/devices/virtual/misc/pwm_duty/pwm_duty
-    restorecon /sys/devices/virtual/misc/pwm_duty/pwm_duty
 
     chown system system /sys/devices/virtual/mdnieset_ui/switch_mdnieset_ui/mdnieset_ui_file_cmd
     chmod 660 /sys/devices/virtual/mdnieset_ui/switch_mdnieset_ui/mdnieset_ui_file_cmd
-    restorecon /sys/devices/virtual/mdnieset_ui/switch_mdnieset_ui/mdnieset_ui_file_cmd
 
     chown system system /sys/devices/virtual/misc/color_tuning/blue_multiplier
     chown system system /sys/devices/virtual/misc/color_tuning/blue_v1_offset
@@ -128,32 +113,6 @@ on fs
     chmod 660 /sys/devices/virtual/misc/color_tuning/green_v1_offset
     chmod 660 /sys/devices/virtual/misc/color_tuning/red_multiplier
     chmod 660 /sys/devices/virtual/misc/color_tuning/red_v1_offset
-    restorecon /sys/devices/virtual/misc/color_tuning/blue_multiplier
-    restorecon /sys/devices/virtual/misc/color_tuning/blue_v1_offset
-    restorecon /sys/devices/virtual/misc/color_tuning/green_multiplier
-    restorecon /sys/devices/virtual/misc/color_tuning/green_v1_offset
-    restorecon /sys/devices/virtual/misc/color_tuning/red_multiplier
-    restorecon /sys/devices/virtual/misc/color_tuning/red_v1_offset
-
-#   Intentionally left world-writable for Voodoo Sound app
-    restorecon /sys/devices/virtual/misc/voodoo_sound/adc_osr128
-    restorecon /sys/devices/virtual/misc/voodoo_sound/dac_direct
-    restorecon /sys/devices/virtual/misc/voodoo_sound/dac_osr128
-    restorecon /sys/devices/virtual/misc/voodoo_sound/debug_log
-    restorecon /sys/devices/virtual/misc/voodoo_sound/digital_gain
-    restorecon /sys/devices/virtual/misc/voodoo_sound/fll_tuning
-    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq
-    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_b1_gain
-    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_b2_gain
-    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_b3_gain
-    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_b4_gain
-    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_b5_gain
-    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_bands_values
-    restorecon /sys/devices/virtual/misc/voodoo_sound/mono_downmix
-    restorecon /sys/devices/virtual/misc/voodoo_sound/recording_preset
-    restorecon /sys/devices/virtual/misc/voodoo_sound/speaker_tuning
-    restorecon /sys/devices/virtual/misc/voodoo_sound/stereo_expansion
-    restorecon /sys/devices/virtual/misc/voodoo_sound/stereo_expansion_gain
 
 on post-fs
 
@@ -174,7 +133,6 @@ on post-fs
 
 on charger
 
-    mount tmpfs tmpfs /tmp
     mount yaffs2 mtd@system /system
 
 #   set cpu governor to powersave while in charging mode
@@ -184,14 +142,6 @@ on post-fs-data
 
 #   Setup /datadata
     start setup_datadata
-
-#   Wi-Fi
-    mkdir /data/misc/wifi/sockets 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
-
-#   Logs
-    mkdir /data/log 0775 root root
-    chmod 0775 /data/log
 
     setprop vold.post_fs_data_done 1
 
@@ -272,19 +222,11 @@ service bdaddr /system/bin/bdaddr_read
 
 service charger /sbin/healthd -c
     class charger
-    group log
     critical
     seclabel u:r:healthd:s0
 
 on property:ril.bt_macaddr=*
     start bdaddr
-
-# bugreport is triggered by holding down volume down, volume up and power
-# service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
-#     class main
-#     disabled
-#     oneshot
-#     keycodes 114 115 116
 
 service orientationd /system/vendor/bin/orientationd
     class late_start
