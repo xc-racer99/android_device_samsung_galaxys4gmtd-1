@@ -2,7 +2,7 @@
 /boot			mtd		boot
 /recovery		mtd		recovery
 /radio			mtd		radio
-/efs			mtd		efs					flags=display="EFS";backup=1
+/efs			yaffs2		efs					flags=display="EFS";backup=1
 /cache			yaffs2	        cache					flags=backup=1;canbewiped;wipeingui;wipeduringfactoryreset
 /system			yaffs2	        system					flags=backup=1;canbewiped;wipeingui
 /datadata		yaffs2	        datadata				flags=backup=1;canbewiped;wipeduringfactoryreset;subpartitionof=/data
