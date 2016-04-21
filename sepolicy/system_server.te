@@ -1,4 +1,4 @@
 ###########################
 # OmniROM Telusgalaxys4gmtd sepolicy
 #
-allow system_server system_file:file { execmod };
+allow system_server system_file:file execmod;
