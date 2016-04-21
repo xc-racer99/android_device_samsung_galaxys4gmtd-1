@@ -1,5 +1,5 @@
 ###########################
 # OmniROM Telusgalaxys4gmtd sepolicy
 #
-allow netd agpsd:fd { use };
-allow netd agpsd:tcp_socket { read write getopt setopt };
+allow netd agpsd:fd use;
+allow netd agpsd:tcp_socket { read write setopt getopt };

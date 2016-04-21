@@ -1,6 +1,0 @@
-###########################
-# OmniROM Telusgalaxys4gmtd sepolicy
-#
-allow init gps_device:chr_file { getattr write ioctl };
-allow init cg2900_exec:file { getattr execute read open };
-allow init cg2900_device:chr_file getattr;

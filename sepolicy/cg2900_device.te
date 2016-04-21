@@ -7,4 +7,4 @@ type cg2900_device, dev_type;
 
 init_daemon_domain(cg2900)
 
-allow cg2900 gps_device:chr_file { read write open ioctl };
+allow cg2900 gps_device:chr_file { read write ioctl open };

@@ -1,5 +1,0 @@
-###########################
-# OmniROM Telusgalaxys4gmtd sepolicy
-#
-allow gpsd system_file:file { execmod };
-allow gpsd system_data_file:dir { write add_name };
