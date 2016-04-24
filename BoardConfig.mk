@@ -33,6 +33,9 @@ TARGET_OTA_ASSERT_DEVICE := telusgalaxys4g,telusgalaxys4gmtd,SGH-T959P
 # Header Overrides for the CG2900 chip
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/telusgalaxys4gmtd/overlay/include
 
+# Use SuperSU
+USE_SUPERSU := true
+
 # Import the aries-common BoardConfigCommon.mk
 include device/samsung/aries-common/BoardConfigCommon.mk
 
