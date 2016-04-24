@@ -1,5 +1,6 @@
 import /init.aries.usb.rc
 import /init.aries.gps.rc
+import /init.aries.supersu.rc
 
 on init
 
@@ -50,7 +51,7 @@ on fs
     mount yaffs2 mtd@system /system
 
 #   Remount ro, was mounted rw to save a checkpoint
-    mount yaffs2 mtd@system /system ro remount
+    mount yaffs2 mtd@system /system ro noatime remount
 
     mount_all /fstab.aries
     swapon_all /fstab.aries
