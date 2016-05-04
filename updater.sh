@@ -21,12 +21,70 @@ set_log() {
     exec >> $1 2>&1
 }
 
+# ui_print
+OUTFD=$(\
+    /tmp/busybox ps | \
+    /tmp/busybox grep -v "grep" | \
+    /tmp/busybox grep -o -E "/tmp/updater .*" | \
+    /tmp/busybox cut -d " " -f 3\
+);
+
+if /tmp/busybox test -e /tmp/update_binary ; then
+    OUTFD=$(\
+        /tmp/busybox ps | \
+        /tmp/busybox grep -v "grep" | \
+        /tmp/busybox grep -o -E "update_binary(.*)" | \
+        /tmp/busybox cut -d " " -f 3\
+    );
+fi
+
+ui_print() {
+    if [ "${OUTFD}" != "" ]; then
+        echo "ui_print ${1} " 1>&"${OUTFD}";
+        echo "ui_print " 1>&"${OUTFD}";
+    else
+        echo "${1}";
+    fi
+}
+
+# warning repartitions
+warn_repartition() {
+    if ! /tmp/busybox test -e /tmp/.accept_wipe ; then
+        /tmp/busybox touch /tmp/.accept_wipe;
+        ui_print ""
+        ui_print "========================================"
+        ui_print "ATTENTION"
+        ui_print ""
+        ui_print "This VERSION uses an incompatible"
+        ui_print "partition layout"
+        ui_print "Your SD card will be wiped completely"
+        ui_print "So, make your backups then just"
+        ui_print "run this zip again to confirm install"
+        ui_print ""
+        ui_print "ATTENTION"
+        ui_print "========================================"
+        ui_print ""
+        exit 9
+    fi
+    /tmp/busybox rm -fr /tmp/.accept_wipe;
+}
+
 set -x
 export PATH=/:/sbin:/system/xbin:/system/bin:/tmp:$PATH
 
+# make sure there's not 3 partitions, we can't handle that many
+if /tmp/busybox test -e /dev/block/mmcblk0p3 ; then
+    ui_print "You have 3+ partitions"
+    ui_print "Please go down to 2 or fewer"
+    ui_print "and the run this again"
+fi
+
 # check if we're running on a bml or mtd device
-if /tmp/busybox test -e /dev/block/bml7 && /tmp/busybox test -e /dev/block/mmcblk0p2 ; then
-    # we're running on a bml device with a second sd card partition
+if /tmp/busybox test -e /dev/block/bml7 ; then
+    # we're running on a bml device
+
+    # warn repartition
+    warn_repartition
 
     # make sure sdcard is mounted
     check_mount /sdcard /dev/block/mmcblk0p1 vfat
@@ -69,7 +127,7 @@ if /tmp/busybox test -e /dev/block/bml7 && /tmp/busybox test -e /dev/block/mmcbl
     /tmp/busybox rm -f /sdcard/TWRP/.settings
 
     # write new kernel to boot partition
-    /tmp/flash_image boot /tmp/kernel
+    /tmp/flash_image boot /tmp/boot-vfat.img
     if [ "$?" != "0" ] ; then
         /tmp/busybox echo "Failed to write kernel to boot partition"
         exit 3
@@ -82,14 +140,11 @@ if /tmp/busybox test -e /dev/block/bml7 && /tmp/busybox test -e /dev/block/mmcbl
     /sbin/reboot
     exit 0
 
-elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/block/mmcblk0p2 ; then
-# we're running on an mtd device with a second parition
+elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
+# we're running on an mtd device
 
-    # make sure sdcard is mounted
-    check_mount /sdcard /dev/block/mmcblk0p1 vfat
-
-    # everything is logged into /sdcard/omni.log
-    set_log /sdcard/omni_mtd.log
+    # everything is logged into /tmp/omni_mtd.log
+    set_log /tmp/omni_mtd.log
 
     # create mountpoint for radio partition
     /tmp/busybox mkdir -p /radio
@@ -119,6 +174,44 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     # unmount radio partition
     /tmp/busybox umount -l /dev/block/mtdblock6
 
+    # if a omni.cfg exists, then this is an update from BML
+    # lets check if it doesn't exist
+    if ! /tmp/busybox test -e /sdcard/omni.cfg ; then
+	# Use blkid to determine fstab on mmcblk0p1, if its vfat then need to format
+        if [ "$(/tmp/busybox blkid '/dev/block/mmcblk0p1' | /tmp/busybox awk -F 'TYPE=' '{print $2}' | /tmp/busybox sed -e 's/"//g')" == "vfat" ] ; then
+            # We're running an old parition system, format userdata, cache, and second parition on sd card
+
+            # warn repartition
+            warn_repartition
+
+            /tmp/busybox echo "Updating partition scheme, formatting SD card, datadata, and cache"
+            /tmp/busybox umount -l /datadata
+            /tmp/erase_image datadata
+
+            /tmp/busybox umount -l /cache
+            /tmp/erase_image cache
+
+            # make sure we format sd after reboot, also reboots to recovery
+            /tmp/busybox mount -t yaffs2 /dev/block/mtdblock5 /cache
+            /tmp/busybox touch /cache/.format_sd
+            /tmp/busybox umount -l /cache
+        else
+            /tmp/busybox echo "Updating omni, Not formating /cache and /data, not restoring /efs"
+        fi
+
+        # flash boot image
+        /tmp/erase_image boot
+        /tmp/bml_over_mtd.sh boot 72 reservoir 4012 /tmp/kernel
+
+        # unmount and format system (recovery seems to expect system to be unmounted)
+        /tmp/busybox umount -l /system
+        /tmp/erase_image system
+
+        exit 0
+    fi
+
+    /tmp/busybox echo "Updating from a BML rom. Format /cache and /data, and attempt to restore /efs"
+
     # flash boot image
     /tmp/erase_image boot
     /tmp/bml_over_mtd.sh boot 72 reservoir 4012 /tmp/kernel
@@ -127,34 +220,8 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     /tmp/busybox umount -l /system
     /tmp/erase_image system
 
-    # if a omni.cfg exists, then this is an update from BML
-    # lets check if it doesn't exist
-    if ! /tmp/busybox test -e /sdcard/omni.cfg ; then
-        if [ "$(/tmp/busybox cat /sys/class/mtd/mtd3/name)" != "datadata" ] ; then
-            # We're running an old parition system, format userdata, cache, and second parition on sd card
-            /tmp/busybox echo "Updating partition scheme, formatting old userdata, old sd-ext, and cache; not restoring efs"
-            # unmount and format data
-            /tmp/busybox umount -l /sd-ext
-            /tmp/make_ext4fs -b 4096 -l -16384 -a /data /dev/block/mmcblk0p2
-            # unmount and format cache
-            /tmp/busybox umount -l /cache
-            /tmp/erase_image cache
-            if [ "$(/tmp/busybox cat /sys/class/mtd/mtd3/name)" == "userdata" ] ; then
-                # Confirmation of old filesystem
-                /tmp/busybox umount -l /data
-                /tmp/erase_image userdata
-                exit 0
-            else
-                /tmp/busybox echo "Unrecognized parition scheme - aborting!"
-                exit 9
-            fi
-        else
-            /tmp/busybox echo "Updating omni, Not formating /cache and /data, not restoring /efs"
-            exit 0
-        fi
-    fi
-
-    /tmp/busybox echo "Updating from a BML rom. Format /cache and /data, and attempt to restore /efs"
+    # make sure sdcard is mounted
+    check_mount /sdcard /dev/block/mmcblk0p1 vfat
 
     # remove the omni.cfg to prevent this from looping
     /tmp/busybox rm -f /sdcard/omni.cfg
@@ -165,17 +232,13 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     /tmp/busybox umount -l /cache
     /tmp/erase_image cache
 
-    # unmount and format data
-    /tmp/busybox umount -l /data
-    /tmp/make_ext4fs -b 4096 -l -16384 -a /data /dev/block/mmcblk0p2
-
     # unmount and format datadata
     /tmp/busybox umount -l /datadata
     /tmp/erase_image datadata
  
-    # restart into recovery so the user can install further packages such as gapps and SuperSU before booting
+    # make sure we format sd after reboot (also reboots to recovery so SuperSU, gapps, etc can be installed)
     /tmp/busybox mount -t yaffs2 /dev/block/mtdblock5 /cache
-    /tmp/busybox touch /cache/.startrecovery
+    /tmp/busybox touch /cache/.format_sd
     /tmp/busybox umount -l /cache
 
     # restore efs backup
@@ -208,8 +271,4 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     fi
 
     exit 0
-
-else
-    /tmp/busybox echo "Incompatible layout - make sure you have a secondary parition on your SD card"
-    exit 2
 fi

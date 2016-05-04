@@ -44,6 +44,9 @@ BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 BOARD_CAMERA_FFC_FLIPPED := true
 TARGET_RECOVERY_FSTAB := device/samsung/telusgalaxys4gmtd/fstab.aries
 
+# Use our own releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/telusgalaxys4gmtd
+
 # SELinux
 BOARD_SEPOLICY_DIRS += device/samsung/telusgalaxys4gmtd/sepolicy
 
@@ -56,11 +59,11 @@ TARGET_USERIMAGES_USE_YAFFS := true
 
 # TWRP options
 # Override some settings in aries-common as we don't have an external_sd/emmc
-undefine TW_INTERNAL_STORAGE_PATH
-undefine TW_INTERNAL_STORAGE_MOUNT_POINT
-TW_EXTERNAL_STORAGE_PATH := "/sdcard"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
-TW_DEFAULT_EXTERNAL_STORAGE := true
+undefine TW_EXTERNAL_STORAGE_PATH
+undefine TW_EXTERNAL_STORAGE_MOUNT_POINT
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+RECOVERY_SDCARD_ON_DATA := true
 
 # Use MTP in recovery
 undefine TW_EXCLUDE_MTP
