@@ -66,7 +66,8 @@ PRODUCT_COPY_FILES += \
 
 # Misc files
 PRODUCT_COPY_FILES += \
-	    device/samsung/galaxys4gmtd/updater.sh:updater.sh
+	device/samsung/galaxys4gmtd/updater.sh:updater.sh \
+	device/samsung/galaxys4gmtd/boot-vfat.img:boot-vfat.img
 
 # GPSInit files
 PRODUCT_COPY_FILES += \
