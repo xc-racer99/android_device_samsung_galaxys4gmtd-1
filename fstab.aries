@@ -17,6 +17,3 @@ datadata                    /datadata           yaffs2      noatime,nodev,nosuid
 
 # Micro SD Card
 /devices/platform/s3c-sdhci.2/mmc_host/mmc1* auto auto defaults voldmanaged=sdcard0:1,noemulatedsd,nonremovable
-
-# zRAM
-/dev/block/zram0            none                swap        defaults                                            zramsize=134217728
