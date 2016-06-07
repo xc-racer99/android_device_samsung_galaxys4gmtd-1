@@ -83,9 +83,6 @@ on fs
     chown system system /sys/devices/virtual/misc/notification/bl_timeout
     chmod 660 /sys/devices/virtual/misc/notification/bl_timeout
 
-    chown system system /sys/kernel/bigmem/enable
-    chmod 660 /sys/kernel/bigmem/enable
-
     chown system system /sys/devices/virtual/misc/touchwake
     chmod 660 /sys/devices/virtual/misc/touchwake
 
