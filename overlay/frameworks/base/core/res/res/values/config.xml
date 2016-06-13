@@ -25,4 +25,10 @@
 
     <!-- SD card is used as /data, so don't support hot-plugging -->
     <bool name="config_batterySdCardAccessibility">false</bool>
+
+    <!-- The RadioAccessFamilies supported by the device.
+         Empty is viewed as "all".  Only used on devices which
+         don't support RIL_REQUEST_GET_RADIO_CAPABILITY
+         format is UMTS|LTE|... -->
+    <string translatable="false" name="config_radio_access_family">GPRS|EDGE|UMTS|HSDPA|HSUPA|HSPA|HSPAP|GSM|WCDMA</string>
 </resources>
