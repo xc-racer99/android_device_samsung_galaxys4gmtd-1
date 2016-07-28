@@ -24,10 +24,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 # Inherit Omni GSM telephony parts
 $(call inherit-product, vendor/omni/config/gsm.mk)
 
-# bootanimation
+# Bootanimation
 TARGET_BOOTANIMATION_SIZE := 480x270
 
-# Exclude Live Wallpapers
+# Exclude live wallpapers
 TARGET_EXCLUDE_LIVEWALLPAPERS := true
 
 # Inherit from our custom product configuration
@@ -37,12 +37,9 @@ $(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product, device/samsung/galaxys4gmtd/device.mk)
 
 # Device identifier
-PRODUCT_RELEASE_NAME := GalaxyS4G
+PRODUCT_RELEASE_NAME := Galaxy S 4G
 PRODUCT_DEVICE := galaxys4gmtd
 PRODUCT_NAME := omni_galaxys4gmtd
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := SGH-T959V
-
-#Set build fingerprint / ID / Prduct Name ect.
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=SGH-T959V TARGET_DEVICE=SGH-T959V BUILD_FINGERPRINT=samsung/SGH-T959V/SGH-T959V:2.3.6/GINGERBREAD/VUVKJ6:user/release-keys PRIVATE_BUILD_DESC="SGH-T959V-user 2.3.6 GINGERBREAD VUVKJ6 release-keys"
+PRODUCT_MODEL := galaxys4g

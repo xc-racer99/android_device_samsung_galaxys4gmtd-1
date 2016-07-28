@@ -1,25 +1,45 @@
 #
-# init rc file for GPS: this is here to allow for devices
+# init.rc file for GPS: This is here to allow for devices
 # to provide their own GPS initialization code without
 # conflicting with the default GPS init. (i.e. Vibrant, Galaxy S 4G)
 #
+# Some files are dummies in that they only exist on certain variants.
+# They are only started when they're present; if they're not then its
+# a harmless error.
+#
 
-service gps_init /system/bin/gps.sh
+service gps_init /sbin/init.aries.gps.sh
     user root
+    seclabel u:object_r:gps_init_exec:s0
     oneshot
     disabled
 
-service gpsd /system/vendor/bin/gpsd -c /etc/vendor/samsung-agps/secgps.conf
+service gpsd /system/vendor/bin/gpsd-shim -c /etc/vendor/samsung-agps/secgps.conf
     class late_start
     socket gps seqpacket 0660 gps system
     user gps
     group system inet
 
+# +STE GPS Daemon
+#GPS_CHIPSET_STE_CG2900
+service agpsd /system/vendor/bin/agpsd
+    class core
+    user gps
+    group system inet
+    oneshot
+
+# +STE UART Contol Application
+service ste-cg29xx_ctrl /system/vendor/bin/ste-cg29xx_ctrl -b 115200 /dev/s3c2410_serial1
+    user system
+    group system misc
+    oneshot
+    disabled
+
 on boot
     start gps_init
 
 on post-fs-data
-    # create data/gps for GPS demon
+    # create data/gps for GPS daemon
     mkdir /data/gps 700 gps system
     chown gps system /data/gps
     chown gps root /sys/class/sec/gps/GPS_PWR_EN/value

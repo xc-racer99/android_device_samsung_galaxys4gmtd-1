@@ -2,7 +2,19 @@
 # OmniROM galaxys4gmtd sepolicy
 #
 
-allow gpsd gpsd_exec:file { execute_no_trans };
-#allow gpsd system_data_file:file { create open write setattr getattr append };
-allow gpsd system_data_file:dir { add_name write };
-#allow gpsd self:capability { dac_override net_raw };
+type_transition gpsd system_data_file:file gps_data_file;
+
+allow gpsd binder_device:chr_file execute;
+allow gpsd cg2900_device:chr_file { read write getattr open ioctl };
+allow gpsd fwmarkd_socket:sock_file write;
+allow gpsd gps_data_file:file { read write create open getattr };
+allow gpsd gpsd_exec:file execute_no_trans;
+allow gpsd netd:unix_stream_socket connectto;
+allow gpsd node:tcp_socket node_bind;
+allow gpsd port:tcp_socket { name_bind name_connect };
+allow gpsd properties_device:file execute;
+allow gpsd self:process execmem;
+allow gpsd self:tcp_socket { setopt read bind create listen connect write getopt accept getattr };
+allow gpsd sysfs_wake_lock:file { read write open };
+allow gpsd system_data_file:dir { write add_name };
+allow gpsd system_file:file execmod;

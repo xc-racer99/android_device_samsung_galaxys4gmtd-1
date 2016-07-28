@@ -1,0 +1,37 @@
+###########################
+# OmniROM galaxys4gmtd sepolicy
+#
+type gps_init, domain;
+type gps_init_exec, exec_type, file_type;
+
+init_daemon_domain(gps_init)
+
+allow gps_init_exec cg2900_device:chr_file { getattr setattr };
+allow gps_init_exec ctl_default_prop:property_service set;
+allow gps_init_exec device:dir search;
+allow gps_init_exec gps_device:chr_file { getattr setattr };
+allow gps_init_exec init:fd use;
+allow gps_init_exec init:process sigchld;
+allow gps_init_exec init:unix_stream_socket connectto;
+allow gps_init_exec null_device:chr_file { read write ioctl getattr };
+allow gps_init_exec owntty_device:chr_file { read write open };
+allow gps_init_exec proc:file { read getattr open };
+allow gps_init_exec proc:lnk_file read;
+allow gps_init_exec properties_device:file { read getattr open };
+allow gps_init_exec property_socket:sock_file write;
+allow gps_init_exec rootfs:file { read entrypoint open };
+allow gps_init_exec rootfs:lnk_file read;
+allow gps_init_exec self:capability { fowner chown fsetid };
+allow gps_init_exec self:dir search;
+allow gps_init_exec self:fifo_file { read write };
+allow gps_init_exec self:lnk_file read;
+allow gps_init_exec self:process { fork sigchld };
+allow gps_init_exec self:unix_stream_socket { write create connect };
+allow gps_init_exec selinuxfs:filesystem getattr;
+allow gps_init_exec shell_exec:file read;
+allow gps_init_exec sysfs:dir search;
+allow gps_init_exec system_file:dir search;
+allow gps_init_exec system_file:file { read getattr open execute execute_no_trans };
+allow gps_init_exec system_file:lnk_file read;
+allow gps_init_exec toolbox_exec:file { read getattr open execute execute_no_trans };
+

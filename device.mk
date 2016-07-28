@@ -54,10 +54,10 @@ PRODUCT_COPY_FILES += \
 # Init files
 PRODUCT_COPY_FILES += \
 	device/samsung/galaxys4gmtd/init.aries.rc:root/init.aries.rc \
-	device/samsung/galaxys4gmtd/init.recovery.aries.rc:root/init.recovery.aries.rc \
 	device/samsung/galaxys4gmtd/init.aries.gps.rc:root/init.aries.gps.rc \
-	device/samsung/galaxys4gmtd/ueventd.aries.rc:root/ueventd.aries.rc \
-	device/samsung/galaxys4gmtd/bml_over_mtd.sh:bml_over_mtd.sh
+	device/samsung/galaxys4gmtd/init.aries.gps.sh:root/sbin/init.aries.gps.sh \
+	device/samsung/galaxys4gmtd/init.recovery.aries.rc:root/init.recovery.aries.rc \
+	device/samsung/galaxys4gmtd/ueventd.aries.rc:root/ueventd.aries.rc
 
 # FSTAB files
 PRODUCT_COPY_FILES += \
@@ -66,15 +66,13 @@ PRODUCT_COPY_FILES += \
 
 # Misc files
 PRODUCT_COPY_FILES += \
-	    device/samsung/galaxys4gmtd/updater.sh:updater.sh
-
-# GPSInit files
-PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4gmtd/gps.sh:system/bin/gps.sh
+	device/samsung/galaxys4gmtd/bml_over_mtd.sh:bml_over_mtd.sh \
+	device/samsung/galaxys4gmtd/post-install.sh:post-install.sh \
+	device/samsung/galaxys4gmtd/updater.sh:updater.sh
 
 # GPS packages
 PRODUCT_PACKAGES += \
-	gpsd
+	gpsd-shim
 
 # HSPA+/HSUPA Overrides
 PRODUCT_PROPERTY_OVERRIDES += \

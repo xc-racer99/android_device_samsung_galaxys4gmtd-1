@@ -28,7 +28,10 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/galaxys4gmtd/bluet
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys4gmtd/recovery/recovery_keys.c
 
-TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,SGH-T959V,SGH-T959W,SGH-T959P
+TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,telusgalaxys4g,telusgalaxys4gmtd,SGH-T959P,SGH-T959V,SGH-T959W
+
+# Header Overrides for the CG2900 chip
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys4gmtd/overlay/include
 
 # Use SuperSU
 USE_SUPERSU := true
@@ -41,6 +44,9 @@ BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 BOARD_CAMERA_FFC_FLIPPED := true
 TARGET_RECOVERY_FSTAB := device/samsung/galaxys4gmtd/fstab.aries
 
+# Releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/galaxys4gmtd
+
 # SELinux
 BOARD_SEPOLICY_DIRS += device/samsung/galaxys4gmtd/sepolicy
 
@@ -52,7 +58,7 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 41943040
 TARGET_USERIMAGES_USE_YAFFS := true
 
 # TWRP options
-# Override some settings in aries-common as we don't have an external_sd/emmc
+# Override some settings in aries-common as we only have an external SD
 undefine TW_INTERNAL_STORAGE_PATH
 undefine TW_INTERNAL_STORAGE_MOUNT_POINT
 TW_EXTERNAL_STORAGE_PATH := "/sdcard"
