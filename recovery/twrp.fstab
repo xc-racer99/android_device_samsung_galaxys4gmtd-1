@@ -1,6 +1,6 @@
 # mount point	        fstype		device			options (length for cryptfs encryption footer)
 /boot			mtd		boot
-/recovery		mtd		recovery
+/ramdisk		yaffs2		ramdisk                                 flags=subpartitionof=/boot
 /radio			mtd		radio
 /efs			yaffs2		efs					flags=display="EFS";backup=1
 /cache			yaffs2	        cache					flags=backup=1;canbewiped;wipeingui;wipeduringfactoryreset
