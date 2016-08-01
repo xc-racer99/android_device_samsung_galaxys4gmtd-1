@@ -32,6 +32,8 @@ def FullOTA_Assertions(info):
   info.output_zip.write(os.path.join(UTILITIES_DIR, "erase_image"), "erase_image")
   info.output_zip.write(os.path.join(UTILITIES_DIR, "bml_over_mtd"), "bml_over_mtd")
   info.output_zip.write(os.path.join(TARGET_DIR, "bml_over_mtd.sh"), "bml_over_mtd.sh")
+  info.output_zip.write(os.path.join(TARGET_DIR, "ramdisk.img"), "ramdisk.img")
+  info.output_zip.write(os.path.join(TARGET_DIR, "ramdisk-recovery.img"), "ramdisk-recovery.img")
 
   info.script.AppendExtra(
         ('package_extract_file("modem.bin", "/tmp/modem.bin");\n'
@@ -65,6 +67,8 @@ def FullOTA_Assertions(info):
          'set_metadata("/tmp/bml_over_mtd.sh", "uid", 0, "gid", 0, "mode", 0777);'))
 
   info.script.AppendExtra('package_extract_file("boot.img", "/tmp/boot.img");')
+  info.script.AppendExtra('package_extract_file("ramdisk.img", "/tmp/ramdisk.img");')
+  info.script.AppendExtra('package_extract_file("ramdisk-recovery.img", "/tmp/ramdisk-recovery.img");')
   info.script.AppendExtra('assert(run_program("/tmp/updater.sh") == 0);')
 
 

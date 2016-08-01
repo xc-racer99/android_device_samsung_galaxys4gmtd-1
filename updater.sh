@@ -88,6 +88,9 @@ if /tmp/busybox test -e /dev/block/bml7 && /tmp/busybox test -e /dev/block/mmcbl
     /tmp/busybox rm -f /sdcard/clockworkmod/.settings
     /tmp/busybox rm -f /sdcard/TWRP/.settings
 
+    # Copy the recovery ramdisk to the SD
+    /tmp/busybox cp /tmp/ramdisk-recovery.img /sdcard/ramdisk-recovery.img
+
     # write new kernel to boot partition
     /tmp/flash_image boot /tmp/boot.img
     if [ "$?" != "0" ] ; then
@@ -143,6 +146,17 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     # unmount radio partition
     /tmp/busybox umount -l /dev/block/mtdblock6
 
+    # format the ramdisk partition and copy the ramdisks to it
+    /tmp/busybox umount -l /dev/block/mtdblock1
+    /tmp/erase_image ramdisk
+    check_mount /ramdisk /dev/block/mtdblock1 yaffs2
+    /tmp/busybox cp /tmp/ramdisk.img /ramdisk/ramdisk.img
+    /tmp/busybox cp /tmp/ramdisk-recovery.img /ramdisk/ramdisk-recovery.img
+    /tmp/busybox sync
+
+    # unmount the ramdisk partition
+    /tmp/busybox umount -l /dev/block/mtdblock1
+
     # flash boot image
     /tmp/erase_image boot
     /tmp/bml_over_mtd.sh boot 72 reservoir 4012 /tmp/boot.img
@@ -184,6 +198,9 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     /tmp/busybox rm -f /sdcard/galaxys4g.cfg
     /tmp/busybox rm -f /sdcard/extendedcommand
     /tmp/busybox rm -f /sdcard/openrecoveryscript
+
+    # remove the recovery ramdisk from the SD
+    /tmp/busybox rm -f /sdcard/ramdisk-recovery.img
 
     # unmount and format cache
     /tmp/busybox umount -l /cache
