@@ -3,5 +3,7 @@
 #
 allow netd gpsd:fd use;
 allow netd gpsd:tcp_socket { read write setopt getopt };
+allow netd gps_init:fd use;
+allow netd gps_init:tcp_socket { read write setopt getopt };
 allow netd gpsd-shim:fd use;
 allow netd gpsd-shim:tcp_socket { read write setopt getopt };

@@ -6,11 +6,13 @@ type gpsd-shim_exec, exec_type, file_type;
 
 init_daemon_domain(gpsd-shim)
 
-type_transition gpsd system_data_file:file gps_data_file;
+type_transition gpsd-shim system_data_file:file gps_data_file;
 
 allow gpsd-shim binder_device:chr_file execute;
 allow gpsd-shim fwmarkd_socket:sock_file write;
-allow gpsd-shim gps_data_file:file { read write getattr open append };
+allow gpsd-shim gps_data_file:file { write getattr read create open append };
+allow gpsd-shim gps_init:fd use;
+allow gpsd-shim gps_init:process sigchld;
 allow gpsd-shim gpsd_exec:file { read execute open execute_no_trans };
 allow gpsd-shim netd:unix_stream_socket connectto;
 allow gpsd-shim node:tcp_socket node_bind;
@@ -18,7 +20,6 @@ allow gpsd-shim port:tcp_socket { name_bind name_connect };
 allow gpsd-shim properties_device:file execute;
 allow gpsd-shim self:capability { dac_override net_raw };
 allow gpsd-shim self:process execmem;
-allow gpsd-shim self:tcp_socket { bind create listen connect setopt getattr write read };
-allow gpsd-shim sysfs:file write;
+allow gpsd-shim self:tcp_socket { setopt read bind create write getattr connect listen getopt accept };
 allow gpsd-shim sysfs_wake_lock:file { read write open };
 allow gpsd-shim system_data_file:dir { write add_name };

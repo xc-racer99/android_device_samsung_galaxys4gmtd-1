@@ -10,9 +10,9 @@
 
 service gps_init /sbin/init.aries.gps.sh
     user root
-    seclabel u:object_r:gps_init_exec:s0
     oneshot
     disabled
+    seclabel u:r:gps_init:s0
 
 service gpsd /system/vendor/bin/gpsd-shim -c /etc/vendor/samsung-agps/secgps.conf
     class late_start
