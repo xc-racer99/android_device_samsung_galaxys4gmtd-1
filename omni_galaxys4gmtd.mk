@@ -12,15 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Use 44.1 kHz UI sounds
-$(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackage13.mk)
-
-# Low ram device
-TARGET_LOW_RAM_DEVICE := true
-
-# Inherit from the common Open Source product configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-
 # Inherit Omni GSM telephony parts
 $(call inherit-product, vendor/omni/config/gsm.mk)
 
@@ -33,13 +24,16 @@ TARGET_EXCLUDE_LIVEWALLPAPERS := true
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
-# Inherit device configuration
-$(call inherit-product, device/samsung/galaxys4gmtd/device.mk)
+# Add Omni-specific overlays
+DEVICE_PACKAGE_OVERLAYS += \
+	device/samsung/galaxys4gmtd/overlay_omni \
+	device/samsung/aries-common/overlay_omni
 
-# Device identifier
-PRODUCT_RELEASE_NAME := Galaxy S 4G
-PRODUCT_DEVICE := galaxys4gmtd
+# Inherit AOSP device configuration
+$(call inherit-product, device/samsung/galaxys4gmtd/aosp_galaxys4gmtd.mk)
+
+# Inherit common Omni device configuration
+$(call inherit-product, device/samsung/aries-common/device_base_omni.mk)
+
+# Device identifier, must be after all includes
 PRODUCT_NAME := omni_galaxys4gmtd
-PRODUCT_BRAND := samsung
-PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := galaxys4g
