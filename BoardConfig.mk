@@ -42,7 +42,7 @@ include device/samsung/aries-common/BoardConfigCommon.mk
 # Override stuff that doesn't match aries-common
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 BOARD_CAMERA_FFC_FLIPPED := true
-TARGET_RECOVERY_FSTAB := device/samsung/galaxys4gmtd/fstab.aries
+TARGET_RECOVERY_FSTAB := device/samsung/galaxys4gmtd/rootdir/fstab.aries
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/galaxys4gmtd

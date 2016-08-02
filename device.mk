@@ -39,7 +39,7 @@ DEVICE_PACKAGE_OVERLAYS += \
 	device/samsung/galaxys4gmtd/overlay
 
 PRODUCT_COPY_FILES := \
-	device/samsung/galaxys4gmtd/asound.conf:system/etc/asound.conf
+	device/samsung/galaxys4gmtd/config/asound.conf:system/etc/asound.conf
 
 # This device is hdpi
 PRODUCT_AAPT_CONFIG := normal
@@ -47,22 +47,22 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Prebuilt kl and kcm keymaps
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4gmtd/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
-	device/samsung/galaxys4gmtd/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
-	device/samsung/galaxys4gmtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
+	device/samsung/galaxys4gmtd/config/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
+	device/samsung/galaxys4gmtd/config/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
+	device/samsung/galaxys4gmtd/config/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4gmtd/init.aries.rc:root/init.aries.rc \
-	device/samsung/galaxys4gmtd/init.aries.gps.rc:root/init.aries.gps.rc \
-	device/samsung/galaxys4gmtd/init.aries.gps.sh:root/sbin/init.aries.gps.sh \
-	device/samsung/galaxys4gmtd/init.recovery.aries.rc:root/init.recovery.aries.rc \
-	device/samsung/galaxys4gmtd/ueventd.aries.rc:root/ueventd.aries.rc
+	device/samsung/galaxys4gmtd/rootdir/init.aries.rc:root/init.aries.rc \
+	device/samsung/galaxys4gmtd/rootdir/init.aries.gps.rc:root/init.aries.gps.rc \
+	device/samsung/galaxys4gmtd/rootdir/init.recovery.aries.rc:root/init.recovery.aries.rc \
+	device/samsung/galaxys4gmtd/rootdir/ueventd.aries.rc:root/ueventd.aries.rc \
+	device/samsung/galaxys4gmtd/rootdir/sbin/init.aries.gps.sh:root/sbin/init.aries.gps.sh
 
 # FSTAB files
 PRODUCT_COPY_FILES += \
-	device/samsung/galaxys4gmtd/fstab.aries:root/fstab.aries \
-	device/samsung/galaxys4gmtd/twrp.fstab:recovery/root/etc/twrp.fstab
+	device/samsung/galaxys4gmtd/rootdir/fstab.aries:root/fstab.aries \
+	device/samsung/galaxys4gmtd/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Misc files
 PRODUCT_COPY_FILES += \
