@@ -3,7 +3,7 @@
 #
 type_transition gpsd system_data_file:file gps_data_file;
 
-allow gpsd cg2900_device:chr_file { read write getattr open };
+allow gpsd cg2900_device:chr_file { read write getattr open ioctl };
 allow gpsd sysfs_wake_lock:file { read write open };
 allow gpsd system_data_file:dir { write add_name };
 allow gpsd system_file:file execmod;
