@@ -25,9 +25,6 @@ TARGET_KERNEL_CONFIG := omni_galaxys4gmtd_defconfig
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/galaxys4gmtd/bluetooth
 
-# Recovery
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys4gmtd/recovery/recovery_keys.c
-
 TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,telusgalaxys4g,telusgalaxys4gmtd,SGH-T959P,SGH-T959V,SGH-T959W
 
 # Header Overrides for the CG2900 chip
