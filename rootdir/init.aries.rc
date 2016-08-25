@@ -9,7 +9,6 @@ on init
     setprop ro.vold.primary_physical 1
 
 #   for backwards compatibility
-    symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
 #   We will create our own ril-daemon service in class 'core' because the
