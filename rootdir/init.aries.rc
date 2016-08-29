@@ -1,5 +1,6 @@
 import /init.aries.usb.rc
 import /init.aries.gps.rc
+import /init.aries.supersu.rc
 
 on init
 
