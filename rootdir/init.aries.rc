@@ -12,8 +12,6 @@ on init
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
-    mkdir /datadata 0771 system system
-
 #   We will create our own ril-daemon service in class 'core' because the
 #   rild doesn't like being killed. (During device encryption.)
     stop ril-daemon
@@ -51,7 +49,6 @@ on fs
 #   Radio set up
     mkdir /radio 0775 radio radio
     mount yaffs2 mtd@radio /radio
-    mount yaffs2 mtd@datadata /datadata
     mount yaffs2 mtd@cache /cache nosuid nodev
     chown radio radio /radio/modem.bin
     restorecon_recursive /radio
@@ -106,10 +103,6 @@ on fs
 
 on post-fs
 
-    chown system system /datadata
-    chmod 0771 /datadata
-    restorecon /datadata
-
 #   Samsung RIL
     symlink /radio/modem.bin /dev/block/bml12
 
@@ -132,20 +125,7 @@ on charger
 
 on post-fs-data
 
-#   Setup /datadata
-    start setup_datadata
-
     setprop vold.post_fs_data_done 1
-
-# When encrypting, unmount /datadata
-on property:vold.decrypt=trigger_shutdown_framework
-    start setup_datadata
-
-# Setup /datadata
-service setup_datadata /sbin/setupdatadata.sh
-    disabled
-    oneshot
-    seclabel u:r:setup_datadata:s0
 
 service aries-ril-daemon /system/bin/rild
     class core
