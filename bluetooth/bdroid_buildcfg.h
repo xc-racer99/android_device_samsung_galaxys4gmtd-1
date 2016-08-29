@@ -23,4 +23,6 @@
 #define BTA_GATT_INCLUDED FALSE
 #define SMP_INCLUDED FALSE
 
+/* Defined if the kernel does not have support for CLOCK_BOOTTIME_ALARM */
+#define KERNEL_MISSING_CLOCK_BOOTTIME_ALARM TRUE
 #endif
