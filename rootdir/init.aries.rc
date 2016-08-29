@@ -1,6 +1,11 @@
 import /init.aries.usb.rc
 import /init.aries.gps.rc
 
+on earlyinit
+
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
+    restorecon_recursive /sys/kernel/debug
+
 on init
 
     export LD_PRELOAD "/system/lib/libsamsung_symbols.so"
