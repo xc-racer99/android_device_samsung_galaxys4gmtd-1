@@ -1,5 +1,5 @@
 #! /system/bin/sh
-HWREV=`busybox cat /proc/hwrev`
+HWREV=`cat /proc/hwrev`
 
 if [ $HWREV = "0xF" ] ; then
 #   GPS_CHIPSET_STE_CG2900
