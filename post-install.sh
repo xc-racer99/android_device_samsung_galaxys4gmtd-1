@@ -44,8 +44,8 @@ set_log() {
 set -x
 export PATH=/:/sbin:/system/xbin:/system/bin:/tmp:$PATH
 
-# everything is logged into /mnt/sdcard/galaxys4g_post-install.log
-set_log /sdcard/galaxys4g_post-install.log
+# everything is logged into /mnt/sdcard/aries_post-install.log
+set_log /sdcard/aries_post-install.log
 
 # make sure /system is mounted
 check_mount /system /dev/block/mtdblock2 yaffs2

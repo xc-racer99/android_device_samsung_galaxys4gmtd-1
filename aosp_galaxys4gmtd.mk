@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 # Sample: This is where we'd set a backup provider if we had one
 # $(call inherit-product, device/sample/products/backup_overlay.mk)
 
@@ -25,12 +26,10 @@ $(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackage13.mk)
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
-# Device identifier
 PRODUCT_NAME := aosp_galaxys4gmtd
 PRODUCT_DEVICE := galaxys4gmtd
 PRODUCT_BRAND := Samsung
 PRODUCT_MODEL := galaxys4g
 PRODUCT_MANUFACTURER := samsung
 
-# Inherit device configuration
 $(call inherit-product, device/samsung/galaxys4gmtd/device.mk)

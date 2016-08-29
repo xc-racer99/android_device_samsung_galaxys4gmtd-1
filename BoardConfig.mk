@@ -1,6 +1,5 @@
 #
-# Copyright (C) 2013 OmniROM Project
-# Copyright (C) 2007 The Android Open Source Project
+# Copyright (C) 2015 The Android Open-Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,14 +12,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-# BoardConfig.mk
-#
-# Product-specific compile-time definitions.
 #
 
 # Kernel Config
-TARGET_KERNEL_CONFIG := omni_galaxys4gmtd_defconfig
+TARGET_KERNEL_CONFIG := custom_galaxys4gmtd_defconfig
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/galaxys4gmtd/bluetooth
@@ -53,11 +48,11 @@ TARGET_USERIMAGES_USE_YAFFS := true
 
 # TWRP options
 # Override some settings in aries-common as we only have an external SD
-undefine TW_INTERNAL_STORAGE_PATH
-undefine TW_INTERNAL_STORAGE_MOUNT_POINT
+unexport TW_INTERNAL_STORAGE_PATH
+unexport TW_INTERNAL_STORAGE_MOUNT_POINT
 TW_EXTERNAL_STORAGE_PATH := "/sdcard"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
 TW_DEFAULT_EXTERNAL_STORAGE := true
 
 # Use MTP in recovery
-undefine TW_EXCLUDE_MTP
+unexport TW_EXCLUDE_MTP

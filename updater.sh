@@ -51,8 +51,8 @@ if /tmp/busybox test -e /dev/block/bml7 && /tmp/busybox test -e /dev/block/mmcbl
     # make sure sdcard is mounted
     check_mount /sdcard /dev/block/mmcblk0p1 vfat
 
-    # everything is logged into /mnt/sdcard/galaxys4g_bml.log
-    set_log /sdcard/galaxys4g_bml.log
+    # everything is logged into /mnt/sdcard/aries_bml.log
+    set_log /sdcard/aries_bml.log
 
     # make sure efs is mounted
     check_mount /efs /dev/block/stl3 rfs
@@ -74,10 +74,10 @@ if /tmp/busybox test -e /dev/block/bml7 && /tmp/busybox test -e /dev/block/mmcbl
     cd /sdcard/backup/
     /tmp/busybox md5sum -t efs.tar > efs.tar.md5
 
-    # write the package path to sdcard galaxys4g.cfg
+    # write the package path to sdcard aries.cfg
     if /tmp/busybox test -n "$UPDATE_PACKAGE" ; then
         PACKAGE_LOCATION=${UPDATE_PACKAGE#/mnt}
-        /tmp/busybox echo "$PACKAGE_LOCATION" > /sdcard/galaxys4g.cfg
+        /tmp/busybox echo "$PACKAGE_LOCATION" > /sdcard/aries.cfg
 
         # Make sure that the zip file gets flashed upon reboot
         /tmp/busybox echo "install_zip(\"$PACKAGE_LOCATION\");" > /sdcard/extendedcommand
@@ -111,8 +111,8 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     # make sure sdcard is mounted
     check_mount /sdcard /dev/block/mmcblk0p1 vfat
 
-    # everything is logged into /sdcard/galaxys4g.log
-    set_log /sdcard/galaxys4g_mtd.log
+    # everything is logged into /sdcard/aries.log
+    set_log /sdcard/aries_mtd.log
 
     # create mountpoint for radio partition
     /tmp/busybox mkdir -p /radio
@@ -165,9 +165,9 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     /tmp/busybox umount -l /system
     /tmp/erase_image system
 
-    # if a galaxys4g.cfg exists, then this is an update from BML
+    # if a aries.cfg exists, then this is an update from BML
     # lets check if it doesn't exist
-    if ! /tmp/busybox test -e /sdcard/galaxys4g.cfg ; then
+    if ! /tmp/busybox test -e /sdcard/aries.cfg ; then
         if [ "$(/tmp/busybox cat /sys/class/mtd/mtd3/name)" != "datadata" ] ; then
             # We're running an old parition system, format userdata, cache, and second parition on sd card
             /tmp/busybox echo "Updating partition scheme, formatting old userdata, old sd-ext, and cache; not restoring efs"
@@ -187,15 +187,15 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
                 exit 9
             fi
         else
-            /tmp/busybox echo "Updating galaxys4g, Not formating /cache and /data, not restoring /efs"
+            /tmp/busybox echo "Updating ROM, Not formating /cache and /data, not restoring /efs"
             exit 0
         fi
     fi
 
     /tmp/busybox echo "Updating from a BML rom. Format /cache and /data, and attempt to restore /efs"
 
-    # remove the galaxys4g.cfg to prevent this from looping
-    /tmp/busybox rm -f /sdcard/galaxys4g.cfg
+    # remove the aries.cfg to prevent this from looping
+    /tmp/busybox rm -f /sdcard/aries.cfg
     /tmp/busybox rm -f /sdcard/extendedcommand
     /tmp/busybox rm -f /sdcard/openrecoveryscript
 
