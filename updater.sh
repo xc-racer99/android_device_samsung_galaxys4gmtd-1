@@ -146,16 +146,22 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     # unmount radio partition
     /tmp/busybox umount -l /dev/block/mtdblock6
 
-    # format the ramdisk partition and copy the ramdisks to it
+    # format the ramdisk partitions and copy the ramdisks to them
     /tmp/busybox umount -l /dev/block/mtdblock1
     /tmp/erase_image ramdisk
     check_mount /ramdisk /dev/block/mtdblock1 yaffs2
     /tmp/busybox cp /tmp/ramdisk.img /ramdisk/ramdisk.img
-    /tmp/busybox cp /tmp/ramdisk-recovery.img /ramdisk/ramdisk-recovery.img
+
+    /tmp/busybox umount -l /dev/block/mtdblock5
+    /tmp/erase_image ramdisk-recovery
+    check_mount /ramdisk-recovery /dev/block/mtdblock5 yaffs2
+    /tmp/busybox cp /tmp/ramdisk-recovery.img /ramdisk-recovery/ramdisk-recovery.img
+
     /tmp/busybox sync
 
-    # unmount the ramdisk partition
+    # unmount the ramdisk partitions
     /tmp/busybox umount -l /dev/block/mtdblock1
+    /tmp/busybox umount -l /dev/block/mtdblock5
 
     # flash boot image
     /tmp/erase_image boot
@@ -168,28 +174,8 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     # if a aries.cfg exists, then this is an update from BML
     # lets check if it doesn't exist
     if ! /tmp/busybox test -e /sdcard/aries.cfg ; then
-        if [ "$(/tmp/busybox cat /sys/class/mtd/mtd3/name)" != "datadata" ] ; then
-            # We're running an old parition system, format userdata, cache, and second parition on sd card
-            /tmp/busybox echo "Updating partition scheme, formatting old userdata, old sd-ext, and cache; not restoring efs"
-            # unmount and format data
-            /tmp/busybox umount -l /sd-ext
-            /tmp/make_ext4fs -b 4096 -l -16384 -a /data /dev/block/mmcblk0p2
-            # unmount and format cache
-            /tmp/busybox umount -l /cache
-            /tmp/erase_image cache
-            if [ "$(/tmp/busybox cat /sys/class/mtd/mtd3/name)" == "userdata" ] ; then
-                # Confirmation of old filesystem
-                /tmp/busybox umount -l /data
-                /tmp/erase_image userdata
-                exit 0
-            else
-                /tmp/busybox echo "Unrecognized parition scheme - aborting!"
-                exit 9
-            fi
-        else
             /tmp/busybox echo "Updating ROM, Not formating /cache and /data, not restoring /efs"
             exit 0
-        fi
     fi
 
     /tmp/busybox echo "Updating from a BML rom. Format /cache and /data, and attempt to restore /efs"
@@ -210,12 +196,8 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     /tmp/busybox umount -l /data
     /tmp/make_ext4fs -b 4096 -l -16384 -a /data /dev/block/mmcblk0p2
 
-    # unmount and format datadata
-    /tmp/busybox umount -l /datadata
-    /tmp/erase_image datadata
-
     # restart into recovery so the user can install further packages such as gapps and SuperSU before booting
-    /tmp/busybox mount -t yaffs2 /dev/block/mtdblock5 /cache
+    /tmp/busybox mount -t yaffs2 /dev/block/mtdblock3 /cache
     /tmp/busybox touch /cache/.startrecovery
     /tmp/busybox umount -l /cache
 

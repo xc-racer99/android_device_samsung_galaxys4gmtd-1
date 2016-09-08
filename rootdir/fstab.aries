@@ -4,12 +4,12 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 #Recovery only volumes
-recovery                    /recovery           mtd         defaults                                            recoveryonly
+ramdisk                     /ramdisk            mtd         defaults                                            recoveryonly
+ramdisk-recovery            /ramdisk-recovery   mtd         defaults                                            recoveryonly
 boot                        /boot               mtd         defaults                                            recoveryonly
 radio                       /radio              mtd         defaults                                            recoveryonly
 cache                       /cache              yaffs2      defaults                                            recoveryonly
 system                      /system             yaffs2      ro                                                  recoveryonly
-datadata                    /datadata           yaffs2      noatime,nodev,nosuid,nomblk_io_submit,errors=panic  recoveryonly
 
 #Data on SD-EXT
 /dev/block/mmcblk0p2        /data               ext4        noatime,discard,nodev,nosuid,nomblk_io_submit,errors=panic wait,encryptable=footer,length=-16384

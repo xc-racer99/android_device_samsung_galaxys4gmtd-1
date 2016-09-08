@@ -1,4 +1,4 @@
-#!/sbin/busybox sh
+#!/tmp/busybox sh
 #
 # Copyright (C) 2008 The Android Open-Source Project
 # Copyright (C) 2012 CyanongenMod
