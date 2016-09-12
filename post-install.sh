@@ -77,3 +77,6 @@ else
     # set ro.build.product to T959V
     /tmp/busybox sed -i -- 's/ro.product.model=galaxys4g/ro.product.model=SGH-T959V/g' /system/build.prop
 fi
+
+# Remove rild.rc - we redefine it
+/tmp/busybox rm /system/etc/init/rild.rc
