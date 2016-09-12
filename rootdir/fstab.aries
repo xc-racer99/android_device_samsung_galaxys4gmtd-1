@@ -15,5 +15,7 @@ system                      /system             yaffs2      ro                  
 /dev/block/mmcblk0p2        /data               ext4        noatime,discard,nodev,nosuid,nomblk_io_submit,errors=panic wait,encryptable=footer,length=-16384
 /dev/block/mmcblk0p2        /data               f2fs        rw,noatime,discard,nosuid,nodev,nodiratime,inline_xattr    wait,encryptable=footer,length=-16384
 
+/devices/platform/s3c_otghcd/usb* auto          auto        defaults                                            voldmanaged=usb:auto
+
 # Micro SD Card
-/devices/platform/s3c-sdhci.2/mmc_host/mmc1* auto auto defaults voldmanaged=sdcard0:1,noemulatedsd
+/devices/platform/s3c-sdhci.2/mmc_host/mmc1* auto auto defaults voldmanaged=sdcard1:1,noemulatedsd
