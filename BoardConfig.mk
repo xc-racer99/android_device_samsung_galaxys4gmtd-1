@@ -22,9 +22,6 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/galaxys4gmtd/bluet
 
 TARGET_OTA_ASSERT_DEVICE := galaxys4g,galaxys4gmtd,telusgalaxys4g,telusgalaxys4gmtd,SGH-T959P,SGH-T959V,SGH-T959W
 
-# Header Overrides for the CG2900 chip
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys4gmtd/overlay/include
-
 # Import the aries-common BoardConfigCommon.mk
 include device/samsung/aries-common/BoardConfigCommon.mk
 
@@ -32,6 +29,9 @@ include device/samsung/aries-common/BoardConfigCommon.mk
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 BOARD_CAMERA_FFC_FLIPPED := true
 TARGET_RECOVERY_FSTAB := device/samsung/galaxys4gmtd/rootdir/fstab.aries
+
+# Header overrides
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys4gmtd/overlay/include
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/galaxys4gmtd
