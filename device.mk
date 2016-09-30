@@ -20,7 +20,7 @@
 # Everything in this directory will become public
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-  LOCAL_KERNEL := device/samsung/galaxys4gmtd/zImage
+  LOCAL_KERNEL := device/samsung/galaxys4gmtd-kernel/zImage
 else
   LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
