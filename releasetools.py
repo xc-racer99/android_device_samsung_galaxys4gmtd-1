@@ -75,5 +75,8 @@ def FullOTA_Assertions(info):
 def FullOTA_InstallEnd(info):
   # Remove writing boot.img from script (we do it in updater.sh)
   info.script.script = [cmd for cmd in info.script.script if not "write_raw_image" in cmd]
-
+  info.script.AppendExtra('ifelse(is_mounted("/system"), unmount("/system"));')
+  info.script.AppendExtra('run_program("/sbin/mount", "/system");')
+  info.script.AppendExtra('delete("/system/etc/init/rild.rc");')
+  info.script.AppendExtra('unmount("/system");')
   info.script.AppendExtra('assert(run_program("/tmp/post-install.sh") == 0);')
