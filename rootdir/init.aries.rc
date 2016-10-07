@@ -72,6 +72,10 @@ on fs
     chown radio radio /sys/class/sec/uart_switch/UART_SEL/value
     chmod 660 /sys/class/sec/uart_switch/UART_SEL/value
 
+#   Change permission for xmm control
+    chown radio radio /sys/devices/platform/modemctl/modemctl/xmm/control
+    chmod 660 /sys/devices/platform/modemctl/modemctl/xmm/control
+
 #   Permission for tuning knobs
     chown system system /sys/devices/virtual/misc/notification/bl_timeout
     chmod 660 /sys/devices/virtual/misc/notification/bl_timeout
@@ -131,7 +135,7 @@ service ril-daemon /system/bin/rild
     socket sap_uim_socket1 stream 660 bluetooth bluetooth
     socket rild-debug stream 660 radio system
     user root
-    group radio cache inet misc audio log readproc wakelock
+    group radio cache inet misc audio log readproc wakelock net_raw
 
 # 3D init
 service pvrsrvinit /system/bin/pvrsrvinit
