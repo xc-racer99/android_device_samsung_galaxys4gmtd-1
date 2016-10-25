@@ -1,9 +1,9 @@
-# mount point	        fstype		device			options (length for cryptfs encryption footer)
-/boot			mtd		boot
-/ramdisk		yaffs2		ramdisk					flags=subpartitionof=/boot
-/ramdisk-recovery	yaffs2		ramdisk-recovery			flags=subpartitionof=/boot
-/radio			mtd		radio
-/efs			yaffs2		efs					flags=display="EFS";backup=1
-/cache			yaffs2	        cache					flags=backup=1;canbewiped;wipeingui;wipeduringfactoryreset
-/system			yaffs2	        system					flags=backup=1;canbewiped;wipeingui
-/data			auto	        /dev/block/mmcblk0p1   length=-16384
+# mount point      fstype        device                 options (length for cryptfs encryption footer)
+/boot              mtd           boot
+/ramdisk           yaffs2        ramdisk                flags=backup=1
+/ramdisk-recovery  yaffs2        ramdisk-recovery       flags=backup=1
+/radio             mtd           radio
+/efs               yaffs2        efs                    flags=display="EFS";backup=1
+/cache             yaffs2        cache                  flags=backup=1;canbewiped;wipeingui;wipeduringfactoryreset
+/system            yaffs2        system                 flags=backup=1;canbewiped;wipeingui
+/data              auto          /dev/block/mmcblk0p1   length=-16384
