@@ -207,10 +207,14 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
     check_mount /ramdisk /dev/block/mtdblock1 yaffs2
     /tmp/busybox cp /tmp/ramdisk.img /ramdisk/ramdisk.img
 
-    /tmp/busybox umount -l /dev/block/mtdblock5
-    /tmp/erase_image ramdisk-recovery
+    # don't overwrite the recovery if it already exists
     check_mount /ramdisk-recovery /dev/block/mtdblock5 yaffs2
-    /tmp/busybox cp /tmp/ramdisk-recovery.img /ramdisk-recovery/ramdisk-recovery.img
+    if ! /tmp/busybox test -e /ramdisk-recovery/ramdisk-recovery.img ; then
+        /tmp/busybox umount -l /dev/block/mtdblock5
+        /tmp/erase_image ramdisk-recovery
+        check_mount /ramdisk-recovery /dev/block/mtdblock5 yaffs2
+        /tmp/busybox cp /tmp/ramdisk-recovery.img /ramdisk-recovery/ramdisk-recovery.img
+    fi
 
     /tmp/busybox sync
 
