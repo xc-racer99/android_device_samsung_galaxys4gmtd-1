@@ -24,9 +24,6 @@ TARGET_LOW_RAM_DEVICE := true
 PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/apns-conf.xml:system/etc/apns-conf.xml
 
-# Use 44.1 kHz UI sounds
-$(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackage13.mk)
-
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
