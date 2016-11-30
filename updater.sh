@@ -5,6 +5,8 @@
 # GSM version
 #
 
+HWREV=`/tmp/busybox cat /proc/hwrev`
+
 check_mount() {
     if ! /tmp/busybox grep -q $1 /proc/mounts ; then
         /tmp/busybox mkdir -p $1
@@ -166,8 +168,13 @@ if /tmp/busybox test -e /dev/block/bml7 ; then
 elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
 # we're running on an mtd device
 
-    # everything is logged into /tmp/aries.log
-    set_log /tmp/aries_mtd.log
+    # everything is logged into /sdcard/aries.log
+    set_log /sdcard/aries_mtd.log
+
+    if [ "$(/tmp/busybox blkid '/dev/block/mmcblk0p1' | /tmp/busybox awk -F 'TYPE=' '{print $2}' | /tmp/busybox sed -e 's/"//g')" == "vfat" ] ; then
+        # warn repartition
+        warn_repartition
+    fi
 
     # create mountpoint for radio partition
     /tmp/busybox mkdir -p /radio
@@ -206,6 +213,8 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
     /tmp/erase_image ramdisk
     check_mount /ramdisk /dev/block/mtdblock1 yaffs2
     /tmp/busybox cp /tmp/ramdisk.img /ramdisk/ramdisk.img
+    /tmp/busybox chown root:root /ramdisk/ramdisk.img
+    /tmp/busybox chmod 666 /ramdisk/ramdisk.img
 
     # don't overwrite the recovery if it already exists
     check_mount /ramdisk-recovery /dev/block/mtdblock5 yaffs2
@@ -214,6 +223,8 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
         /tmp/erase_image ramdisk-recovery
         check_mount /ramdisk-recovery /dev/block/mtdblock5 yaffs2
         /tmp/busybox cp /tmp/ramdisk-recovery.img /ramdisk-recovery/ramdisk-recovery.img
+        /tmp/busybox chown root:root /ramdisk-recovery/ramdisk-recovery.img
+        /tmp/busybox chmod 666 /ramdisk-recovery/ramdisk-recovery.img
     fi
 
     /tmp/busybox sync
@@ -233,12 +244,9 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
     # if a aries.cfg exists, then this is an update from BML
     # lets check if it doesn't exist
     if ! /tmp/busybox test -e /sdcard/aries.cfg ; then
-	# Use blkid to determine fstab on mmcblk0p1, if its vfat then need to format
+	    # Use blkid to determine fstab on mmcblk0p1, if its vfat then need to format
         if [ "$(/tmp/busybox blkid '/dev/block/mmcblk0p1' | /tmp/busybox awk -F 'TYPE=' '{print $2}' | /tmp/busybox sed -e 's/"//g')" == "vfat" ] ; then
             # We're running an old parition system, format userdata, cache, and second parition on sd card
-
-            # warn repartition
-            warn_repartition
 
             /tmp/busybox echo "Updating partition scheme, formatting SD card, datadata, and cache"
             /tmp/busybox umount -l /datadata
@@ -250,6 +258,9 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
             # make sure we format sd after reboot, also reboots to recovery
             /tmp/busybox mount -t yaffs2 /dev/block/mtdblock3 /cache
             /tmp/busybox touch /cache/.format_sd
+
+            # copy logs to /cache
+            /tmp/busybox cp /sdcard/aries_mtd.log /sdcard/bml_over_mtd.log /cache
             /tmp/busybox umount -l /cache
         else
             /tmp/busybox echo "Updating ROM, Not formating /cache and /data, not restoring /efs"
@@ -275,15 +286,6 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
 
     # remove the recovery ramdisk from the SD
     /tmp/busybox rm -f /sdcard/ramdisk-recovery.img
-
-    # unmount and format cache
-    /tmp/busybox umount -l /cache
-    /tmp/erase_image cache
-
-    # make sure we format sd after reboot (also reboots to recovery so SuperSU, gapps, etc can be installed)
-    /tmp/busybox mount -t yaffs2 /dev/block/mtdblock3 /cache
-    /tmp/busybox touch /cache/.format_sd
-    /tmp/busybox umount -l /cache
 
     # restore efs backup
     if /tmp/busybox test -e /sdcard/backup/efs.tar ; then
@@ -313,6 +315,18 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 ; then
         /tmp/busybox echo "/sdcard/backup/efs.tar does not exist. Not restoring efs."
         exit 8
     fi
+
+    # unmount and format cache
+    /tmp/busybox umount -l /cache
+    /tmp/erase_image cache
+
+    # make sure we format sd after reboot (also reboots to recovery so SuperSU, gapps, etc can be installed)
+    /tmp/busybox mount -t yaffs2 /dev/block/mtdblock3 /cache
+    /tmp/busybox touch /cache/.format_sd
+    /tmp/busybox umount -l /cache
+
+    # copy logs to /cache so we can restore them later
+    /tmp/busybox cp /sdcard/aries_bml.log /sdcard/aries_mtd.log /sdcard/bml_over_mtd.log /cache
 
     exit 0
 fi
