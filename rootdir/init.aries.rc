@@ -8,8 +8,6 @@ on earlyinit
 
 on init
 
-    export LD_PRELOAD "/system/lib/libsamsung_symbols.so"
-
 #   for backwards compatibility
     symlink /sdcard /storage/sdcard0
 
