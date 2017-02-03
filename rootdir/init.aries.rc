@@ -1,10 +1,10 @@
 import /init.aries.usb.rc
 import /init.aries.gps.rc
 
-on earlyinit
+on early-init
 
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
-    restorecon_recursive /sys/kernel/debug
+    mount debugfs debugfs /sys/kernel/debug
+    chmod 0755 /sys/kernel/debug
 
 on init
 
