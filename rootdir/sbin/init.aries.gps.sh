@@ -22,7 +22,7 @@ if [ $HWREV = "0xF" ] ; then
     chown system:system /dev/cg2900_us_ctrl
     chmod 0770 /dev/cg2900_us_ctrls
 
-    start ste-cg29xx_ctrl
+    setprop gps.variant cg2900
 
 #   GPS_CHIPSET_STE_CG2900
 #   STE: Added for CG2900 Support
@@ -35,15 +35,15 @@ fi
 
 GPS_HWREV=`cat /sys/class/sec/gps/hwrev`
 
-CONFIGFILE=system/vendor/etc/gps_ExtLNA.xml
+CONFIGFILE=vendor/etc/gps_ExtLNA.xml
 
 case $GPS_HWREV in
      0)
-           CONFIGFILE=/system/vendor/etc/gps_ExtLNA.xml
+           CONFIGFILE=/vendor/etc/gps_ExtLNA.xml
            ;;
      *)
-           CONFIGFILE=/system/vendor/etc/gps.xml
+           CONFIGFILE=/vendor/etc/gps.xml
            ;;
 esac
 
-exec /system/vendor/bin/gpsd-shim -c $CONFIGFILE
+exec /vendor/bin/gpsd-shim -c $CONFIGFILE

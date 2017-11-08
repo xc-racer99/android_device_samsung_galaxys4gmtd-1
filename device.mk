@@ -40,7 +40,8 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/rootdir/init.aries.gps.rc:root/init.aries.gps.rc \
     device/samsung/galaxys4gmtd/rootdir/init.recovery.aries.rc:root/init.recovery.aries.rc \
     device/samsung/galaxys4gmtd/rootdir/ueventd.aries.rc:root/ueventd.aries.rc \
-    device/samsung/galaxys4gmtd/rootdir/sbin/init.aries.gps.sh:root/sbin/init.aries.gps.sh
+    device/samsung/galaxys4gmtd/rootdir/sbin/init.aries.gps.sh:root/sbin/init.aries.gps.sh \
+    device/samsung/galaxys4gmtd/rootdir/sbin/init.aries.modem.sh:root/sbin/init.aries.modem.sh
 
 # FSTAB files
 PRODUCT_COPY_FILES += \
@@ -53,10 +54,8 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/config/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
     device/samsung/galaxys4gmtd/config/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
 
-# Misc files
+# updater.sh
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys4gmtd/bml_over_mtd.sh:bml_over_mtd.sh \
-    device/samsung/galaxys4gmtd/post-install.sh:post-install.sh \
     device/samsung/galaxys4gmtd/updater.sh:updater.sh
 
 # This device is hdpi
@@ -68,6 +67,11 @@ PRODUCT_AAPT_PREBUILT_DPI := hdpi mdpi xhdpi xxhdpi
 # GPS packages
 PRODUCT_PACKAGES += \
     gpsd-shim
+
+# Utilities
+PRODUCT_PACKAGES += \
+    utility_mksquashfs \
+    utility_ubiupdatevol
 
 # HSPA+/HSUPA Overrides
 PRODUCT_PROPERTY_OVERRIDES += \

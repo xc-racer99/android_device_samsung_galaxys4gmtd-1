@@ -1,3 +1,4 @@
 ###########################
 # OmniROM galaxys4gmtd sepolicy
 #
+allow init system_file:file { mounton };

@@ -14,22 +14,17 @@ service gps_init /sbin/init.aries.gps.sh
     disabled
     seclabel u:r:gps_init:s0
 
-service gpsd /system/vendor/bin/gpsd-shim -c /etc/vendor/samsung-agps/secgps.conf
-    class late_start
-    socket gps seqpacket 0660 gps system
-    user gps
-    group system inet wakelock
-
 # +STE GPS Daemon
 #GPS_CHIPSET_STE_CG2900
-service agpsd /system/vendor/bin/agpsd
+service agpsd /vendor/bin/agpsd
     class core
     user gps
     group system inet wakelock
     oneshot
+    disabled
 
 # +STE UART Contol Application
-service ste-cg29xx_ctrl /system/vendor/bin/ste-cg29xx_ctrl -b 115200 /dev/s3c2410_serial1
+service ste-cg29xx_ctrl /vendor/bin/ste-cg29xx_ctrl -b 115200 /dev/s3c2410_serial1
     user system
     group system misc
     oneshot
@@ -44,3 +39,12 @@ on post-fs-data
     chown gps system /data/gps
     chown gps root /sys/class/sec/gps/GPS_PWR_EN/value
     chmod 660 /sys/class/sec/gps/GPS_PWR_EN/value
+
+on property:gps.variant=cg2900
+    # bind mount files
+    mount squashfs /vendor/lib/libclientgps.so.telusgalaxys4gmtd /vendor/lib/libclientgps.so ro bind
+    mount squashfs /vendor/lib/hw/gps.aries.so.telusgalaxys4gmtd /vendor/lib/hw/gps.aries.so ro bind
+    start agpsd
+
+on property:init.svc.agpsd=stopped
+    start ste-cg29xx_ctrl

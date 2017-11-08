@@ -3,17 +3,14 @@
 # The filesystem that contains the filesystem checker binary (typically /system) cannot
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
-#Recovery only volumes
-ramdisk                     /ramdisk            mtd         defaults                                            recoveryonly
-ramdisk-recovery            /ramdisk-recovery   mtd         defaults                                            recoveryonly
-boot                        /boot               mtd         defaults                                            recoveryonly
-radio                       /radio              mtd         defaults                                            recoveryonly
-cache                       /cache              yaffs2      defaults                                            recoveryonly
-system                      /system             yaffs2      ro                                                  recoveryonly
+# Hack - Android no longer supports yaffs2 partitions, so pretend we're making ext4 ones for boot
+boot                        /boot               ext4        defaults                                                   recoveryonly
 
-# Emulated SDcard on /data on physical SD card
-/dev/block/mmcblk0p1        /data               ext4        noatime,discard,nodev,nosuid,nomblk_io_submit,errors=panic wait,encryptable=footer,length=-16384
-/dev/block/mmcblk0p1        /data               f2fs        rw,noatime,discard,nosuid,nodev,nodiratime,inline_xattr    wait,encryptable=footer,length=-16384
+# vold managed
+/dev/block/ubiblock0_0      /system             squashfs    ro                                                         wait
+/dev/block/mmcblk0p1        /cache              ext4        noatime,discard,nodev,nosuid,nomblk_io_submit              wait
+/dev/block/mmcblk0p2        /data               ext4        noatime,discard,nodev,nosuid,nomblk_io_submit,errors=panic wait,encryptable=footer,length=-16384
+/dev/block/mmcblk0p2        /data               f2fs        rw,noatime,discard,nosuid,nodev,nodiratime,inline_xattr    wait,encryptable=footer,length=-16384
 
 # USB OTG
-/devices/platform/s3c_otghcd/usb* auto          auto        defaults                                            voldmanaged=usb:auto
+/devices/platform/s3c_otghcd/usb* auto          auto        defaults                                                   voldmanaged=usb:auto

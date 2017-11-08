@@ -21,32 +21,9 @@ on boot
 #   Prevents permission denied error for telephony
     chmod 0644 /proc/cmdline
 
-# Flash storage isn't a good entropy source, and only causes locking
-# overhead in the kernel. Turn it off.
-    write /sys/block/mmcblk0/queue/add_random 0
-    write /sys/block/mtdblock0/queue/add_random 0
-    write /sys/block/mtdblock1/queue/add_random 0
-    write /sys/block/mtdblock2/queue/add_random 0
-    write /sys/block/mtdblock3/queue/add_random 0
-    write /sys/block/mtdblock4/queue/add_random 0
-    write /sys/block/mtdblock5/queue/add_random 0
-    write /sys/block/mtdblock6/queue/add_random 0
-
 on fs
-#   /system needs to be mounted before swapon_all so mkswapfs is available
-    mount yaffs2 mtd@system /system
-
-#   Remount ro, was mounted rw to save a checkpoint
-    mount yaffs2 mtd@system /system ro noatime remount
 
     mount_all /fstab.aries
-
-#   Radio set up
-    mkdir /radio 0775 radio radio
-    mount yaffs2 mtd@radio /radio
-    mount yaffs2 mtd@cache /cache nosuid nodev
-    chown radio radio /radio/modem.bin
-    restorecon_recursive /radio
 
 #   We chown/chmod /efs because mount is run as root + defaults
     mkdir /efs 0775 radio radio
@@ -118,7 +95,7 @@ on fs
 on post-fs
 
 #   Samsung RIL
-    symlink /radio/modem.bin /dev/block/bml12
+    start modem_init
 
 #   Allow system to modify cpufreq control files
     chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -132,8 +109,6 @@ on post-fs
 
 on charger
 
-    mount yaffs2 mtd@system /system
-
 #   set cpu governor to powersave while in charging mode
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
 
@@ -141,17 +116,8 @@ on post-fs-data
 
     setprop vold.post_fs_data_done 1
 
-service ril-daemon /system/bin/rild
-    oneshot
-    class core
-    socket rild stream 660 root radio
-    socket sap_uim_socket1 stream 660 bluetooth bluetooth
-    socket rild-debug stream 660 radio system
-    user root
-    group radio cache inet misc audio log readproc wakelock net_raw net_admin
-
 # 3D init
-service pvrsrvinit /system/bin/pvrsrvinit
+service pvrsrvinit /vendor/bin/pvrsrvinit
     class core
     user root
     group root readproc wakelock
@@ -172,7 +138,7 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-service bdaddr /system/bin/bdaddr_read
+service bdaddr /vendor/bin/bdaddr_read
     class main
     user root
     group system bluetooth
@@ -187,13 +153,19 @@ service charger /sbin/healthd -c
 on property:ril.bt_macaddr=*
     start bdaddr
 
-service orientationd /system/vendor/bin/orientationd
+service orientationd /vendor/bin/orientationd
     class late_start
     user compass
     group system input
     disabled
 
-service geomagneticd /system/vendor/bin/geomagneticd
+service geomagneticd /vendor/bin/geomagneticd
     class late_start
     user compass
     group system input
+
+service modem_init /sbin/init.aries.modem.sh
+    user root
+    oneshot
+    seclabel u:r:modem_init:s0
+    disabled
