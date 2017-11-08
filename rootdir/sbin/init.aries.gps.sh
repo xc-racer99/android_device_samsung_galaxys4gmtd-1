@@ -22,6 +22,10 @@ if [ $HWREV = "0xF" ] ; then
     chown system:system /dev/cg2900_us_ctrl
     chmod 0770 /dev/cg2900_us_ctrls
 
+#   bind mount files
+    mount -o bind /system/lib/libclientgps.so.telusgalaxys4gmtd /system/lib/libclientgps.so
+    mount -o bind /system/vendor/lib/hw/gps.aries.so.telusgalaxys4gmtd /system/vendor/lib/hw/gps.aries.so
+
     start ste-cg29xx_ctrl
 
 #   GPS_CHIPSET_STE_CG2900
