@@ -34,11 +34,11 @@ on fs
     restorecon_recursive /efs
 
 #   Permissions for bluetooth
-    chown bluetooth net_bt_stack /dev/s3c2410_serial0
+    chown bluetooth bluetooth /dev/s3c2410_serial0
     chmod 0600 /dev/s3c2410_serial0
     chmod 0660 /sys/class/rfkill/rfkill0/state
-    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
-    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
 
 #   Permissions for System Server and daemons.
     chown system system /sys/class/backlight/s5p_bl/brightness
