@@ -44,10 +44,12 @@ def FullOTA_Assertions(info):
   p = subprocess.Popen(["minigzip", "-d"], stdout=outF, stdin=inF)
   p.communicate()
 
-  # create non-sparse images
-  RunCommand(["simg2img", os.path.join(TARGET_DIR, "obj/PACKAGING/systemimage_intermediates/system.img"), os.path.join(TARGET_DIR, "system.img")])
+  # create a non-sparse system.img
+  RunCommand(["simg2img", os.path.join(TARGET_DIR, "obj/PACKAGING/target_files_intermediates/aosp_galaxys4gmtd-target_files-eng.jon/IMAGES/system.img"), os.path.join(TARGET_DIR, "system.img")])
 
   info.output_zip.write(os.path.join(TARGET_DIR, "ramdisk.cpio"), "ramdisk.cpio")
+  info.output_zip.write(os.path.join(TARGET_DIR, "modem.bin"), "modem.bin")
+  info.output_zip.write(os.path.join(TARGET_DIR, "modem.bin.telusgalaxys4gmtd"), "modem.bin.telusgalaxys4gmtd")
   info.output_zip.write(os.path.join(TARGET_DIR, "system.img"), "system.img")
   info.output_zip.write(os.path.join(TARGET_DIR, "updater.sh"), "updater.sh")
   info.output_zip.write(os.path.join(TARGET_DIR, "bml_over_mtd.sh"), "bml_over_mtd.sh")
@@ -59,6 +61,8 @@ def FullOTA_Assertions(info):
   info.output_zip.write(os.path.join(UTILITIES_DIR, "ubiupdatevol"), "ubiupdatevol")
   info.output_zip.write(os.path.join(UTILITIES_DIR, "mksquashfs"), "mksquashfs")
 
+  info.script.AppendExtra('package_extract_file("modem.bin", "/tmp/modem.bin");')
+  info.script.AppendExtra('package_extract_file("modem.bin.telusgalaxys4gmtd", "/tmp/modem.bin.telusgalaxys4gmtd");')
   info.script.AppendExtra('package_extract_file("ramdisk.cpio", "/tmp/ramdisk.cpio");')
   info.script.AppendExtra('package_extract_file("system.img", "/sdcard/system.img");')
   info.script.AppendExtra(
@@ -100,4 +104,7 @@ def FullOTA_InstallEnd(info):
       edify.script.remove(cmd)
     if "block_image_update" in cmd:
       edify.script.remove(cmd)
+  info.script.AppendExtra('ifelse(is_mounted("/system"), unmount("/system"));')
   info.script.AppendExtra('assert(run_program("/tmp/ubiupdatevol", "/dev/ubi0_0", "/sdcard/system.img") == 0);')
+
+  # Remove 
