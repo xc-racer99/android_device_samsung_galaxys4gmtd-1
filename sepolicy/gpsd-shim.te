@@ -17,7 +17,7 @@ allow gpsd-shim gpsd_exec:file { read execute open execute_no_trans };
 allow gpsd-shim netd:unix_stream_socket connectto;
 allow gpsd-shim node:tcp_socket node_bind;
 allow gpsd-shim port:tcp_socket { name_bind name_connect };
-allow gpsd-shim properties_device:file execute;
+#allow gpsd-shim properties_device:file execute;
 allow gpsd-shim self:capability { dac_override net_raw };
 allow gpsd-shim self:process execmem;
 allow gpsd-shim self:tcp_socket { setopt read bind create write getattr connect listen getopt accept };
