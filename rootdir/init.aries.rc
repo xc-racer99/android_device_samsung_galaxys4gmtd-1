@@ -123,7 +123,7 @@ service pvrsrvinit /vendor/bin/pvrsrvinit
     group root readproc wakelock
     oneshot
 
-service wpa_supplicant /system/bin/wpa_supplicant \
+service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant.conf \
     -e/data/misc/wifi/entropy.bin \
@@ -134,7 +134,6 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     #   group wifi inet keystore
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
-    group system wakelock
     disabled
     oneshot
 
