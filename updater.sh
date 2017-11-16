@@ -64,10 +64,9 @@ if /tmp/busybox test -e /dev/block/ubiblock0_0 ; then
     # copy modem.bin to radio partition
     /tmp/busybox umount -l /dev/block/ubiblock0_3
     if is_telus_galaxys4g ; then
-        /tmp/mksquashfs /tmp/modem.bin.telusgalaxys4gmtd /tmp/radio.squash -comp gzip -force-uid 1001 -force-uid 1001 -noappend
-    else
-        /tmp/mksquashfs /tmp/modem.bin.telusgalaxys4gmtd /tmp/radio.squash -comp gzip -force-uid 1001 -force-uid 1001 -noappend
+        /tmp/busybox mv /tmp/modem.bin.telusgalaxys4gmtd /tmp/modem.bin
     fi
+    /tmp/mksquashfs /tmp/modem.bin /tmp/radio.squash -comp gzip -force-uid 1001 -force-uid 1001 -noappend
     /tmp/ubiupdatevol /dev/ubi0_3 /tmp/radio.squash
 
     # uncpio boot.img and make a squashfs
