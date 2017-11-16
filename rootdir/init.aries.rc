@@ -27,7 +27,7 @@ on fs
 
 #   We chown/chmod /efs because mount is run as root + defaults
     mkdir /efs 0775 radio radio
-    mount ubifs /dev/ubi0_4 /efs
+    mount yaffs2 mtd@efs /efs
     chown radio radio /efs
     chmod 770 /efs
     chmod 770 /efs/imei
