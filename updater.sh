@@ -66,7 +66,9 @@ if /tmp/busybox test -e /dev/block/ubiblock0_0 ; then
     if is_telus_galaxys4g ; then
         /tmp/busybox mv /tmp/modem.bin.telusgalaxys4gmtd /tmp/modem.bin
     fi
-    /tmp/mksquashfs /tmp/modem.bin /tmp/radio.squash -comp gzip -force-uid 1001 -force-uid 1001 -noappend
+    /tmp/busybox chown radio:radio /tmp/modem.bin
+    /tmp/busybox chcon u:object_r:rild_file:s0 /tmp/modem.bin
+    /tmp/mksquashfs /tmp/modem.bin /tmp/radio.squash -noappend
     /tmp/ubiupdatevol /dev/ubi0_3 /tmp/radio.squash
 
     # uncpio boot.img and make a squashfs
@@ -74,7 +76,7 @@ if /tmp/busybox test -e /dev/block/ubiblock0_0 ; then
 	cd /tmp/ramdisk
 	/tmp/busybox cpio -ui < /tmp/ramdisk.cpio
 	cd /
-	/tmp/mksquashfs /tmp/ramdisk /tmp/ramdisk.squash -comp gzip -noappend
+	/tmp/mksquashfs /tmp/ramdisk /tmp/ramdisk.squash -noappend
     /tmp/busybox rm -rf /tmp/ramdisk
     /tmp/ubiupdatevol /dev/ubi0_1 /tmp/ramdisk.squash
 

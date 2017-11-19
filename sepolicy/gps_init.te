@@ -4,6 +4,8 @@
 type gps_init, domain;
 type gps_init_exec, exec_type, file_type;
 
+type gps_prop, property_type;
+
 init_daemon_domain(gps_init)
 
 # Both
@@ -16,6 +18,7 @@ allow gps_init toolbox_exec:file { execute execute_no_trans getattr open read };
 allow gps_init cg2900_device:chr_file { getattr setattr };
 allow gps_init ctl_default_prop:property_service set;
 allow gps_init gps_device:chr_file { getattr setattr };
+allow gps_init gps_prop:property_service { set };
 allow gps_init init:unix_stream_socket connectto;
 allow gps_init property_socket:sock_file write;
 allow gps_init rootfs:file entrypoint;
