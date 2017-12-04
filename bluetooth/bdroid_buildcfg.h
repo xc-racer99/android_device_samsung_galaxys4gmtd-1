@@ -19,9 +19,9 @@
 
 #define BTM_DEF_LOCAL_NAME   "Samsung Galaxy S 4G"
 
-//#define BLE_INCLUDED FALSE
-//#define BTA_GATT_INCLUDED FALSE
-//#define SMP_INCLUDED FALSE
+#define BLE_INCLUDED FALSE
+#define BTA_GATT_INCLUDED FALSE
+#define SMP_INCLUDED FALSE
 
 /* Defined if the kernel does not have support for CLOCK_BOOTTIME_ALARM */
 #define KERNEL_MISSING_CLOCK_BOOTTIME_ALARM TRUE
