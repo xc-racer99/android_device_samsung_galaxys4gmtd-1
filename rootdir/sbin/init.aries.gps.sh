@@ -35,15 +35,15 @@ fi
 
 GPS_HWREV=`cat /sys/class/sec/gps/hwrev`
 
-CONFIGFILE=system/vendor/etc/gps_ExtLNA.xml
+CONFIGFILE=vendor/etc/gps_ExtLNA.xml
 
 case $GPS_HWREV in
      0)
-           CONFIGFILE=/system/vendor/etc/gps_ExtLNA.xml
+           CONFIGFILE=/vendor/etc/gps_ExtLNA.xml
            ;;
      *)
-           CONFIGFILE=/system/vendor/etc/gps.xml
+           CONFIGFILE=/vendor/etc/gps.xml
            ;;
 esac
 
-exec /system/vendor/bin/gpsd-shim -c $CONFIGFILE
+exec /vendor/bin/gpsd-shim -c $CONFIGFILE

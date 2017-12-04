@@ -40,7 +40,8 @@ PRODUCT_COPY_FILES += \
     device/samsung/galaxys4gmtd/rootdir/init.aries.gps.rc:root/init.aries.gps.rc \
     device/samsung/galaxys4gmtd/rootdir/init.recovery.aries.rc:root/init.recovery.aries.rc \
     device/samsung/galaxys4gmtd/rootdir/ueventd.aries.rc:root/ueventd.aries.rc \
-    device/samsung/galaxys4gmtd/rootdir/sbin/init.aries.gps.sh:root/sbin/init.aries.gps.sh
+    device/samsung/galaxys4gmtd/rootdir/sbin/init.aries.gps.sh:root/sbin/init.aries.gps.sh \
+    device/samsung/galaxys4gmtd/rootdir/sbin/init.aries.modem.sh:root/sbin/init.aries.modem.sh
 
 # FSTAB files
 PRODUCT_COPY_FILES += \

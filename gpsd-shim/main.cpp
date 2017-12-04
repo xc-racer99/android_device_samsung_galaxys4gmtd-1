@@ -22,7 +22,7 @@
 #include <errno.h>
 #include <sys/personality.h>
 
-#define GPSD_PATH "/system/vendor/bin/samsung-gpsd"
+#define GPSD_PATH "/vendor/bin/samsung-gpsd"
 
 int main() {
     int currentPersonality = personality(0xFFFFFFFF);

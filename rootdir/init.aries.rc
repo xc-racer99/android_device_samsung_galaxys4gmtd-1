@@ -95,7 +95,7 @@ on fs
 on post-fs
 
 #   Samsung RIL
-    symlink /radio/modem.bin /dev/block/bml12
+    start modem_init
 
 #   Allow system to modify cpufreq control files
     chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -117,7 +117,7 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
 
 # 3D init
-service pvrsrvinit /system/bin/pvrsrvinit
+service pvrsrvinit /vendor/bin/pvrsrvinit
     class core
     user root
     group root readproc wakelock
@@ -138,7 +138,7 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-service bdaddr /system/bin/bdaddr_read
+service bdaddr /vendor/bin/bdaddr_read
     class main
     user root
     group system bluetooth
@@ -153,13 +153,19 @@ service charger /sbin/healthd -c
 on property:ril.bt_macaddr=*
     start bdaddr
 
-service orientationd /system/vendor/bin/orientationd
+service orientationd /vendor/bin/orientationd
     class late_start
     user compass
     group system input
     disabled
 
-service geomagneticd /system/vendor/bin/geomagneticd
+service geomagneticd /vendor/bin/geomagneticd
     class late_start
     user compass
     group system input
+
+service modem_init /sbin/init.aries.modem.sh
+    user root
+    oneshot
+    seclabel u:r:init:s0
+    disabled

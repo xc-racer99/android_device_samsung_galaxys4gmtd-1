@@ -16,7 +16,7 @@ service gps_init /sbin/init.aries.gps.sh
 
 # +STE GPS Daemon
 #GPS_CHIPSET_STE_CG2900
-service agpsd /system/vendor/bin/agpsd
+service agpsd /vendor/bin/agpsd
     class core
     user gps
     group system inet wakelock
@@ -24,7 +24,7 @@ service agpsd /system/vendor/bin/agpsd
     disabled
 
 # +STE UART Contol Application
-service ste-cg29xx_ctrl /system/vendor/bin/ste-cg29xx_ctrl -b 115200 /dev/s3c2410_serial1
+service ste-cg29xx_ctrl /vendor/bin/ste-cg29xx_ctrl -b 115200 /dev/s3c2410_serial1
     user system
     group system misc
     oneshot
@@ -42,8 +42,8 @@ on post-fs-data
 
 on property:gps.variant=cg2900
     # bind mount files
-    mount squashfs /system/lib/libclientgps.so.telusgalaxys4gmtd /system/lib/libclientgps.so ro bind
-    mount squashfs /system/vendor/lib/hw/gps.aries.so.telusgalaxys4gmtd /system/vendor/lib/hw/gps.aries.so ro bind
+    mount squashfs /vendor/lib/libclientgps.so.telusgalaxys4gmtd /vendor/lib/libclientgps.so ro bind
+    mount squashfs /vendor/lib/hw/gps.aries.so.telusgalaxys4gmtd /vendor/lib/hw/gps.aries.so ro bind
     start agpsd
 
 on property:init.svc.agpsd=stopped

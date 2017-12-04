@@ -2,17 +2,27 @@
 # OmniROM galaxys4gmtd sepolicy
 #
 
+# Bdaddr
+/vendor/bin/bdaddr_read                                                 u:object_r:bdaddr_read_exec:s0
+
+# GFX
+/vendor/bin/pvrsrvinit                                                  u:object_r:pvrsrvinit_exec:s0
+
 # Radio
 /dev/mtd/mtd6                                                           u:object_r:radio_device:s0
 /dev/mtd/mtd6ro                                                         u:object_r:radio_device:s0
 /dev/block/mtdblock6                                                    u:object_r:radio_device:s0
 
+# Sensors
+/vendor/bin/geomagneticd                                                u:object_r:geomagneticd_exec:s0
+/vendor/bin/orientationd                                                u:object_r:orientationd_exec:s0
+
 # T959P GPS
 /data/GPS_NV_Data.bin                                                   u:object_r:gps_data_file:s0
 /data/HALGPS_conf.cfg                                                   u:object_r:gps_data_file:s0
 /dev/cg2900_(.*)                                                        u:object_r:cg2900_device:s0
-/system/vendor/bin/agpsd                                                u:object_r:gpsd_exec:s0
-/system/vendor/bin/ste-cg29xx_ctrl                                      u:object_r:cg2900_exec:s0
+/vendor/bin/agpsd                                                       u:object_r:gpsd_exec:s0
+/vendor/bin/ste-cg29xx_ctrl                                             u:object_r:cg2900_exec:s0
 
 # T959V GPS
 /data/CGPS_LOG.txt                                                      u:object_r:gps_data_file:s0
@@ -20,5 +30,5 @@
 /data/GNB_DEBUG.txt                                                     u:object_r:gps_data_file:s0
 /data/NAV_DEBUG.txt                                                     u:object_r:gps_data_file:s0
 /data/NMEA_DEBUG.txt                                                    u:object_r:gps_data_file:s0
-/system/vendor/bin/gpsd-shim                                            u:object_r:gpsd-shim_exec:s0
-/system/vendor/bin/samsung-gpsd                                         u:object_r:gpsd_exec:s0
+/vendor/bin/gpsd-shim                                                   u:object_r:gpsd-shim_exec:s0
+/vendor/bin/samsung-gpsd                                                u:object_r:gpsd_exec:s0
