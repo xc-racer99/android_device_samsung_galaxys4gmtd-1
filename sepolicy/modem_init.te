@@ -1,0 +1,14 @@
+###########################
+# OmniROM galaxys4gmtd sepolicy
+#
+type modem_init, domain;
+type modem_init_exec, exec_type, file_type;
+
+init_daemon_domain(modem_init)
+
+allow modem_init block_device:dir { add_name write };
+allow modem_init block_device:lnk_file create;
+allow modem_init proc:file { open read };
+allow modem_init rootfs:file { open read };
+allow modem_init shell_exec:file { getattr read };
+allow modem_init toolbox_exec:file { execute execute_no_trans getattr open read };

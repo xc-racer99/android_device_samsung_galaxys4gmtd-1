@@ -167,5 +167,5 @@ service geomagneticd /vendor/bin/geomagneticd
 service modem_init /sbin/init.aries.modem.sh
     user root
     oneshot
-    seclabel u:r:init:s0
+    seclabel u:r:modem_init:s0
     disabled
