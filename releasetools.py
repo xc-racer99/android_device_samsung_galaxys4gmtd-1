@@ -46,11 +46,11 @@ def FullOTA_Assertions(info):
 
   # create non-sparse images
   RunCommand(["simg2img", os.path.join(TARGET_DIR, "obj/PACKAGING/systemimage_intermediates/system.img"), os.path.join(TARGET_DIR, "system.img")])
-  RunCommand(["simg2img", os.path.join(TARGET_DIR, "vendor.img"), os.path.join(TARGET_DIR, "vendor-unsparse.img")])
+#  RunCommand(["simg2img", os.path.join(TARGET_DIR, "vendor.img"), os.path.join(TARGET_DIR, "vendor-unsparse.img")])
 
   info.output_zip.write(os.path.join(TARGET_DIR, "ramdisk.cpio"), "ramdisk.cpio")
   info.output_zip.write(os.path.join(TARGET_DIR, "system.img"), "system.img")
-  info.output_zip.write(os.path.join(TARGET_DIR, "vendor-unsparse.img"), "vendor.img")
+#  info.output_zip.write(os.path.join(TARGET_DIR, "vendor-unsparse.img"), "vendor.img")
   info.output_zip.write(os.path.join(TARGET_DIR, "updater.sh"), "updater.sh")
   info.output_zip.write(os.path.join(TARGET_DIR, "bml_over_mtd.sh"), "bml_over_mtd.sh")
   info.output_zip.write(os.path.join(UTILITIES_DIR, "make_ext4fs"), "make_ext4fs")
@@ -63,7 +63,7 @@ def FullOTA_Assertions(info):
 
   info.script.AppendExtra('package_extract_file("ramdisk.cpio", "/tmp/ramdisk.cpio");')
   info.script.AppendExtra('package_extract_file("system.img", "/sdcard/system.img");')
-  info.script.AppendExtra('package_extract_file("vendor.img", "/sdcard/vendor.img");')
+#  info.script.AppendExtra('package_extract_file("vendor.img", "/sdcard/vendor.img");')
   info.script.AppendExtra(
         ('package_extract_file("updater.sh", "/tmp/updater.sh");\n'
          'run_program("/sbin/chmod", "777", "/tmp/updater.sh");'))
@@ -104,4 +104,4 @@ def FullOTA_InstallEnd(info):
     if "block_image_update" in cmd:
       edify.script.remove(cmd)
   info.script.AppendExtra('assert(run_program("/tmp/ubiupdatevol", "/dev/ubi0_0", "/sdcard/system.img") == 0);')
-  info.script.AppendExtra('assert(run_program("/tmp/ubiupdatevol", "/dev/ubi0_3", "/sdcard/vendor.img") == 0);')
+#  info.script.AppendExtra('assert(run_program("/tmp/ubiupdatevol", "/dev/ubi0_3", "/sdcard/vendor.img") == 0);')
