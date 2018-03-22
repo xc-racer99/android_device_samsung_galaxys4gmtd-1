@@ -258,7 +258,7 @@ service geomagneticd /system/vendor/bin/geomagneticd
     group system input
 
 service tvout /system/bin/tvoutserver
-    class late_start
+    class main
     user system
     group graphics
 
