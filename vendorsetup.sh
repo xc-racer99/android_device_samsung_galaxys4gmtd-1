@@ -20,5 +20,5 @@
 # In particular, you can add lunch options with the add_lunch_combo
 # function: add_lunch_combo generic-eng
 
-add_lunch_combo full_telusgalaxys4gmtd-eng
-add_lunch_combo full_telusgalaxys4gmtd-userdebug
+add_lunch_combo lineage_telusgalaxys4gmtd-eng
+add_lunch_combo lineage_telusgalaxys4gmtd-userdebug

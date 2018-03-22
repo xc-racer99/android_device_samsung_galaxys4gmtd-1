@@ -1,6 +1,9 @@
 ## Specify phone tech before including full_phone
 $(call inherit-product, vendor/cm/config/gsm.mk)
 
+TARGET_SCREEN_HEIGHT := 800
+TARGET_SCREEN_WIDTH := 480
+
 # Release name
 PRODUCT_RELEASE_NAME := TelusFascinate4G
 
@@ -12,7 +15,7 @@ $(call inherit-product, device/samsung/telusgalaxys4gmtd/full_telusgalaxys4gmtd.
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := telusgalaxys4gmtd
-PRODUCT_NAME := cm_telusgalaxys4gmtd
+PRODUCT_NAME := lineage_telusgalaxys4gmtd
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_MODEL := SGH-T959P
