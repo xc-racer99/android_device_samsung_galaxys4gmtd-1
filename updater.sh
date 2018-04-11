@@ -96,8 +96,8 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
 
     # make sure radio partition is mounted
     if ! /tmp/busybox grep -q /radio /proc/mounts ; then
-        /tmp/busybox umount -l /dev/block/mtdblock6
-        if ! /tmp/busybox mount -t yaffs2 /dev/block/mtdblock6 /radio ; then
+        /tmp/busybox umount -l /dev/block/mtdblock7
+        if ! /tmp/busybox mount -t yaffs2 /dev/block/mtdblock7 /radio ; then
             /tmp/busybox echo "Cannot mount radio partition."
             exit 5
         fi
@@ -105,9 +105,9 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
 
     # if modem.bin doesn't exist on radio partition, format the partition and copy it
     if ! /tmp/busybox test -e /radio/modem.bin ; then
-        /tmp/busybox umount -l /dev/block/mtdblock6
+        /tmp/busybox umount -l /dev/block/mtdblock7
         /tmp/erase_image radio
-        if ! /tmp/busybox mount -t yaffs2 /dev/block/mtdblock6 /radio ; then
+        if ! /tmp/busybox mount -t yaffs2 /dev/block/mtdblock7 /radio ; then
             /tmp/busybox echo "Cannot copy modem.bin to radio partition."
             exit 5
         else
@@ -117,11 +117,11 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     fi
 
     # unmount radio partition
-    /tmp/busybox umount -l /dev/block/mtdblock6
+    /tmp/busybox umount -l /dev/block/mtdblock7
 
     # flash boot image
     /tmp/erase_image boot
-    /tmp/bml_over_mtd.sh boot 72 reservoir 4012 /tmp/boot.img
+    /tmp/flash_image boot /tmp/boot.img
 
     # unmount and format system (recovery seems to expect system to be unmounted)
     /tmp/busybox umount -l /system
@@ -130,28 +130,8 @@ elif /tmp/busybox test -e /dev/block/mtdblock0 && /tmp/busybox test -e /dev/bloc
     # if a cyanogenmod.cfg exists, then this is an update from BML
     # lets check if it doesn't exist
     if ! /tmp/busybox test -e /sdcard/cyanogenmod.cfg ; then
-        if [ "$(/tmp/busybox cat /sys/class/mtd/mtd3/name)" != "datadata" ] ; then
-            # We're running an old parition system, format userdata, cache, and second parition on sd card
-            /tmp/busybox echo "Updating partition scheme, formatting old userdata, old sd-ext, and cache; not restoring efs"
-            # unmount and format data
-            /tmp/busybox umount -l /sd-ext
-            /tmp/make_ext4fs -b 4096 -l -16384 -a /data /dev/block/mmcblk0p2
-            # unmount and format cache
-            /tmp/busybox umount -l /cache
-            /tmp/erase_image cache
-            if [ "$(/tmp/busybox cat /sys/class/mtd/mtd3/name)" == "userdata" ] ; then
-                # Confirmation of old filesystem
-                /tmp/busybox umount -l /data
-                /tmp/erase_image userdata
-                exit 0
-            else
-                /tmp/busybox echo "Unrecognized parition scheme - aborting!"
-                exit 9
-            fi
-        else
-            /tmp/busybox echo "Updating cyanogenmod, Not formating /cache and /data, not restoring /efs"
-            exit 0
-        fi
+        /tmp/busybox echo "Updating cyanogenmod, Not formating /cache and /data, not restoring /efs"
+        exit 0
     fi
 
     /tmp/busybox echo "Updating from a BML rom. Format /cache and /data, and attempt to restore /efs"
