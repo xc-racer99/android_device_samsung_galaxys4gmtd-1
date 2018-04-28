@@ -22,6 +22,10 @@ on init
     # rild doesn't like being killed. (During device encryption.)
     stop ril-daemon
 
+    # RIL needs bigger buffer size
+    write /proc/sys/net/core/rmem_max 524288
+    write /proc/sys/net/core/wmem_max 263168
+
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
@@ -80,6 +84,25 @@ on fs
 
 # load wifi module
     insmod /system/lib/modules/bcmdhd.ko
+
+#   Change permission for modem
+    chown radio radio /sys/devices/platform/modemctl/modemctl/xmm/control
+    chmod 660 /sys/devices/platform/modemctl/modemctl/xmm/control
+
+    chown radio radio /sys/devices/platform/modemctl/modemctl/xmm/sim
+    chmod 660 /sys/devices/platform/modemctl/modemctl/xmm/sim
+
+    chown radio radio /sys/class/net/svnet0/pdp/deactivate
+    chmod 660 /sys/class/net/svnet0/pdp/deactivate
+
+    chown radio radio /sys/class/net/svnet0/pdp/activate
+    chmod 660 /sys/class/net/svnet0/pdp/activate
+
+    chown radio radio /sys/class/net/svnet0/pdp/resume
+    chmod 660 /sys/class/net/svnet0/pdp/resume
+
+    chown radio radio /sys/class/net/svnet0/pdp/suspend
+    chmod 660 /sys/class/net/svnet0/pdp/suspend
 
 # permission for tuning knobs
     chown system system /sys/class/misc/notification/bl_timeout

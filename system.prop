@@ -2,7 +2,7 @@
 # system.prop for telusgalaxys4gmtd
 #
 
-rild.libpath=/system/lib/libsec-ril.so
+rild.libpath=/system/lib/libsamsung-ril.so
 rild.libargs=-d /dev/ttyS0
 ro.sf.lcd_density=240
 
