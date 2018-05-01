@@ -272,13 +272,12 @@ on property:ril.bt_macaddr=*
 #     oneshot
 #     keycodes 114 115 116
 
-service orientationd /system/vendor/bin/orientationd
+service orientationd /system/bin/orientationd
     class late_start
     user compass
     group system input
-    disabled
 
-service geomagneticd /system/vendor/bin/geomagneticd
+service geomagneticd /system/bin/geomagneticd
     class late_start
     user compass
     group system input
