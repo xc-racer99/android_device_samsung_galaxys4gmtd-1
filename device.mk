@@ -37,6 +37,10 @@ PRODUCT_COPY_FILES += \
 	device/samsung/telusgalaxys4gmtd/updater.sh:updater.sh \
 	device/samsung/telusgalaxys4gmtd/fstab.aries:root/fstab.aries
 
+# hciattach for CG2900
+PRODUCT_PACKAGES += \
+	hciattach
+
 # Inherit common configuration
 $(call inherit-product, device/samsung/aries-common/device_base.mk)
 
