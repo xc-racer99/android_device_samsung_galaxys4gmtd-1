@@ -5,7 +5,7 @@
 #
 
 # +STE UART Contol Application
-service ste-cg29xx_ctrl /system/vendor/bin/ste-cg29xx_ctrl -b 115200 /dev/s3c2410_serial1
+service ste-cg29xx_ctrl /system/bin/hciattach -a 22 -n -s 115200 /dev/s3c2410_serial1 cg2900 115200 flow
      class main
      user system
      group system misc
