@@ -12,46 +12,14 @@ service ste-cg29xx_ctrl /system/bin/hciattach -a 22 -n -s 115200 /dev/s3c2410_se
      oneshot
 
 # +STE GPS Daemon
-#GPS_CHIPSET_STE_CG2900
+# GPS_CHIPSET_STE_CG2900
 service agpsd /system/vendor/bin/agpsd
      class core
      user gps
      group system inet
      oneshot
 
-on post-fs
-
-#GPS_CHIPSET_STE_CG2900
-#STE: Added for CG2900 Support
-#+Scott.Re-setup permission right
-      chown system system /dev/s3c2410_serial1
-      chmod 0770 /dev/s3c2410_serial1
-      chown system system /system/vendor/bin/ste-cg29xx_ctrl
-      chmod 0770 /system/vendor/bin/ste-cg29xx_ctrl
-      mkdir /data/gps 770 gps system
-      chown gps system /data/gps
-      chmod 770 /data/GPS_NV_Data.bin
-      chmod 770 /data/GPS_UTC_Calib.bin
-      chown system system /dev/cg2900_audio
-      chmod 0770 /dev/cg2900_audio
-      chown system system /dev/cg2900_bt_audio
-      chmod 0770 /dev/cg2900_bt_audio
-      chown system system /dev/cg2900_core
-      chmod 0770 /dev/cg2900_core
-      chown system system /dev/cg2900_driver0
-      chmod 0770 /dev/cg2900_driver0
-      chown system system /dev/cg2900_fm_audio
-      chmod 0770 /dev/cg2900_fm_audio
-      chown gps system /dev/cg2900_gnss
-      chmod 0770 /dev/cg2900_gnss
-      chown system system /dev/cg2900_hci_logger
-      chmod 0770 /dev/cg2900_hci_logger
-      chown system system /dev/cg2900_us_ctrl
-      chmod 0770 /dev/cg2900_us_ctrl
-
 on post-fs-data
-
-#Create data/gps for GPS demon
+# Create /data/gps for GPS daemon
     mkdir /data/gps 770 gps system
     chown gps system /data/gps
-    chown radio system /sys/class/power_supply/battery/gps
