@@ -4,13 +4,18 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 # MTD Volumes
-radio			/radio			mtd	defaults                                                   recoveryonly
-boot			/boot			mtd	defaults                                                   recoveryonly
-recovery		/recovery		mtd	defaults                                                   recoveryonly
-cache			/cache		 	yaffs2	defaults                                                   recoveryonly
+boot			/boot			mtd	defaults							recoveryonly
+recovery		/recovery		mtd	defaults							recoveryonly
 
-system         		/system               	yaffs2	ro	                                                   recoveryonly
-datadata	       	/datadata              	yaffs2	noatime,nodev,nosuid,nomblk_io_submit,errors=panic	   recoveryonly
+# UBI in reality, but faked as ext4 for Android build system
+/dev/ubi0_0		/radio			ubifs	defaults							recoveryonly
+/dev/ubi0_1		/efs		 	ubifs	defaults							recoveryonly
+/dev/ubi0_2		/cache		 	ubifs	defaults							recoveryonly
+/dev/ubi0_3		/system               	ubifs	ro								recoveryonly
+/dev/ubi0_4		/datadata		ubifs	noatime,nodev,nosuid,nomblk_io_submit,errors=panic		recoveryonly
+
+# For updating from AOSP recovery
+/dev/block/mmcblk0p1	/sdcard			vfat	defaults							recoveryonly
 
 # Data on SD card
 /dev/block/mmcblk0p2    /data                   ext4    noatime,discard,nodev,nosuid,nomblk_io_submit,errors=panic wait,encryptable=footer,length=-16384
