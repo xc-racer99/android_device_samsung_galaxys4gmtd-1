@@ -28,10 +28,6 @@ PRODUCT_COPY_FILES += \
 	device/samsung/telusgalaxys4gmtd/keys/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
 	device/samsung/telusgalaxys4gmtd/keys/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
 
-# Prebuilt CWM image
-PRODUCT_COPY_FILES += \
-	device/samsung/telusgalaxys4gmtd/ramdisk-recovery.img:ramdisk-recovery-cwm.img
-
 # We unfortunately need our own updater.sh and fstab
 PRODUCT_COPY_FILES += \
 	device/samsung/telusgalaxys4gmtd/updater.sh:updater.sh \
