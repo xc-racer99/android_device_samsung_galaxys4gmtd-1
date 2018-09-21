@@ -14,10 +14,6 @@
 
 DEVICE_PACKAGE_OVERLAYS := device/samsung/telusgalaxys4gmtd/overlay
 
-# These are the hardware-specific configuration files
-PRODUCT_COPY_FILES := \
-	device/samsung/telusgalaxys4gmtd/etc/asound.conf:system/etc/asound.conf
-
 # Init files
 PRODUCT_COPY_FILES += \
 	device/samsung/telusgalaxys4gmtd/ramdisk/init.aries.rc:root/init.aries.rc \
