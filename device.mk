@@ -28,9 +28,8 @@ PRODUCT_COPY_FILES += \
 	device/samsung/telusgalaxys4gmtd/keys/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
 	device/samsung/telusgalaxys4gmtd/keys/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
 
-# We unfortunately need our own updater.sh and fstab
+# We unfortunately need our own fstab
 PRODUCT_COPY_FILES += \
-	device/samsung/telusgalaxys4gmtd/updater.sh:updater.sh \
 	device/samsung/telusgalaxys4gmtd/fstab.aries:root/fstab.aries
 
 # hciattach for CG2900
