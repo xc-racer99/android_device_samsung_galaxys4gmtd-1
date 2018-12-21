@@ -55,6 +55,11 @@ on fs
     mount_all fstab.aries
     swapon_all fstab.aries
 
+    insmod /lib/modules/pvrsrvkm.ko
+    insmod /lib/modules/s3c_lcd.ko
+    insmod /system/lib/modules/pvrsrvkm.ko
+    insmod /system/lib/modules/s3c_lcd.ko
+
     chown radio radio /radio/modem.bin
     restorecon_recursive /radio
 
