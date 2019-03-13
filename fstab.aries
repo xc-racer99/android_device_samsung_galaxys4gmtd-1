@@ -11,8 +11,7 @@ recovery		/recovery		mtd	defaults							recoveryonly
 /dev/ubi0_0		/radio			ubifs	defaults							recoveryonly
 /dev/ubi0_1		/efs		 	ubifs	defaults							recoveryonly
 /dev/ubi0_2		/cache		 	ubifs	defaults							recoveryonly
-/dev/ubi0_3		/system               	ubifs	ro								recoveryonly
-/dev/ubi0_4		/datadata		ubifs	noatime,nodev,nosuid,nomblk_io_submit,errors=panic		recoveryonly
+/dev/ubi0_4		/system               	ubifs	ro								recoveryonly
 
 # For updating from AOSP recovery
 /dev/block/mmcblk0p1	/sdcard			vfat	defaults							recoveryonly
